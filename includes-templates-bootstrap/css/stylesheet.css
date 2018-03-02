@@ -1,0 +1,19 @@
+/**
+ * Main Template CSS Stylesheet
+ * 
+ * BOOTSTRAP v1.0.BETA
+ *
+ * @package templateSystem
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ */
+
+/* This is used to re-size images */
+img{max-width:100%;height:auto;border:0;}
+
+
+.normalprice, .productSpecialPriceSale {
+	text-decoration: line-through;
+	}
+

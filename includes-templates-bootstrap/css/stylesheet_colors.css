@@ -1,0 +1,74 @@
+/**
+ * Main Template CSS Colors Stylesheet
+ * 
+ * BOOTSTRAP v1.0.BETA
+ *
+ * @package templateSystem
+ * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ */
+ 
+/* BOF HEADER */
+/* HEADER MAIN NAV */
+#navMain .navbar {background:#333;}
+#navMain .navbar a {color:#FFF;}
+.navbar .navbar-toggler {background-color:#FFF; }
+
+/* HEADER MOBILE MENU */
+.dropdown-item {color:#05a5cb!important;}
+.dropdown-item:hover {color:#0099CC!important;}
+
+/* HEADER CATEGORY TABS */
+.category-top:hover {background:#05a5cb;color:#FFF;}
+.activeLink {background:#33b5e5;color:#FFF;}
+
+/* HEADER EZPAGES BAR */
+.ezpagesBar {background:#333;} 
+.ezpagesBar a {color:#FFF;}
+/* EOF HEADER */
+
+/* BOF BUTTONS */
+.btn {background:#33b5e5;color:#FFF;}
+.btn:hover {background:#0099CC;color:#FFF;}
+/* EOF BUTTONS */
+
+/* BOF SIDEBOXES */
+a, .list-group-item-action {color:#05a5cb;}
+a:hover, .list-group-item-action:hover {color:#0099CC;}
+.badge {background:#05a5cb;color:#FFF;}
+.fa-cart-plus {color:#00C851;}
+.leftBoxHeading, .rightBoxHeading {background:#333;color:#FFF;}
+.leftBoxHeading a, .rightBoxHeading a {color:#FFF;}
+/* EOF SIDEBOXES */
+
+/* BOF CENTERBOXES */
+.centerBoxHeading {background:#333; color:#FFF;}
+/* EOF CENTERBOXES */
+
+/* BOF FOOTER */
+/* FOOTER EZPAGES BAR */
+.ezpagesBar {background:#333;} 
+.ezpagesBar a {color:#FFF;}
+/* EOF FOOTER */
+
+/* BOF PRODUCT LISTING PAGES */
+.active .page-link {background:#05a5cb!important;color:#FFF!important;border-color:#05a5cb!important;}
+.button_add_selected {background:#00C851;color:#FFF;}
+.button_add_selected:hover {background:#007E33;color:#FFF;}
+/* EOF PRODUCT LISTING PAGES */
+
+/* BOF PRODUCT INFO PAGES */
+#addToCart-card-header, .button_in_cart {background:#00C851;color:#FFF;}
+.button_in_cart:hover {background:#007E33;color:#FFF;}
+#addToCart-card {border-color:#00C851;}
+/* EOF PRODUCT INFO PAGES */
+
+/* BOF PRODUCT PRICES */
+.productSpecialPrice, .productSalePrice, .productSpecialPriceSale, .productPriceDiscount {color:#FF0000;}
+/* EOF PRODUCT PRICES */
+
+/* BOF MISC FORMS */
+.required-info {color:red;}
+/* EOF MISC FORMS */
+
