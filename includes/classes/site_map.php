@@ -50,12 +50,12 @@ if (!defined('IS_ADMIN_FLAG')) {
    }
 
    function buildBranch($parent_id, $level = 0, $parent_link = '') {
-    $result = '<ul class="list-group">';
+    $result = $this->parent_group_start_string;
 
     if (isset($this->data[$parent_id])) {
       foreach ($this->data[$parent_id] as $category_id => $category) {
         $category_link = $parent_link . $category_id;
-        $result .= '<li class="list-group-item">';
+        $result .= $this->child_start_string;
         if (isset($this->data[$category_id])) {
           $result .= $this->parent_start_string;
         }
@@ -92,4 +92,16 @@ if (!defined('IS_ADMIN_FLAG')) {
    function buildTree() {
      return $this->buildBranch($this->root_category_id);
    }
+//-bof-zca_bootstrap  *** 1 of 1 ***
+    public function setParentStartEndStrings($start, $end = "</ul>\n")
+    {
+        $this->parent_group_start_string = $start;
+        $this->parent_group_end_string = $end;
+    }
+    public function setChildStartString($start, $end = "</li>\n")
+    {
+        $this->child_start_string = $start;
+        $this->child_end_string = $end;
+    }
+//-eof-zca_bootstrap  *** 1 of 1 ***
  }

@@ -13,12 +13,14 @@
  * zca_responsive_default BASE
  *
  */
-
-require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
+// -----
+// specials: Provide updated processing **ONLY IF** the ZCA bootstrap is the active template.
+//
+if (!zca_bootstrap_active()) {
+    return;
+}
 
 $define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_SPECIALS, 'false');
-
-$breadcrumb->add(NAVBAR_TITLE);
 
 // display order dropdown
   $disp_order_default = PRODUCT_SPECIAL_LIST_SORT_DEFAULT;
@@ -52,8 +54,6 @@ $define_list = array('PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
 asort($define_list);
 reset($define_list);
 $column_list = array();
-foreach ($define_list as $key => $value)
-{
+foreach ($define_list as $key => $value) {
 	if ($value > 0) $column_list[] = $key;
 }
-?>

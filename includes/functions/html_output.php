@@ -2,8 +2,6 @@
 /**
  * html_output.php
  * HTML-generating functions used throughout the core
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * @package functions
  * @copyright Copyright 2003-2017 Zen Cart Development Team
@@ -11,7 +9,9 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Author: DrByte   Modified in v1.5.5 $
  */
-
+// -----
+// Notifiers added in support of the ZCA Bootstrap template.
+//
 /*
  * The HTML href link wrapper function
  */
@@ -341,17 +341,42 @@
           $parameters = str_replace($matches[1], '', $parameters);
         }
       }
+      
+//-bof-zca_bootstrap  *** 1 of 6 ***
+      $GLOBALS['zco_notifier']->notify(
+            'NOTIFY_ZEN_CSS_BUTTON_SUBMIT', 
+            array(
+                'button_name' => $button_name,
+                'text' => $text,
+                'sec_class' => $sec_class,
+                'parameters' => $parameters,
+            ),
+            $css_button
+      );
+      if ($css_button == '') {
+        $css_button = '<input class="' . $mouse_out_class . '" ' . $css_button_js . ' type="submit" value="' . $text . '"' . $tooltip . $parameters . ' />';
+      }
+//-eof-zca_bootstrap  *** 1 of 6 ***
 
-$css_button = '<button type="submit" class="btn '. $button_name . '">' . $text . '</button>';
-
-      //$css_button = '<input class="' . $mouse_out_class . '" ' . $css_button_js . ' type="submit" value="' . $text . '"' . $tooltip . $parameters . ' />';
     }
 
     if ($type=='button'){
       // link button
-      $css_button = '<button type="button" class="btn '. $button_name . '">' . $text . '</button>';
-      
-      //$css_button = '<span class="' . $mouse_out_class . '" ' . $css_button_js . $tooltip . $parameters . '>&nbsp;' . $text . '&nbsp;</span>';
+//-bof-zca_bootstrap  *** 2 of 6 ***
+      $GLOBALS['zco_notifier']->notify(
+            'NOTIFY_ZEN_CSS_BUTTON_BUTTON', 
+            array(
+                'button_name' => $button_name,
+                'text' => $text,
+                'sec_class' => $sec_class,
+                'parameters' => $parameters,
+            ),
+            $css_button
+      );
+      if ($css_button == '') {
+        $css_button = '<span class="' . $mouse_out_class . '" ' . $css_button_js . $tooltip . $parameters . '>&nbsp;' . $text . '&nbsp;</span>';
+      }
+//-eof-zca_bootstrap  *** 2 of 6 ***
     }
     return $css_button;
   }
@@ -390,7 +415,7 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
  *  Output a form input field
  */
   function zen_draw_input_field($name, $value = '', $parameters = '', $type = 'text', $reinsert_value = true) {
-    $field = '<input class="form-control" type="' . zen_output_string($type) . '" name="' . zen_sanitize_string(zen_output_string($name)) . '"';
+    $field = '<input type="' . zen_output_string($type) . '" name="' . zen_sanitize_string(zen_output_string($name)) . '"';
     if ( (isset($GLOBALS[$name]) && is_string($GLOBALS[$name])) && ($reinsert_value == true) ) {
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
     } elseif (zen_not_null($value)) {
@@ -400,6 +425,20 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 
     $field .= ' />';
+
+//-bof-zca_bootstrap  *** 3 of 6 ***
+    $GLOBALS['zco_notifier']->notify(
+        'NOTIFY_ZEN_DRAW_INPUT_FIELD',
+        array(
+            'name' => $name,
+            'value' => $value,
+            'parameters' => $parameters,
+            'type' => $type,
+            'reinsert_value' => $reinsert_value
+        ),
+        $field
+    );
+//-eof-zca_bootstrap  *** 3 of 6 ***
 
     return $field;
   }
@@ -415,7 +454,7 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
  *  Output a selection field - alias function for zen_draw_checkbox_field() and zen_draw_radio_field()
  */
   function zen_draw_selection_field($name, $type, $value = '', $checked = false, $parameters = '') {
-    $selection = '<input class="custom-control-input" type="' . zen_output_string($type) . '" name="' . zen_output_string($name) . '"';
+    $selection = '<input type="' . zen_output_string($type) . '" name="' . zen_output_string($name) . '"';
 
     if (zen_not_null($value)) $selection .= ' value="' . zen_output_string($value) . '"';
 
@@ -426,6 +465,20 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
     if (zen_not_null($parameters)) $selection .= ' ' . $parameters;
 
     $selection .= ' />';
+    
+//-bof-zca_bootstrap  *** 4 of 6 ***
+    $GLOBALS['zco_notifier']->notify(
+        'NOTIFY_ZEN_DRAW_SELECTION_FIELD',
+        array(
+            'name' => $name,
+            'value' => $value,
+            'parameters' => $parameters,
+            'type' => $type,
+            'checked' => $checked
+        ),
+        $selection
+    );
+//-eof-zca_bootstrap  *** 4 of 6 ***
 
     return $selection;
   }
@@ -448,7 +501,7 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
  *  Output a form textarea field
  */
   function zen_draw_textarea_field($name, $width, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
-    $field = '<textarea class="form-control" name="' . zen_output_string($name) . '" cols="' . zen_output_string($width) . '" rows="' . zen_output_string($height) . '"';
+    $field = '<textarea name="' . zen_output_string($name) . '" cols="' . zen_output_string($width) . '" rows="' . zen_output_string($height) . '"';
 
     if (zen_not_null($parameters)) $field .= ' ' . $parameters;
 
@@ -461,6 +514,21 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
     }
 
     $field .= '</textarea>';
+    
+//-bof-zca_bootstrap  *** 5 of 6 ***
+    $GLOBALS['zco_notifier']->notify(
+        'NOTIFY_ZEN_DRAW_TEXTAREA_FIELD',
+        array(
+            'name' => $name,
+            'width' => $width,
+            'height' => $height,
+            'text' => $text,
+            'parameters' => $parameters,
+            'reinsert_value' => $reinsert_value,
+        ),
+        $field
+    );
+//-eof-zca_bootstrap  *** 5 of 6 ***
 
     return $field;
   }
@@ -511,7 +579,7 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
  *  Pulls values from a passed array, with the indicated option pre-selected
  */
   function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false) {
-    $field = '<select class="custom-select"';
+    $field = '<select';
 
     if (!strstr($parameters, 'id=')) $field .= ' id="select-'.zen_output_string($name).'"';
 
@@ -534,6 +602,20 @@ $css_button = '<button type="submit" class="btn '. $button_name . '">' . $text .
     $field .= '</select>' . "\n";
 
     if ($required == true) $field .= TEXT_FIELD_REQUIRED;
+    
+//-bof-zca_bootstrap  *** 6 of 6 ***
+    $GLOBALS['zco_notifier']->notify(
+        'NOTIFY_ZEN_DRAW_PULL_DOWN_MENU',
+        array(
+            'name' => $name,
+            'values' => $values,
+            'default' => $default,
+            'parameters' => $parameters,
+            'required' => $required,
+        ),
+        $field
+    );
+//-eof-zca_bootstrap  *** 6 of 6 ***
 
     return $field;
   }

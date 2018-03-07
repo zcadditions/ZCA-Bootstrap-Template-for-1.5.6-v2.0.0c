@@ -49,12 +49,28 @@ class ot_gv {
     $this->credit_class = true;
     if (!zen_not_null(ltrim($_SESSION['cot_gv'], ' 0')) || $_SESSION['cot_gv'] == '0') $_SESSION['cot_gv'] = '0.00';
     if (IS_ADMIN_FLAG !== true) {
-      $this->checkbox = $this->user_prompt . '<input type="text" class="form-control" size="6" onkeyup="submitFunction()" name="cot_gv" value="' . number_format($_SESSION['cot_gv'], 2) . '" onfocus="if (this.value == \'' . number_format($_SESSION['cot_gv'], 2) . '\') this.value = \'\';" />' . ($this->user_has_gv_account($_SESSION['customer_id']) > 0 ? '<br />' . MODULE_ORDER_TOTAL_GV_USER_BALANCE . $currencies->format($this->user_has_gv_account($_SESSION['customer_id'])) : '');
+
+//-bof-zca_bootstrap  *** 1 of 2 ***
+        if (!zca_bootstrap_active()) {
+            $this->checkbox = $this->user_prompt . '<input type="text" size="6" onkeyup="submitFunction()" name="cot_gv" value="' . number_format($_SESSION['cot_gv'], 2) . '" onfocus="if (this.value == \'' . number_format($_SESSION['cot_gv'], 2) . '\') this.value = \'\';" />' . ($this->user_has_gv_account($_SESSION['customer_id']) > 0 ? '<br />' . MODULE_ORDER_TOTAL_GV_USER_BALANCE . $currencies->format($this->user_has_gv_account($_SESSION['customer_id'])) : '');
+        } else {
+            $this->checkbox = $this->user_prompt . '<input type="text" class="form-control" size="6" onkeyup="submitFunction()" name="cot_gv" value="' . number_format($_SESSION['cot_gv'], 2) . '" onfocus="if (this.value == \'' . number_format($_SESSION['cot_gv'], 2) . '\') this.value = \'\';" />' . ($this->user_has_gv_account($_SESSION['customer_id']) > 0 ? '<br />' . MODULE_ORDER_TOTAL_GV_USER_BALANCE . $currencies->format($this->user_has_gv_account($_SESSION['customer_id'])) : '');
+        }
+//-eof-zca-bootstrap  *** 1 of 2 ***
+
     }
     $this->output = array();
     if (IS_ADMIN_FLAG === true) {
       if ($this->include_tax == 'true' && $this->calculate_tax != "None") {
-        $this->title .= '<span class="alert alert-danger" role="alert">' . MODULE_ORDER_TOTAL_GV_INCLUDE_ERROR . '</span>';
+
+//-bof-zca_bootstrap  *** 2 of 2 ***
+        if (!zca_bootstrap_active()) {
+            $this->title .= '<span class="alert">' . MODULE_ORDER_TOTAL_GV_INCLUDE_ERROR . '</span>';
+        } else {
+            $this->title .= '<span class="alert alert-danger" role="alert">' . MODULE_ORDER_TOTAL_GV_INCLUDE_ERROR . '</span>';
+        }
+//-eof-zca_bootstrap  *** 2 of 2 ***
+
       }
     }
   }
