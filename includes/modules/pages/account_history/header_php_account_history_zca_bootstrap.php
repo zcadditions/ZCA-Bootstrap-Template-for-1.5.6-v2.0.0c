@@ -25,7 +25,7 @@ if (zca_bootstrap_active() && $accountHasHistory) {
         $extras = array(
             'order_type' => $order_type,
             'order_name' => $order_name,
-        '   product_count' => $products->fields['count']
+            'product_count' => $products->fields['count']
         );
         $accountHistory[] = array_merge($history->fields, $extras);
         $history->moveNext();
