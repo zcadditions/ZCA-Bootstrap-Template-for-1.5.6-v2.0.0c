@@ -14,5 +14,5 @@ $template_name = 'ZCA Bootstrap';
 $template_version = 'Version 1.0.BETA';
 $template_author = 'Raymond A. Barbour';
 $template_description = 'Responsive Zen Cart Template built with Bootstrap 4';
-$template_screenshot = '';
+$template_screenshot = 'ZCA_BOOTSTRAP_TEMPLATE.png';
 ?>
