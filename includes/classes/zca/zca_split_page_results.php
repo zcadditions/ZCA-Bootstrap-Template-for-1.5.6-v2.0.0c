@@ -11,7 +11,7 @@
  * @version $Id: Author: DrByte  Sat Jan 9 13:13:41 2016 -0500 Modified in v1.5.5 $
  */
 if (!defined('IS_ADMIN_FLAG')) {
-  die('Illegal Access');
+    die('Illegal Access');
 }
 /**
  * Split Page Result Class
@@ -21,7 +21,13 @@ if (!defined('IS_ADMIN_FLAG')) {
  *
  * @package classes
  */
-class splitPageResults extends base {
+// -----
+// Provides a modified version of the splitPageResults formatting; loaded by
+// /includes/init_includes/init_zca_bootstrap.php if the 'bootstrap' template is the
+// currently-active template.  The template-specific processing will use this formatting
+// when the ZCA Bootstrap template is active.
+//
+class zca_splitPageResults extends base {
   var $sql_query, $number_of_rows, $current_page_number, $number_of_pages, $number_of_rows_per_page, $page_name;
 
   /* class constructor */

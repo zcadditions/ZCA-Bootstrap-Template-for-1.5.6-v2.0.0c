@@ -1,6 +1,6 @@
 <?php
 /**
- * products_all  header_php.php
+ * products_new header_php.php
  * 
  * BOOTSTRAP v1.0.BETA
  *
@@ -11,28 +11,35 @@
  * @version $Id: header_php.php 6912 2007-09-02 02:23:45Z drbyte $
  *
  */
+// -----
+// products_new: Provide updated processing **ONLY IF** the ZCA bootstrap is the active template.
+//
+if (!zca_bootstrap_active()) {
+    return;
+}
 
   require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
-$define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_PRODUCTS_ALL, 'false');
-
-  $breadcrumb->add(NAVBAR_TITLE);
+$define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_PRODUCTS_NEW, 'false');
 
 // display order dropdown
-  $disp_order_default = PRODUCT_ALL_LIST_SORT_DEFAULT;
+  $disp_order_default = PRODUCT_NEW_LIST_SORT_DEFAULT;
 
   require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER));
 
-  $listing_sql = "SELECT p.products_type, p.products_id, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id,
-                                    p.products_date_added, m.manufacturers_name, p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
+  $display_limit = zen_get_new_date_range();
+
+  $listing_sql = "SELECT p.products_id, p.products_type, pd.products_name, p.products_image, p.products_price,
+                                    p.products_tax_class_id, p.products_date_added, m.manufacturers_name, p.products_model,
+                                    p.products_quantity, p.products_weight, p.product_is_call,
                                     p.product_is_always_free_shipping, p.products_qty_box_status,
                                     p.master_categories_id
                              FROM " . TABLE_PRODUCTS . " p
-                             LEFT JOIN " . TABLE_MANUFACTURERS . " m ON (p.manufacturers_id = m.manufacturers_id), " . TABLE_PRODUCTS_DESCRIPTION . " pd
+                             LEFT JOIN " . TABLE_MANUFACTURERS . " m
+                             ON (p.manufacturers_id = m.manufacturers_id), " . TABLE_PRODUCTS_DESCRIPTION . " pd
                              WHERE p.products_status = 1
                              AND p.products_id = pd.products_id
-                             AND pd.language_id = :languageID " . $order_by;
-
+                             AND pd.language_id = :languageID " . $display_limit . $order_by;
 
 $listing_sql = $db->bindVars($listing_sql, ':languageID', $_SESSION['languages_id'], 'integer');
 
@@ -53,4 +60,3 @@ foreach ($define_list as $key => $value)
 {
 	if ($value > 0) $column_list[] = $key;
 }
-?>

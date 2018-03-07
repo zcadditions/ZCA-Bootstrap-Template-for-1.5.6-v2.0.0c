@@ -1,8 +1,6 @@
 <?php
 /**
  * File contains the order-processing class ("order")
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * @package classes
  * @copyright Copyright 2003-2016 Zen Cart Development Team
@@ -78,8 +76,16 @@ class order extends base {
                 from " . TABLE_COUPONS . "
                 where coupon_code ='" . $order->fields['coupon_code'] . "'";
         $coupon_link = $db->Execute($coupon_link_query);
-        $_SESSION['cc_id'] = $coupon_link->fields['coupon_id'];
-        $zc_coupon_link = '<a data-toggle="modal" data-id="'. $_SESSION['cc_id']. '" href="#couponHelpModal">';
+        $zc_coupon_link = '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $coupon_link->fields['coupon_id']) . '\')">';
+        
+//-bof-zca_bootstrap  *** 1 of 1 ***
+        $this->notify(
+            'NOTIFY_ORDER_COUPON_LINK',
+            $coupon_link->fields,
+            $zc_coupon_link
+        );
+//-eof-zca_bootstrap  *** 1 of 1 ***
+
       }
       $this->totals[] = array('title' => ($totals->fields['class'] == 'ot_coupon' ? $zc_coupon_link . $totals->fields['title'] . '</a>' : $totals->fields['title']),
                               'text' => $totals->fields['text'],

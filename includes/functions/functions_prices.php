@@ -1,7 +1,7 @@
 <?php
 /**
  * functions_prices
- * 
+ *
  * BOOTSTRAP v1.0.BETA
  *
  * @package functions
@@ -10,7 +10,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Author: DrByte  Fri Jan 22 10:56:26 2016 +0000 Modified in v1.5.5 $
  */
-
+//
 ////
 //get specials price or sale price
   function zen_get_products_special_price($product_id, $specials_price_only=false) {
@@ -54,7 +54,7 @@
 //      $product_to_categories = $db->Execute("select categories_id from " . TABLE_PRODUCTS_TO_CATEGORIES . " where products_id = '" . (int)$product_id . "'");
 //      $category = $product_to_categories->fields['categories_id'];
 
-      $product_to_categories = $db->Execute("select master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . $product_id . "'");
+      $product_to_categories = $db->Execute("select master_categories_id from " . TABLE_PRODUCTS . " where products_id = '" . (int)$product_id . "'");
       $category = $product_to_categories->fields['master_categories_id'];
 
       $sale = $db->Execute("select sale_specials_condition, sale_deduction_value, sale_deduction_type from " . TABLE_SALEMAKER_SALES . " where sale_categories_all like '%," . $category . ",%' and sale_status = '1' and (sale_date_start <= now() or sale_date_start = '0001-01-01') and (sale_date_end >= now() or sale_date_end = '0001-01-01') and (sale_pricerange_from <= '" . $product_price . "' or sale_pricerange_from = '0') and (sale_pricerange_to >= '" . $product_price . "' or sale_pricerange_to = '0')");
@@ -210,60 +210,139 @@
 
     $show_sale_discount = '';
     if (SHOW_SALE_DISCOUNT_STATUS == '1' and ($display_special_price != 0 or $display_sale_price != 0)) {
-      if ($display_sale_price) {
-        if (SHOW_SALE_DISCOUNT == 1) {
-          if ($display_normal_price != 0) {
-            $show_discount_amount = number_format(100 - (($display_sale_price / $display_normal_price) * 100),SHOW_SALE_DISCOUNT_DECIMALS);
-          } else {
-            $show_discount_amount = '';
-          }
-          $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</div>';
 
-        } else {
-          $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_sale_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</div>';
-        }
-      } else {
-        if (SHOW_SALE_DISCOUNT == 1) {
-          $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($display_special_price / $display_normal_price) * 100),SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</div>';
-        } else {
-          $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_special_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</div>';
-        }
+//-bof-zca_bootstrap  *** 1 of 7 ***
+      // -----
+      // Allows an observer to inject any override to the "Sale Price" formatting.  If an override
+      // is performed, the observer sets the 'pricing_handled' value to true.
+      //
+      $pricing_handled = false;
+      $GLOBALS['zco_notifier']->notify(
+            'NOTIFY_ZEN_GET_PRODUCTS_DISPLAY_PRICE_SALE', 
+            array(
+                'products_id' => $products_id, 
+                'display_sale_price' => $display_sale_price, 
+                'display_special_price' => $display_special_price,
+                'display_normal_price' => $display_normal_price,
+                'products_tax_class_id' => $product_check->fields['products_tax_class_id']
+            ), 
+            $pricing_handled,
+            $show_sale_discount
+      );
+      if (!$pricing_handled) {
+//-eof-zca_bootstrap  *** 1 of 7 ***
+
+          if ($display_sale_price) {
+            if (SHOW_SALE_DISCOUNT == 1) {
+              if ($display_normal_price != 0) {
+                $show_discount_amount = number_format(100 - (($display_sale_price / $display_normal_price) * 100),SHOW_SALE_DISCOUNT_DECIMALS);
+              } else {
+                $show_discount_amount = '';
+              }
+              $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
+
+            } else {
+              $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_sale_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
+            }
+          } else {
+            if (SHOW_SALE_DISCOUNT == 1) {
+              $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($display_special_price / $display_normal_price) * 100),SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
+            } else {
+              $show_sale_discount = '<span class="productPriceDiscount">' . '<br />' . PRODUCT_PRICE_DISCOUNT_PREFIX . $currencies->display_price(($display_normal_price - $display_special_price), zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
+            }
+          }
+
+//-bof-zca_bootstrap  *** 2 of 7 ***
       }
+//-eof-zca_bootstrap  *** 2 of 7 ***
+
     }
 
     if ($display_special_price) {
-      $show_normal_price = '<div class="p-1 text-center normalprice">' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . ' </div>';
-      if ($display_sale_price && $display_sale_price != $display_special_price) {
-        $show_special_price = '<div class="p-1 text-center productSpecialPriceSale">' . $currencies->display_price($display_special_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</div>';
-        if ($product_check->fields['product_is_free'] == '1') {
-          $show_sale_price = '<div class="p-1 text-center productSalePrice
-">' . PRODUCT_PRICE_SALE . '<s>' . $currencies->display_price($display_sale_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</s>' . '</div>';
-        } else {
-          $show_sale_price = '<div class="p-1 text-center productSalePrice
-">' . PRODUCT_PRICE_SALE . $currencies->display_price($display_sale_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</div>';
-        }
-      } else {
-        if ($product_check->fields['product_is_free'] == '1') {
-          $show_special_price = '<div class="p-1 text-center productSpecialPrice">' . '<s>' . $currencies->display_price($display_special_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</s>' . '</div>';
-        } else {
-          $show_special_price = '<div class="p-1 text-center productSpecialPrice">' . $currencies->display_price($display_special_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</div>';
-        }
-        $show_sale_price = '';
+
+//-bof-zca_bootstrap  *** 3 of 7 ***
+      // -----
+      // Allows an observer to inject any override to the "Special/Normal Prices'" formatting.
+      //
+      $pricing_handled = false;
+      $GLOBALS['zco_notifier']->notify(
+            'NOTIFY_ZEN_GET_PRODUCTS_DISPLAY_PRICE_SPECIAL', 
+            array(
+                'products_id' => $products_id, 
+                'display_sale_price' => $display_sale_price,
+                'display_special_price' => $display_special_price,
+                'display_normal_price' => $display_normal_price,
+                'products_tax_class_id' => $product_check->fields['products_tax_class_id'],
+                'product_is_free' => $product_check->fields['product_is_free']
+            ), 
+            $pricing_handled,
+            $show_normal_price,
+            $show_special_price,
+            $show_sale_price
+      );
+      if (!$pricing_handled) {
+//-eof-zca_bootstrap  *** 3 of 7 ***
+
+          $show_normal_price = '<span class="normalprice">' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . ' </span>';
+          if ($display_sale_price && $display_sale_price != $display_special_price) {
+            $show_special_price = '&nbsp;' . '<span class="productSpecialPriceSale">' . $currencies->display_price($display_special_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</span>';
+            if ($product_check->fields['product_is_free'] == '1') {
+              $show_sale_price = '<br />' . '<span class="productSalePrice">' . PRODUCT_PRICE_SALE . '<s>' . $currencies->display_price($display_sale_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</s>' . '</span>';
+            } else {
+              $show_sale_price = '<br />' . '<span class="productSalePrice">' . PRODUCT_PRICE_SALE . $currencies->display_price($display_sale_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</span>';
+            }
+          } else {
+            if ($product_check->fields['product_is_free'] == '1') {
+              $show_special_price = '&nbsp;' . '<span class="productSpecialPrice">' . '<s>' . $currencies->display_price($display_special_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</s>' . '</span>';
+            } else {
+              $show_special_price = '&nbsp;' . '<span class="productSpecialPrice">' . $currencies->display_price($display_special_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</span>';
+            }
+            $show_sale_price = '';
+          }
+
+//-bof-zca_bootstrap  *** 4 of 7 ***
       }
     } else {
-      if ($display_sale_price) {
-        $show_normal_price = '<div class="p-1 text-center normalprice">' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . ' </div>';
-        $show_special_price = '';
-        $show_sale_price = '<div class="p-1 text-center productSalePrice">' . PRODUCT_PRICE_SALE . $currencies->display_price($display_sale_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</div>';
-      } else {
-        if ($product_check->fields['product_is_free'] == '1') {
-          $show_normal_price = '<div class="p-1 text-center productFreePrice"><s>' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</s></div>';
-        } else {
-          $show_normal_price = '<div class="p-1 text-center productBasePrice">' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</div>';
-        }
-        $show_special_price = '';
-        $show_sale_price = '';
+      // -----
+      // Allows an observer to inject any override to the "Normal Prices'" formatting.
+      //
+      $pricing_handled = false;
+      $GLOBALS['zco_notifier']->notify(
+            'NOTIFY_ZEN_GET_PRODUCTS_DISPLAY_PRICE_NORMAL', 
+            array(
+                'products_id' => $products_id, 
+                'display_sale_price' => $display_sale_price,
+                'display_special_price' => $display_special_price,
+                'display_normal_price' => $display_normal_price,
+                'products_tax_class_id' => $product_check->fields['products_tax_class_id'],
+                'product_is_free' => $product_check->fields['product_is_free']
+            ), 
+            $pricing_handled,
+            $show_normal_price,
+            $show_special_price,
+            $show_sale_price
+      );
+      if (!$pricing_handled) {
+//-eof-zca_bootstrap  *** 4 of 7 ***
+
+          if ($display_sale_price) {
+            $show_normal_price = '<span class="normalprice">' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . ' </span>';
+            $show_special_price = '';
+            $show_sale_price = '<br />' . '<span class="productSalePrice">' . PRODUCT_PRICE_SALE . $currencies->display_price($display_sale_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</span>';
+          } else {
+            if ($product_check->fields['product_is_free'] == '1') {
+              $show_normal_price = '<span class="productFreePrice"><s>' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</s></span>';
+            } else {
+              $show_normal_price = '<span class="productBasePrice">' . $currencies->display_price($display_normal_price, zen_get_tax_rate($product_check->fields['products_tax_class_id'])) . '</span>';
+            }
+            $show_special_price = '';
+            $show_sale_price = '';
+          }
+          
+//-bof-zca_bootstrap  *** 5 of 7 ***
       }
+//-eof-zca_bootstrap  *** 5 of 7 ***
+
     }
 
     if ($display_normal_price == 0) {
@@ -273,23 +352,44 @@
       $final_display_price = $show_normal_price . $show_special_price . $show_sale_price . $show_sale_discount;
     }
 
-    // If Free, Show it
-    if ($product_check->fields['product_is_free'] == '1') {
-      if (OTHER_IMAGE_PRICE_IS_FREE_ON=='0') {
-        $free_tag = '<div class="p-1 text-center">' . PRODUCTS_PRICE_IS_FREE_TEXT . '</div>';
-      } else {
-        $free_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT) . '</div>';
-      }
-    }
+//-bof-zca_bootstrap  *** 6 of 7 ***
+    // -----
+    // Allows an observer to inject any override to the "Free" and "Call for Price" formatting.
+    //
+    $tags_handled = false;
+    $GLOBALS['zco_notifier']->notify(
+        'NOTIFY_ZEN_GET_PRODUCTS_DISPLAY_PRICE_FREE_OR_CALL', 
+        array(
+            'product_is_free' => $product_check->fields['product_is_free'],
+            'product_is_call' => $product_check->fields['product_is_call'],
+        ), 
+        $tags_handled,
+        $free_tag,
+        $call_tag
+    );
+    if (!$tags_handled) {
+//-eof-zca_bootstrap  *** 6 of 7 ***
 
-    // If Call for Price, Show it
-    if ($product_check->fields['product_is_call']) {
-      if (PRODUCTS_PRICE_IS_CALL_IMAGE_ON=='0') {
-        $call_tag = '<div class="p-1 text-center">' . PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT . '</div>';
-      } else {
-        $call_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT) . '</div>';
-      }
+        // If Free, Show it
+        if ($product_check->fields['product_is_free'] == '1') {
+          if (OTHER_IMAGE_PRICE_IS_FREE_ON=='0') {
+            $free_tag = '<br />' . PRODUCTS_PRICE_IS_FREE_TEXT;
+          } else {
+            $free_tag = '<br />' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT);
+          }
+        }
+
+        // If Call for Price, Show it
+        if ($product_check->fields['product_is_call']) {
+          if (PRODUCTS_PRICE_IS_CALL_IMAGE_ON=='0') {
+            $call_tag = '<br />' . PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT;
+          } else {
+            $call_tag = '<br />' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT);
+          }
+        }
+//-bof-zca_bootstrap  *** 7 of 7 ***
     }
+//-eof-zca_bootstrap  *** 7 of 7 ***
 
     return $final_display_price . $free_tag . $call_tag;
   }
