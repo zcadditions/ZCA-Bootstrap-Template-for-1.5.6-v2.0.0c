@@ -20,13 +20,7 @@ if (!zca_bootstrap_active()) {
     return;
 }
 
-$define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_SPECIALS, 'false');
-
-// display order dropdown
-  $disp_order_default = PRODUCT_SPECIAL_LIST_SORT_DEFAULT;
-
-  require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER));
-
+//Removed call to define page & sorter dropdown. not included in this template
 	$listing_sql = "SELECT p.products_id, p.products_type, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id, p.products_date_added, p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
                                   p.product_is_always_free_shipping, p.products_qty_box_status,
                                   p.master_categories_id
