@@ -14,12 +14,9 @@
 
      <script type="text/javascript">
 $(document).ready(function () {
-    $('img').on('click', function () {
-        var image = $(this).attr('src');
-        //alert(image);
-        $('#myModal').on('show.bs.modal', function () {
-            $(".showimage").attr("src", image);
-        });
-    });
+		$('a.imageModal').on('click', function() {
+			$('.showimage').attr('src', $(this).find('img').attr('src'));
+			$('#myModal').modal('show');   
+		});		
 });
     </script>
