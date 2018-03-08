@@ -67,11 +67,31 @@ if ($num_products_count > 0) {
     $col_width = floor(100/SHOW_PRODUCT_INFO_COLUMNS_FEATURED_PRODUCTS);
   }
   while (!$featured_products->EOF) {
-    $products_price = zen_get_products_display_price($featured_products->fields['products_id']);
+
     if (!isset($productsInCategory[$featured_products->fields['products_id']])) $productsInCategory[$featured_products->fields['products_id']] = zen_get_generated_category_path_rev($featured_products->fields['master_categories_id']);
 
-    $list_box_contents[$row][$col] = array('params' => 'id="featuredProducts-centerBoxContents" class="centerBoxContents card mb-3 p-3 text-center"',
-    'text' => (($featured_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : '<a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . $productsInCategory[$featured_products->fields['products_id']] . '&products_id=' . $featured_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $featured_products->fields['products_image'], $featured_products->fields['products_name'], IMAGE_FEATURED_PRODUCTS_LISTING_WIDTH, IMAGE_FEATURED_PRODUCTS_LISTING_HEIGHT) . '</a><br />') . '<a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . $productsInCategory[$featured_products->fields['products_id']] . '&products_id=' . $featured_products->fields['products_id']) . '">' . $featured_products->fields['products_name'] . '</a><br />' . $products_price);
+/** bof products price */
+    $products_price = zen_get_products_display_price($featured_products->fields['products_id']);
+
+$featured_products_price = '<div id="featuredCenterbox-price" class="centerBoxContentsItem-price text-center">' . $products_price . '</div>';
+/** eof products price */
+
+/** bof products name */
+    $featured_products->fields['products_name'] = zen_get_products_name($featured_products->fields['products_id']);    
+    
+$featured_products_name = '<div id="featuredCenterbox-name" class="centerBoxContentsItem-name text-center"><a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . $productsInCategory[$featured_products->fields['products_id']] . '&products_id=' . $featured_products->fields['products_id']) . '">' . $featured_products->fields['products_name'] . '</a></div>';
+/** eof products name */
+
+/** bof products image */
+if ($featured_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
+$featured_products_image = '';
+} else {
+$featured_products_image = '<div id="featuredCenterbox-image" class="centerBoxContentsItem-image text-center"><a href="' . zen_href_link(zen_get_info_page($featured_products->fields['products_id']), 'cPath=' . $productsInCategory[$featured_products->fields['products_id']] . '&products_id=' . $featured_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $featured_products->fields['products_image'], $featured_products->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a></div>';
+}
+/** eof products image */
+
+    $list_box_contents[$row][$col] = array('params' => 'id="featured-centerBoxContents" class="centerBoxContents card mb-3 p-3 text-center"',
+    'text' => $featured_products_image . $featured_products_name . $featured_products_price);
 
     $col ++;
     if ($col > (SHOW_PRODUCT_INFO_COLUMNS_FEATURED_PRODUCTS - 1)) {
@@ -84,9 +104,9 @@ if ($num_products_count > 0) {
   if ($featured_products->RecordCount() > 0) {
     if (isset($new_products_category_id) && $new_products_category_id !=0) {
       $category_title = zen_get_categories_name((int)$new_products_category_id);
-      $title = '<h4 id="featuredProducts-centerBoxHeading" class="centerBoxHeading card-header">' . TABLE_HEADING_FEATURED_PRODUCTS . ($category_title != '' ? ' - ' . $category_title : '') . '</h4>';
+      $title = '<h4 id="featuredCenterbox-card-header" class="centerBoxHeading card-header">' . TABLE_HEADING_FEATURED_PRODUCTS . ($category_title != '' ? ' - ' . $category_title : '') . '</h4>';
     } else {
-      $title = '<h4 id="featuredProducts-centerBoxHeading" class="centerBoxHeading card-header">' . TABLE_HEADING_FEATURED_PRODUCTS . '</h4>';;
+      $title = '<h4 id="featuredCenterbox-card-header" class="centerBoxHeading card-header">' . TABLE_HEADING_FEATURED_PRODUCTS . '</h4>';;
     }
     $zc_show_featured = true;
   }

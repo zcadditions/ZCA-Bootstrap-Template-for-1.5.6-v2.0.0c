@@ -1,6 +1,6 @@
 <?php
 /**
- * new_products.php module
+ * new_products module
  * 
  * BOOTSTRAP v1.0.BETA
  *
@@ -67,11 +67,31 @@ if ($num_products_count > 0) {
   }
 
   while (!$new_products->EOF) {
-    $products_price = zen_get_products_display_price($new_products->fields['products_id']);
+
     if (!isset($productsInCategory[$new_products->fields['products_id']])) $productsInCategory[$new_products->fields['products_id']] = zen_get_generated_category_path_rev($new_products->fields['master_categories_id']);
 
-    $list_box_contents[$row][$col] = array('params' => 'id="newProducts-centerBoxContents" class="centerBoxContents card mb-3 p-3 text-center"',
-    'text' => (($new_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : '<a href="' . zen_href_link(zen_get_info_page($new_products->fields['products_id']), 'cPath=' . $productsInCategory[$new_products->fields['products_id']] . '&products_id=' . $new_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $new_products->fields['products_image'], $new_products->fields['products_name'], IMAGE_PRODUCT_NEW_WIDTH, IMAGE_PRODUCT_NEW_HEIGHT) . '</a><br />') . '<a href="' . zen_href_link(zen_get_info_page($new_products->fields['products_id']), 'cPath=' . $productsInCategory[$new_products->fields['products_id']] . '&products_id=' . $new_products->fields['products_id']) . '">' . $new_products->fields['products_name'] . '</a><br />' . $products_price);
+/** bof products price */
+    $products_price = zen_get_products_display_price($new_products->fields['products_id']);
+
+$new_products_price = '<div id="newCenterbox-price" class="centerBoxContentsItem-price text-center">' . $products_price . '</div>';
+/** eof products price */
+
+/** bof products name */
+    $new_products->fields['products_name'] = zen_get_products_name($new_products->fields['products_id']);    
+    
+$new_products_name = '<div id="newCenterbox-name" class="centerBoxContentsItem-name text-center"><a href="' . zen_href_link(zen_get_info_page($new_products->fields['products_id']), 'cPath=' . $productsInCategory[$new_products->fields['products_id']] . '&products_id=' . $new_products->fields['products_id']) . '">' . $new_products->fields['products_name'] . '</a></div>';
+/** eof products name */
+
+/** bof products image */
+if ($new_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
+$new_products_image = '';
+} else {
+$new_products_image = '<div id="newCenterbox-image" class="centerBoxContentsItem-image text-center"><a href="' . zen_href_link(zen_get_info_page($new_products->fields['products_id']), 'cPath=' . $productsInCategory[$new_products->fields['products_id']] . '&products_id=' . $new_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $new_products->fields['products_image'], $new_products->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a></div>';
+}
+/** eof products image */  
+
+    $list_box_contents[$row][$col] = array('params' => 'id="new-centerBoxContents" class="centerBoxContents card mb-3 p-3 text-center"',
+    'text' => $new_products_image . $new_products_name . $new_products_price);
 
     $col ++;
     if ($col > (SHOW_PRODUCT_INFO_COLUMNS_NEW_PRODUCTS - 1)) {
@@ -84,9 +104,9 @@ if ($num_products_count > 0) {
   if ($new_products->RecordCount() > 0) {
     if (isset($new_products_category_id) && $new_products_category_id != 0) {
       $category_title = zen_get_categories_name((int)$new_products_category_id);
-      $title = '<h4 id="newProducts-centerBoxHeading" class="centerBoxHeading card-header">' . sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')) . ($category_title != '' ? ' - ' . $category_title : '' ) . '</h4>';
+      $title = '<h4 id="newCenterbox-card-header" class="centerBoxHeading card-header">' . sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')) . ($category_title != '' ? ' - ' . $category_title : '' ) . '</h4>';
     } else {
-      $title = '<h4 id="newProducts-centerBoxHeading" class="centerBoxHeading card-header">' . sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')) . '</h4>';
+      $title = '<h4 id="newCenterbox-card-header" class="centerBoxHeading card-header">' . sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')) . '</h4>';
     }
     $zc_show_new_products = true;
   }
