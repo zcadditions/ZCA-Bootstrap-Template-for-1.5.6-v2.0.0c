@@ -96,8 +96,8 @@ if ($num_images) {
     $thumb_regular = zen_image($base_image, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
     $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large);
 
-    $link = '<a href="javascript:void(0)">';
-    $link .= '<img src="' . $products_image_large . '" height="' . SMALL_IMAGE_HEIGHT . '" width="'. SMALL_IMAGE_WIDTH . '" id="' . $i . '" data-toggle="modal" data-target="#myModal" >';
+    $link = '<a href="javascript:void(0)" class="imageModal">';
+    $link .= '<img src="' . $products_image_large . '" height="' . SMALL_IMAGE_HEIGHT . '" width="'. SMALL_IMAGE_WIDTH . '" id="' . $i . '">';
     $link .= '<div class="p-1"></div>';
     $link .= '<span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span>';
     $link .= '</a>';
