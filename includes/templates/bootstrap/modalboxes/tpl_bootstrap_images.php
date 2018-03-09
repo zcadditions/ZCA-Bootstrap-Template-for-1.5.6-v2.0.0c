@@ -31,7 +31,14 @@
                 <div id="myCarousel" class="carousel slide">
                     <!-- main slider carousel items -->
                     <div class="carousel-inner text-center">
-                        
+                      
+<?php
+require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php'));
+?>                        
+    <div class="active item carousel-item" data-slide-number="0">
+<?php echo zen_image($products_image_large); ?>
+    </div>
+                      
 <?php
 require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_slide_additional_images.php'));
 ?>                        
@@ -58,14 +65,7 @@ echo '<div' . $r_params . '>' . $list_box_contents[$row][$col]['text'] .  '</div
 
     }
     ?>                          
-                        
-<?php
-require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php'));
-?>                        
-    <div class="active item carousel-item" data-slide-number="99">
-<?php echo zen_image($products_image_large, 'class="img-fluid"'); ?>
-    </div>
-
+                     
 <div id="carousel-btn-toolbar" class="btn-toolbar justify-content-between p-3" role="toolbar">
 <a class="carousel-control left pt-3" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
 <a class="carousel-control right pt-3" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
@@ -78,6 +78,14 @@ require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php'));
 
 
                     <ul class="carousel-indicators list-inline mx-auto justify-content-center py-3">
+                      
+<?php
+require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php'));
+?>                        
+    <div class="active item carousel-item" data-slide-number="0">
+<?php echo zen_image($products_image_large); ?>
+    </div>                   
+                      
 <?php
 require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_additional_images.php'));
 ?>                        
@@ -104,16 +112,7 @@ echo '<li' . $r_params . '>' . $list_box_contents[$row][$col]['text'] .  '</li>'
 
     }
     ?>                      
-                        
-                        <li class="list-inline-item active">
-                            <a id="carousel-selector-99" class="selected" data-slide-to="99" data-target="#myCarousel">
-<?php
-require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php'));
-?>
-<?php echo zen_image($products_image_large, 'class="img-fluid"'); ?>
-
-                            </a>
-                        </li>
+                     
                     </ul>
             </div>
         </div>
