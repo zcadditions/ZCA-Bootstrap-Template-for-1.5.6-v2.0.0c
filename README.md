@@ -1,6 +1,4 @@
-# ZCA-Bootstrap-Template-BETA
-
-NOTE: This is in BETA stage and SHOULD NOT be installed on a live site, it over rides several core files for the use of notifier/observer addons have NOT been utilized.
+# ZCA-Bootstrap-Template
 
 FEATURES:
 * Bootstrap 4.
@@ -11,7 +9,7 @@ FEATURES:
 * Tabbed Login Page.
 * Order Progress Bar on Checkout Pages.
 * Modals replace popup Windows (except shipping estimator).
-* Optional Additional Images Modal w/ Carousel (last minute addition, needs work).
+* Optional Additional Images Modal w/ Carousel.
 * Option to have all Listing Pages use a Columnar Layout (products_new, featured_products, products_all and index&cPath).
 * No (almost NO) Stylesheet.
 * Added Color Stylesheet.
