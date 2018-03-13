@@ -13,3 +13,14 @@ FEATURES:
 * Option to have all Listing Pages use a Columnar Layout (products_new, featured_products, products_all and index&cPath).
 * No (almost NO) Stylesheet.
 * Added Color Stylesheet.
+
+Version 1.0.0
+NEW IN THIS UPDATE
+* Admin Auto Install Script ( Thank you @lat9 )
+* Reduce core-file overwrites ( Thank you @lat9 )
+* Updated the non-carousel Image Links
+* Updated the Carousel
+* Removed stray Configuration Values
+* Removed unused DEFINES
+* Added center-box <div>'s for consistency to ease styling
+* Added a template screenshot ( Thank you @DrByte )
