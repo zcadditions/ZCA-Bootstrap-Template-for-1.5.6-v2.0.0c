@@ -130,7 +130,7 @@
 
 <label for="ship-<?php echo $quotes[$i]['id'] . '-' . str_replace(' ', '-', $quotes[$i]['methods'][$j]['id']); ?>" class="custom-control-label checkboxLabel"><?php echo $quotes[$i]['methods'][$j]['title']; ?></label>
 </div>
-
+<div class="p-1"></div>
 
 <?php
             $radio_buttons++;
