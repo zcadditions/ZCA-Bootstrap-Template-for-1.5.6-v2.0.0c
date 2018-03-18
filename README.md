@@ -14,8 +14,9 @@ FEATURES:
 * No (almost NO) Stylesheet.
 * Added Color Stylesheet.
 
-Version 1.0.0
-NEW IN THIS UPDATE
+CHANGELOG
+
+Version v1.0.0, 13 Mar 2018:
 * Admin Auto Install Script ( Thank you @lat9 )
 * Reduce core-file overwrites ( Thank you @lat9 )
 * Updated the non-carousel Image Links
