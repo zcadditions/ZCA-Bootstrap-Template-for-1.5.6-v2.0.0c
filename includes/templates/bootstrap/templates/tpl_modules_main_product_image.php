@@ -10,19 +10,29 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Author: DrByte  Wed Jan 6 12:47:43 2016 -0500 Modified in v1.5.5 $
  */
-?>
-<?php require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_MAIN_PRODUCT_IMAGE)); ?>
+require DIR_WS_MODULES . zen_get_module_directory(FILENAME_MAIN_PRODUCT_IMAGE);
 
-<?php
+if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS == 'Yes') {
+    require $template->get_template_dir('tpl_image.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes'). '/tpl_image.php';
 
-require($template->get_template_dir('tpl_image.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_image.php');
+    echo '<a data-toggle="modal" data-target=".image-modal-lg" href="#image-modal-lg">';
 
-  echo '<a data-toggle="modal" data-target=".image-modal-lg" href="#image-modal-lg">';
-
-  echo zen_image($products_image_medium, $products_name, MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT);
+    echo zen_image($products_image_medium, $products_name, MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT);
   
-  echo '<div class="p-1"></div>';
+    echo '<div class="p-1"></div>';
  
-  echo '<span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>';
+    echo '<span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>';
+} else {
 ?>
-
+<div id="productMainImage" class="centeredContent back">
+<script><!--
+document.write('<?php echo '<a href="javascript:popupWindow(\\\'' . zen_href_link(FILENAME_POPUP_IMAGE, 'pID=' . $_GET['products_id']) . '\\\')">' . zen_image(addslashes($products_image_medium), addslashes($products_name), MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br /><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>'; ?>');
+//--></script>
+<noscript>
+<?php
+  echo '<a href="' . zen_href_link(FILENAME_POPUP_IMAGE, 'pID=' . $_GET['products_id']) . '" target="_blank">' . zen_image($products_image_medium, $products_name, MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br /><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>';
+?>
+</noscript>
+</div>
+<?php
+}

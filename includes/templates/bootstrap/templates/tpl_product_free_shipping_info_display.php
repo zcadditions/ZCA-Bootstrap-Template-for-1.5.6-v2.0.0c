@@ -77,7 +77,7 @@ require($template->get_template_dir('/tpl_products_next_previous.php',DIR_WS_TEM
  * display the products additional images in a model carousel
  */
  
-if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE == '1') {
+if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS == 'Yes' && PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE == '1') {
 
 require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_bootstrap_images.php');
 
