@@ -68,6 +68,16 @@ if ($current_page == (FILENAME_TEMPLATE_SELECT . '.php') && isset($_GET['action'
         // -----
         // 3) Configuration->Product Info
         //
+//-bof-GitHub#21-Add control to disable template's modal image display.
+        if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS')) {
+            $db->Execute(
+                "INSERT INTO " . TABLE_CONFIGURATION . "
+                    (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+                 VALUES
+                    ('Enable <em>Bootstrap</em> Modal Image Popups', 'PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS', 'Yes', 'Should the ZCA <code>bootstrap</code> template display pop-up product images using its <em>modal</em> dialog? If your store uses an image-display plugin (like <b>Zen ColorBox</b>), set this value to <em>No</em>. Default: <b>Yes</b>', 18, NOW(), 201, NULL, 'zen_cfg_select_option(array(\'No\', \'Yes\'),')"
+            );
+        }
+//-eof-GitHub#21
         if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE')) {
             $db->Execute(
                 "INSERT INTO " . TABLE_CONFIGURATION . "

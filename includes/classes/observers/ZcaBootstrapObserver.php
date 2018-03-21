@@ -1,5 +1,4 @@
 <?php
-
 // -----
 // Part of the ZCA Bootstrap template, @zcadditions, @lat9.
 //
@@ -11,6 +10,10 @@ class ZcaBootstrapObserver extends base
     //
     public function __construct() 
     {
+        if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS')) {
+            define('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS', 'Yes');
+        }
+        
         if (zca_bootstrap_active()) {
             $this->attach(
                 $this, 
@@ -31,6 +34,9 @@ class ZcaBootstrapObserver extends base
                     
                     //- From /includes/classes/order.php
                     'NOTIFY_ORDER_COUPON_LINK',
+                    
+                    //- From /includes/modules{/bootstrap}/additional_images.php
+                    'NOTIFY_MODULES_ADDITIONAL_IMAGES_SCRIPT_LINK',
                 )
             );
         }
@@ -193,6 +199,21 @@ class ZcaBootstrapObserver extends base
             case 'NOTIFY_NOTIFY_ORDER_COUPON_LINK':
                 $zc_coupon_link = '<a data-toggle="modal" data-id="'. $p1['coupon_id']. '" href="#couponHelpModal">';
                 $p2 = $zc_coupon_link;
+                break;
+                
+            case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_SCRIPT_LINK':
+                if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS == 'Yes') {
+                    $products_image_large = $p1['products_image_large'];
+                    $i = $p1['index'];
+                    $link = '<a href="javascript:void(0)" class="imageModal">';
+                    $link .= '<img src="' . $products_image_large . '" height="' . SMALL_IMAGE_HEIGHT . '" width="'. SMALL_IMAGE_WIDTH . '" id="' . $i . '">';
+                    $link .= '<div class="p-1"></div>';
+                    $link .= '<span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span>';
+                    $link .= '</a>';
+                    
+                    $p2 = $link;
+                    $p3 = 'class="card p-3 mb-3"';
+                }
                 break;
                 
             default:
