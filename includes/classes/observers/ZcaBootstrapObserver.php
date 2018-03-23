@@ -189,9 +189,9 @@ class ZcaBootstrapObserver extends base
             case 'NOTIFY_ZEN_DRAW_PULL_DOWN_MENU':
                 $field = $p2;
                 if (strpos($field, 'class="') !== false) {
-                    $field = str_replace('class="', 'class="custom-select ', $field);
+                    $field = str_replace('class="', 'class="custom-select col-11', $field);
                 } else {
-                    $field = str_replace('<select ', '<select class="custom-select" ', $field);
+                    $field = str_replace('<select ', '<select class="custom-select col-11" ', $field);
                 }
                 $p2 = $field;
                 break;
