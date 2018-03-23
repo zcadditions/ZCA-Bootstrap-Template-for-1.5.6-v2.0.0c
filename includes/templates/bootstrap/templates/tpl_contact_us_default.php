@@ -62,8 +62,8 @@
 // show dropdown if set
     if (CONTACT_US_LIST !=''){
 ?>
-<label class="inputLabel" for="send-to"><?php echo SEND_TO_TEXT; ?></label>
-<?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, 0, 'id="send-to"') . '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
+<label class="inputLabel" for="send-to"><?php echo SEND_TO_TEXT; ?></label><?php echo '<span class="alert">' . ENTRY_REQUIRED_SYMBOL . '</span>'; ?>
+<?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, 0, 'id="send-to"'); ?>
 <div class="p-2"></div>
 <?php
     }
