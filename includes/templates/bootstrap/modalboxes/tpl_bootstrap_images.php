@@ -83,7 +83,7 @@ echo '<div' . $r_params . '>' . $list_box_contents[$row][$col]['text'] .  '</div
 <?php
 require(DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php'));
 ?>
-<?php echo zen_image($products_image_large); ?>
+<?php echo zen_image($products_image_large, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT); ?>
 
                             </a>
                         </li>                   
