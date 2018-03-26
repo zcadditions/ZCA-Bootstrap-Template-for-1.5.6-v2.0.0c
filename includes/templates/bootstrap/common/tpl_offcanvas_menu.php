@@ -133,7 +133,10 @@ if (DEFINE_PAGE_4_STATUS <= 1) {
 ?>
         </div>
       </li>  
-      
+<?php
+  // test if sidebox should display
+  if (EZPAGES_STATUS_SIDEBOX == '1' or (EZPAGES_STATUS_SIDEBOX== '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
+ ?>
       <li class="nav-item dropdown d-lg-none">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php echo BOX_HEADING_EZPAGES; ?>
@@ -143,9 +146,7 @@ if (DEFINE_PAGE_4_STATUS <= 1) {
 
 	echo '<ul class="m-0 p-0">';
 	
-  // test if sidebox should display
-  if (EZPAGES_STATUS_SIDEBOX == '1' or (EZPAGES_STATUS_SIDEBOX== '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
-    if (isset($var_linksList)) {
+if (isset($var_linksList)) {
       unset($var_linksList);
     }
     $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title");
@@ -190,7 +191,6 @@ if (DEFINE_PAGE_4_STATUS <= 1) {
       $var_linksList = $page_query_list_sidebox;
 
     }
-  } // test for display
 
   for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) { 
     echo '<a class="dropdown-item" href="' . $var_linksList[$i]['link'] . '">' . $var_linksList[$i]['name'] . '</a>';
@@ -202,5 +202,7 @@ if (DEFINE_PAGE_4_STATUS <= 1) {
 ?>
         </div>
       </li>  
-      
+<?php
+} // test for display
+ ?>     
       
