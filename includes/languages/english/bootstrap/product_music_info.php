@@ -26,7 +26,7 @@ define('TEXT_PRODUCT_QUANTITY', ' Units in Stock');
 define('TEXT_PRODUCT_MODEL', 'Model: ');
 define('TEXT_PRODUCT_COLLECTIONS', 'Media Collection: ');
 
-define('TEXT_MULTIPLE_IMAGES', ' Larger Images ');
+define('TEXT_MULTIPLE_IMAGES', ' Additional Images ');
 define('TEXT_SINGLE_IMAGE', ' Larger Image ');
 
 // previous next product
