@@ -147,20 +147,24 @@
       }
     }
 ?>
- 
+</div>
+</div>
+<!--eof shipping method card-->
 <?php
   } else {
 ?>
+<!--bof noShipping method card-->
+<div id="noShipping-card" class="card mb-3">
+    <div id="noShipping-card-body" class="card-body p-3">
 <h1 id="shippingMethodOption-noOptions-pageHeading" class="pageHeading"><?php echo TITLE_NO_SHIPPING_AVAILABLE; ?></h2>
 <div id="shippingMethodOption-noOptions-content" class="content"><?php echo TEXT_NO_SHIPPING_AVAILABLE; ?></div>
+    </div>
+</div>
+<!--eof noShipping method card-->
 <?php
   }
 ?>
-
-</div>
-</div>
-<!--bof shipping method card-->
-
+  
 <!--bof order comments card--> 
 <div id="orderComments-card" class="card mb-3">
 <h4 id="orderComments-card-header" class="card-header">
