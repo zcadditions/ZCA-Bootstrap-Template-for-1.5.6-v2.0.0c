@@ -169,13 +169,12 @@
 <?php
   $radio_buttons = 0;
   for ($i=0, $n=sizeof($selection); $i<$n; $i++) {
-?>
-
+?><div id="paymentMethodsOption-card" class="card mb-3">
 <?php
     if (sizeof($selection) > 1) {
         if (empty($selection[$i]['noradio'])) {
  ?>
- <div class="p-3"></div>
+<div id="paymentMethodsOption-card-header" class="card-header">
 <div class="custom-control custom-radio custom-control-inline">
 <?php echo zen_draw_radio_field('payment', $selection[$i]['id'], ($selection[$i]['id'] == $_SESSION['payment'] ? true : false), 'id="pmt-'.$selection[$i]['id'].'"'); ?>
 <?php   } ?>
@@ -190,9 +189,8 @@
 
 
 <label for="pmt-<?php echo $selection[$i]['id']; ?>" class="custom-control-label radioButtonLabel"><?php echo $selection[$i]['module']; ?></label>
-
 </div>
-
+</div>
 <?php
     if (defined('MODULE_ORDER_TOTAL_COD_STATUS') && MODULE_ORDER_TOTAL_COD_STATUS == 'true' and $selection[$i]['id'] == 'cod') {
 ?>
@@ -205,7 +203,6 @@
     }
 ?>
 
-
 <?php
     if (isset($selection[$i]['error'])) {
 ?>
@@ -215,13 +212,13 @@
     } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
 ?>
 
-<div id="checkoutPaymentDefault-ccInfo" class="ccInfo">
+<div id="paymentMethodsOption-card-body" class="ccInfo card-body p-3">
 <?php
       for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {
 ?>
 
 <label <?php echo (isset($selection[$i]['fields'][$j]['tag']) ? 'for="'.$selection[$i]['fields'][$j]['tag'] . '" ' : ''); ?>class="inputLabelPayment"><?php echo $selection[$i]['fields'][$j]['title']; ?></label><?php echo $selection[$i]['fields'][$j]['field']; ?>
-
+<div class="p-2"></div>
 <?php
       }
 ?>
@@ -232,11 +229,13 @@
     $radio_buttons++;
 ?>
 
+</div>
 <?php
   }
 ?>
 
 </div>
+
 </div>
 <!--eof payment method card--> 
 
