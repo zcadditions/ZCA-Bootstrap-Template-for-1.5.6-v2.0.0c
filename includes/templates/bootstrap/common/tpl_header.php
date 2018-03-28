@@ -98,9 +98,14 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--bof-branding display-->
 <div id="logoWrapper">
     
-  <div id="logo" class="row align-items-center p-3">
-    <div class="col-sm-4">
-    <?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a>'; ?>
+  <div id="logo" class="row align-items-center">
+        <?php if (HEADER_SALES_TEXT != '') {
+            echo '<div class="col-sm-4">';
+        } else {
+            echo '<div class="col-sm-12">';
+            }
+            ?>
+        <?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a>'; ?>
     </div>
 <?php if (HEADER_SALES_TEXT != '' || (SHOW_BANNERS_GROUP_SET2 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2))) { ?>    
     <div id="taglineWrapper" class="text-center col-sm-8">
@@ -121,10 +126,11 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
               }
 ?>
     </div>
+<?php } 
+// no HEADER_SALES_TEXT or SHOW_BANNERS_GROUP_SET2 ?>
   </div>
-<?php } // no HEADER_SALES_TEXT or SHOW_BANNERS_GROUP_SET2 ?>
+
 </div>
-<br />
 <!--eof-branding display-->
 
 <!--eof-header logo and navigation display-->
