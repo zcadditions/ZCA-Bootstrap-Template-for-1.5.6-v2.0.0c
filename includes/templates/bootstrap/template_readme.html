@@ -1,0 +1,11 @@
+The ZCA Bootstrap template includes a Modal feature you can use on the checkout_payment page for the CVV Help Popup window for payment modules.
+<br /><br />
+To use the Bootstrap Modal feature, find the modules payment module in /includes/modules/payment/
+<br /><br />
+Each module shows a link to the CVV Help Popup window:<br />
+a href="javascript:popupWindow('' . zen_href_link(FILENAME_POPUP_CVV_HELP) . '')"
+<br /><br />
+This link needs to be replaced with:<br />
+a data-toggle="modal" href="#cvvHelpModal"
+<br /><br />
+That's it, the Bootstrap Modal feature will be activated!
