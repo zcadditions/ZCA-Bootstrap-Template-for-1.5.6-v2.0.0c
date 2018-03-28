@@ -102,7 +102,7 @@ if (zen_is_superuser()) {
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
              VALUES
-                ('Display the Manufacturer Sidebox on Info Page', 'PRODUCT_INFO_SHOW_MANUFACTURER_BOX', '1', 'Used by the ZCA Bootstrap template.  Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', 18, NOW(), 203, NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),')"
+                ('Display the Manufacturer Box on Product Pages', 'PRODUCT_INFO_SHOW_MANUFACTURER_BOX', '1', 'Used by the ZCA Bootstrap template.  Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', 18, NOW(), 203, NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),')"
         );
     }
     if (!defined('PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX')) {
@@ -111,7 +111,7 @@ if (zen_is_superuser()) {
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
              VALUES
-                ('Display the Notifications Sidebox on Info Page', 'PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX', '1', 'Used by the ZCA Bootstrap template. Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', 18, NOW(), 204, NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),')"
+                ('Display the Notifications Box on Product Pages', 'PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX', '1', 'Used by the ZCA Bootstrap template. Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', 18, NOW(), 204, NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),')"
         );
     }
     
