@@ -24,8 +24,8 @@
 .activeLink {background:#33b5e5;color:#FFF;}
 
 /* HEADER EZPAGES BAR */
-.ezpagesBar {background:#333;} 
-.ezpagesBar a {color:#FFF;}
+#ezpagesBarHeader .ezpagesBar {background:#333;} 
+#ezpagesBarHeader .ezpagesBar a {color:#FFF;}
 /* EOF HEADER */
 
 /* BOF BUTTONS */
@@ -48,8 +48,8 @@ a:hover, .list-group-item-action:hover {color:#0099CC;}
 
 /* BOF FOOTER */
 /* FOOTER EZPAGES BAR */
-.ezpagesBar {background:#333;} 
-.ezpagesBar a {color:#FFF;}
+#ezpagesBarFooter .ezpagesBar {background:#333;} 
+#ezpagesBarFooter .ezpagesBar a {color:#FFF;}
 /* EOF FOOTER */
 
 /* BOF PRODUCT LISTING PAGES */
