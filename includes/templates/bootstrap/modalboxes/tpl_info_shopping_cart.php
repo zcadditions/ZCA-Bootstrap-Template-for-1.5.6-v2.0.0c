@@ -1,4 +1,4 @@
-<?php require('includes/languages/english/bootstrap/info_shopping_cart.php'); ?>
+<?php require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'info_shopping_cart.php'); ?>
 
 <!-- Modal -->
 <div class="modal fade" id="cartHelpModal" tabindex="-1" role="dialog" aria-labelledby="cartHelpModalLabel" aria-hidden="true">
