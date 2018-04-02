@@ -136,7 +136,7 @@
 ); ?>
 <div class="p-2"></div>
 
-<label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label><?php if (zen_not_null(ENTRY_COUNTRY_TEXT)) echo '<span class="alert">' . ENTRY_COUNTRY_TEXT . '</span>';?>
+<label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?><?php if (zen_not_null(ENTRY_COUNTRY_TEXT)) echo '<span class="alert">' . ENTRY_COUNTRY_TEXT . '</span>';?></label>
 
 <?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" ' . ($flag_show_pulldown_states == true ? 'onchange="update_zone(this.form);"' : '')); ?>
   
