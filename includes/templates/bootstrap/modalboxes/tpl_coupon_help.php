@@ -10,7 +10,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  */
 ?>
-<?php require('includes/languages/english/bootstrap/popup_coupon_help.php'); ?>
+<?php require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'popup_coupon_help.php'); ?>
 <!-- Modal -->
 <div class="modal fade" id="couponHelpModal" tabindex="-1" role="dialog" aria-labelledby="couponHelpModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
