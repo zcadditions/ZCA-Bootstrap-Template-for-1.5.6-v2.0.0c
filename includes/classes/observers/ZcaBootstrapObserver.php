@@ -169,7 +169,7 @@ class ZcaBootstrapObserver extends base
             case 'NOTIFY_ZEN_DRAW_SELECTION_FIELD':
                 $selection = $p2;
                 if (strpos($selection, 'class="') !== false) {
-                    $selection = str_replace('class="', 'class="custom-control-input" ', $selection);
+                    $selection = str_replace('class="', 'class="custom-control-input ', $selection);
                 } else {
                     $selection = str_replace('<input ', '<input class="custom-control-input" ', $selection);
                 }
