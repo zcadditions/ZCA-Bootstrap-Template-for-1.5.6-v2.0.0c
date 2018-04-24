@@ -77,7 +77,7 @@ if ($product['flagShowFixedQuantity']) {
 }
 ?>
        </td>
-       <td class="qtyUpdateCell">
+       <td class="qtyUpdateCell text-center">
 <?php
   if ($product['buttonUpdate'] == '') {
     echo '' ;
@@ -109,11 +109,11 @@ if ($product['flagShowFixedQuantity']) {
        </td>
        <td class="priceCell"><?php echo $product['productsPriceEach']; ?></td>
        <td class="totalsCell"><?php echo $product['productsPrice']; ?></td>
-       <td>
+       <td class="removeCell text-center">
 <?php
   if ($product['buttonDelete']) {
 ?>
-           <a href="<?php echo zen_href_link(FILENAME_SHOPPING_CART, 'action=remove_product&product_id=' . $product['id']); ?>"><?php echo zen_image($template->get_template_dir(ICON_IMAGE_TRASH, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_TRASH, ICON_TRASH_ALT); ?></a>
+           <a href="<?php echo zen_href_link(FILENAME_SHOPPING_CART, 'action=remove_product&product_id=' . $product['id']); ?>" class="btn"><i class="fas fa-trash-alt"></i></a>
 <?php
   }
   if ($product['checkBoxDelete'] ) {
@@ -135,7 +135,7 @@ if ($product['flagShowFixedQuantity']) {
   if (SHOW_SHOPPING_CART_UPDATE == 2 or SHOW_SHOPPING_CART_UPDATE == 3) {
 ?>
 <div id="cartUpdate" class="text-center">
-<?php echo zen_image_submit(ICON_IMAGE_UPDATE, ICON_UPDATE_ALT); ?>
+<button type="submit" class="btn"><i class="fas fa-sync-alt"></i></button>
 </div>
 <?php
   } else { // don't show update button below cart
