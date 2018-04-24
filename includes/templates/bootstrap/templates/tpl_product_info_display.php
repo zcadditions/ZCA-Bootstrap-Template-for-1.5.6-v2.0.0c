@@ -85,7 +85,7 @@ require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, 
 if ($num_images > 0) {
 $buttonText = $num_images . TEXT_MULTIPLE_IMAGES; ?>
 <div class="p-1"></div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><?php echo $buttonText; ?></button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bootstrap-slide-modal-lg"><?php echo $buttonText; ?></button>
 <div class="p-3"></div>
 <?php
 }
