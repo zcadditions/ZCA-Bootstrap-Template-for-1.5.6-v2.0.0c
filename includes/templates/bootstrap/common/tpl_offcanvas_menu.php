@@ -28,13 +28,13 @@
 	{
 	// currently selected category
 
-		echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_DEFAULT,'cPath=' . (int)$categories_tab->fields['categories_id']).'">'; 
+		echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_DEFAULT,'cPath=' . (int)$categories_tab->fields['categories_id']).'">'; 
 		if((int)$cPath == $categories_tab->fields['categories_id']) 
 		 echo '<span class="category-subs-selected">'.$categories_tab->fields['categories_name'].'</span>';
 		else 
 		 echo $categories_tab->fields['categories_name'];
 
-		echo '</a>';
+		echo '</a></li>';
 
 		$categories_tab->MoveNext();
 	}
@@ -94,37 +94,37 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL == 'true') {
 	echo '<ul class="m-0 p-0">';
 
 if (DEFINE_SHIPPINGINFO_STATUS <= 1) {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_SHIPPING) . '">'. BOX_INFORMATION_SHIPPING.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_SHIPPING) . '">'. BOX_INFORMATION_SHIPPING.'</a></li>';
 }
 if (DEFINE_PRIVACY_STATUS <= 1) {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_PRIVACY) . '">'. BOX_INFORMATION_PRIVACY.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_PRIVACY) . '">'. BOX_INFORMATION_PRIVACY.'</a></li>';
 }
 if (DEFINE_CONDITIONS_STATUS <= 1) {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_CONDITIONS) . '">'. BOX_INFORMATION_CONDITIONS.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_CONDITIONS) . '">'. BOX_INFORMATION_CONDITIONS.'</a></li>';
 }
 if (!empty($external_bb_url) && !empty($external_bb_text)) { // forum/bb link
-        echo '<a class="dropdown-item" href="'.external_bb_url.'" target="_blank">'. external_bb_text.'</a>';
+        echo '<li><a class="dropdown-item" href="'.external_bb_url.'" target="_blank">'. external_bb_text.'</a></li>';
 }
 if (DEFINE_SITE_MAP_STATUS <= 1) {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_SITE_MAP) . '">'. BOX_INFORMATION_SITE_MAP.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_SITE_MAP) . '">'. BOX_INFORMATION_SITE_MAP.'</a></li>';
 }
 if (MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_GV_FAQ) . '">'. BOX_INFORMATION_GV.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_GV_FAQ) . '">'. BOX_INFORMATION_GV.'</a></li>';
 }
 if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_DISCOUNT_COUPON) . '">'. BOX_INFORMATION_DISCOUNT_COUPONS.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_DISCOUNT_COUPON) . '">'. BOX_INFORMATION_DISCOUNT_COUPONS.'</a></li>';
 }
 if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK == 'true') {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_UNSUBSCRIBE) . '">'. BOX_INFORMATION_UNSUBSCRIBE.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_UNSUBSCRIBE) . '">'. BOX_INFORMATION_UNSUBSCRIBE.'</a></li>';
 }
 if (DEFINE_PAGE_2_STATUS <= 1) {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_PAGE_2) . '">'. BOX_INFORMATION_PAGE_2.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_PAGE_2) . '">'. BOX_INFORMATION_PAGE_2.'</a></li>';
 }
 if (DEFINE_PAGE_3_STATUS <= 1) {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_PAGE_3) . '">'. BOX_INFORMATION_PAGE_3.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_PAGE_3) . '">'. BOX_INFORMATION_PAGE_3.'</a></li>';
 }
 if (DEFINE_PAGE_4_STATUS <= 1) {
-        echo '<a class="dropdown-item" href="'.zen_href_link(FILENAME_PAGE_4) . '">'. BOX_INFORMATION_PAGE_4.'</a>';
+        echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_PAGE_4) . '">'. BOX_INFORMATION_PAGE_4.'</a></li>';
 }
 
 	echo '</ul>';
@@ -193,7 +193,7 @@ if (isset($var_linksList)) {
     }
 
   for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) { 
-    echo '<a class="dropdown-item" href="' . $var_linksList[$i]['link'] . '">' . $var_linksList[$i]['name'] . '</a>';
+    echo '<li><a class="dropdown-item" href="' . $var_linksList[$i]['link'] . '">' . $var_linksList[$i]['name'] . '</a></li>';
   } // end FOR loop
 
 	echo '</ul>';
