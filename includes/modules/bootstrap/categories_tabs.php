@@ -28,11 +28,11 @@ while (!$categories_tab->EOF) {
   if ((int)$cPath == $categories_tab->fields['categories_id']) {
     $new_style = 'category-top';
   // create link to active top level category
-  $links_list[] = '<a class="nav-item nav-link activeLink ' . $new_style . '" href="' . zen_href_link(FILENAME_DEFAULT, 'cPath=' . (int)$categories_tab->fields['categories_id']) . '">' . $categories_tab->fields['categories_name'] . '</a> ';
+  $links_list[] = '<a class="nav-item nav-link m-1 activeLink ' . $new_style . '" href="' . zen_href_link(FILENAME_DEFAULT, 'cPath=' . (int)$categories_tab->fields['categories_id']) . '">' . $categories_tab->fields['categories_name'] . '</a> ';
   } else {
     $new_style = 'category-top';
   // create link to top level category
-  $links_list[] = '<a class="nav-item nav-link ' . $new_style . '" href="' . zen_href_link(FILENAME_DEFAULT, 'cPath=' . (int)$categories_tab->fields['categories_id']) . '">' . $categories_tab->fields['categories_name'] . '</a> ';
+  $links_list[] = '<a class="nav-item nav-link m-1 ' . $new_style . '" href="' . zen_href_link(FILENAME_DEFAULT, 'cPath=' . (int)$categories_tab->fields['categories_id']) . '">' . $categories_tab->fields['categories_name'] . '</a> ';
   }
 
 
