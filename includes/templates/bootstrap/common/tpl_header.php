@@ -98,7 +98,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--bof-branding display-->
 <div id="logoWrapper">
     
-  <div id="logo" class="row align-items-center">
+  <div id="logo" class="row align-items-center p-3">
         <?php if (HEADER_SALES_TEXT != '') {
             echo '<div class="col-sm-4">';
         } else {
