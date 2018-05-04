@@ -34,6 +34,8 @@
       if (!$payment_modules->in_special_checkout()) {
       // ** END PAYPAL EXPRESS CHECKOUT ** ?>
 
+<div class="card-columns">    
+    
 <!--bof billing address card-->    
 <div id="billingAddress-card" class="card mb-3">
 <h4 id="billingAddress-card-header" class="card-header">
@@ -275,6 +277,8 @@
   }
 ?>
 
+</div>    
+    
 <div id="checkoutPaymentDefault-btn-toolbar1" class="btn-toolbar justify-content-between" role="toolbar">
 <?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?>
 <?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT, 'onclick="submitFunction('.zen_user_has_gv_account($_SESSION['customer_id']).','.$order->info['total'].')"'); ?>
