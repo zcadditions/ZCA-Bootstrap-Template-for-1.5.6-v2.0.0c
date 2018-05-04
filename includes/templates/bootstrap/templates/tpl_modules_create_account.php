@@ -19,6 +19,7 @@
 
 <div class="required-info text-right"><?php echo FORM_REQUIRED_INFORMATION; ?></div>
 
+<div class="card-columns">
 
 <?php
   if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
@@ -256,3 +257,5 @@
 </div>
 <!--eof were you referred to us? card-->
 <?php } ?>
+
+  </div>
