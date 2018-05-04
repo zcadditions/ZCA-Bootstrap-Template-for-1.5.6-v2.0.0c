@@ -26,6 +26,8 @@
 
 <?php if ($messageStack->size('checkout_shipping') > 0) echo $messageStack->output('checkout_shipping'); ?>
 
+<div class="card-columns">
+  
 <!--bof shipping information card-->
 <div id="shippingInformation-card" class="card mb-3">
 <h4 id="shippingInformation-card-header" class="card-header">
@@ -175,6 +177,8 @@
 </div>
 <!--eof order comments card--> 
 
+</div>  
+  
 <div id="checkoutShippingDefault-btn-toolbar1" class="btn-toolbar justify-content-between" role="toolbar">
 <?php echo '<strong>' . TITLE_CONTINUE_CHECKOUT_PROCEDURE . '</strong><br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?>
 <?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT); ?>
