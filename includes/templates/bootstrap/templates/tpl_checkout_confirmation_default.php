@@ -26,6 +26,8 @@
 <?php if ($messageStack->size('checkout_confirmation') > 0) echo $messageStack->output('checkout_confirmation'); ?>
 <?php if ($messageStack->size('checkout') > 0) echo $messageStack->output('checkout'); ?>
 
+<div class="card-columns">  
+  
 <!--bof billing address card-->
 <div id="billingAddress-card" class="card mb-3">
 <h4 id="billingAddress-card-header" class="card-header">
@@ -250,6 +252,8 @@
 </div>
 <!--eof shopping cart contents card-->
 
+</div>  
+  
 <div id="checkoutConfirmationDefault-btn-toolbar" class="btn-toolbar justify-content-between" role="toolbar">
 <?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?>
 <?php echo zen_image_submit(BUTTON_IMAGE_CONFIRM_ORDER, BUTTON_CONFIRM_ORDER_ALT, 'name="btn_submit" id="btn_submit"') ;?>
