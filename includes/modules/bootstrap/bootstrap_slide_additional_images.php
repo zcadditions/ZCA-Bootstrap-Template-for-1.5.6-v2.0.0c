@@ -88,6 +88,15 @@ if ($num_images) {
   for ($i=0, $n=$num_images; $i<$n; $i++) {
     $file = $images_array[$i];
     $products_image_large = str_replace(DIR_WS_IMAGES, DIR_WS_IMAGES . 'large/', $products_image_directory) . str_replace($products_image_extension, '', $file) . IMAGE_SUFFIX_LARGE . $products_image_extension;
+
+    // -----
+    // This notifier lets any image-handler know the current image being processed, providing the following parameters:
+    //
+        // $p1 ... (r/o) ... The current product's name
+    // $p2 ... (r/w) ... The (possibly updated) filename (including path) of the current additional image.
+    //
+        $zco_notifier->notify('NOTIFY_MODULES_ADDITIONAL_IMAGES_GET_LARGE', $products_name, $products_image_large);
+
     $flag_has_large = file_exists($products_image_large);
     $products_image_large = ($flag_has_large ? $products_image_large : $products_image_directory . $file);
     $flag_display_large = (IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE == 'Yes' || $flag_has_large);
@@ -97,11 +106,11 @@ if ($num_images) {
     $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large);
     $slideNumber = $i + '1';
 
-    $slide = '<img src="'.$products_image_large.'" />';
-
+    $slide = zen_image($products_image_large); // '<img src="' . $products_image_large . '" />';
     // List Box array generation:
-    $list_box_contents[$row][$col] = array('params' => 'class="item carousel-item" data-slide-number="'.$slideNumber.'"',
-                                           'text' => "\n      " . $slide);
+    $list_box_contents[$row][$col] = array(
+      'params' => 'class="item carousel-item" data-slide-number="' . $slideNumber . '"',
+      'text' => "\n      " . $slide);
     $col ++;
     if ($col > (IMAGES_AUTO_ADDED -1)) {
       $col = 0;
