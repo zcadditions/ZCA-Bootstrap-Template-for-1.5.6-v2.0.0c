@@ -1,28 +1,30 @@
 CHANGELOG
 
-Version v1.0.0, 13 Mar 2018:
-- Admin Auto Install Script ( Thank you @lat9 )
-- Reduce core-file overwrites ( Thank you @lat9 )
-- Updated the non-carousel Image Links
-- Updated the Carousel
-- Removed stray Configuration Values
-- Removed unused DEFINES
-- Added center-box div's for consistency to ease styling
-- Added a template screenshot ( Thank you @DrByte )
+Version: 1.0.5 25 Apr 2018:
+- OPC Template Override Integration
+(Optional-OPC-Template-Overrides)
+- Integrate ImageHandler in additional image modal
+(includes/modules/bootstrap/bootstrap_slide_additional_images.php)
+- Formatting issue of attributes with images
+(includes/modules/bootstrap/attributes.php)
+- Width of input fields on wider screens
+(includes/templates/bootstrap/css/stylesheet.css, includes/templates/bootstrap/templates/tpl_modules_create_account.php, includes/templates/bootstrap/templates/tpl_checkout_shipping_default.php, includes/templates/bootstrap/templates/tpl_checkout_payment_default.php, includes/templates/bootstrap/templates/tpl_checkout_confirmation_default.php)
+- Centering $free_tag & $call_tag icons
+(includes/classes/observers/ZcaBootstrapObserver.php)
+- Centering FREE_SHIPPING_ICON
+(includes/languages/english/bootstrap/product_free_shipping.php)
 
-Version: 1.0.1, 18 Mar 2018:
-- Fixes the formatting issue with shipping options when multiple choices are available.
-- New page scripts (jscript_addr_pulldowns_zca_bootstrap.php) have been created to provide template-specific rendering if the bootstrap template is current. The css classes in these files will now use the BS classes.
-- An additional file (/includes/languages/english/extra_definitions/bootstrap/zca_bootstrap_id.php) is added. That file contains a single definition, the presence of which identifies the template as bootstrap or a clone. Support for the Clone a Template plugin. 
-
-Version: 1.0.2, 26 Mar 2018:
-- Updated so the Clone a Template plugin can be used.
-- Replace page specific jscript_addr_pulldowns.php files with jscript_addr_pulldowns_zca_bootstrap.php to include bootstrap classes.
-- Update tpl_checkout_shipping_default.php to address a formatting issue.
-- Update "/includes/templates/bootstrap/" tpl_modules_create_account.php, tpl_contact_us_default.php, tpl_modules_address_book_details.php, tpl_modules_checkout_new_address.php, tpl_modules_checkout_new_shipping_address.php, tpl_modules_checkout_new_payment_address.php to address a formatting issue with drop-downs. This update also places the "required indicator" right of the drop-down label.
-- Update "/includes/languages/english/bootstrap/" document_general_info.php, document_product_info.php, product_free_shipping_info.php, product_info.php, product_music_info.php to reword "Larger Images" to "Additional Images".
-- Update "/includes/templates/bootstrap/modalboxes/" tpl_bootstrap_images.php so the Main Image thumb and Additional Images thumbs are same size.
-- Update "includes/templates/bootstrap/common" tpl_offcanvas_menu.php so the more_information drop-down adheres to the EZ-Pages Display Status - Sidebox configuration.
+Version: 1.0.4 25 Apr 2018:
+- Added spacing to category tab links
+- Fixed the missing "PRIMARY_ADDRESS" define statement.
+- Added stock order-totals formatting so template is compatible with "One Page Checkout".
+- Replaced shopping cart icons w/ FA icons.
+- Added missing li tags on categories drop-down.
+- Removed extra double-quotes for observer class.
+- Implement updated regex quoting from ZC core for image matching.
+- Added unique names to the bootstrap modals.
+- Stylesheet change for class ezpagesBarHeader & ezpagesBarFooter.
+- Added padding to logo and tagline wrapper. 
 
 Version: 1.0.3, 2 Apr 2018:
 - Update to move Required indicator for country pulldown menus right of label.
@@ -35,3 +37,27 @@ Version: 1.0.3, 2 Apr 2018:
 - Update to Stylesheet for class ezpagesBar.
 - Update to Attribute textarea's and added BS classes.
 - Update to replace hardcoded require paths within the Modal files.
+
+Version: 1.0.2, 26 Mar 2018:
+- Updated so the Clone a Template plugin can be used.
+- Replace page specific jscript_addr_pulldowns.php files with jscript_addr_pulldowns_zca_bootstrap.php to include bootstrap classes.
+- Update tpl_checkout_shipping_default.php to address a formatting issue.
+- Update "/includes/templates/bootstrap/" tpl_modules_create_account.php, tpl_contact_us_default.php, tpl_modules_address_book_details.php, tpl_modules_checkout_new_address.php, tpl_modules_checkout_new_shipping_address.php, tpl_modules_checkout_new_payment_address.php to address a formatting issue with drop-downs. This update also places the "required indicator" right of the drop-down label.
+- Update "/includes/languages/english/bootstrap/" document_general_info.php, document_product_info.php, product_free_shipping_info.php, product_info.php, product_music_info.php to reword "Larger Images" to "Additional Images".
+- Update "/includes/templates/bootstrap/modalboxes/" tpl_bootstrap_images.php so the Main Image thumb and Additional Images thumbs are same size.
+- Update "includes/templates/bootstrap/common" tpl_offcanvas_menu.php so the more_information drop-down adheres to the EZ-Pages Display Status - Sidebox configuration.
+
+Version: 1.0.1, 18 Mar 2018:
+- Fixes the formatting issue with shipping options when multiple choices are available.
+- New page scripts (jscript_addr_pulldowns_zca_bootstrap.php) have been created to provide template-specific rendering if the bootstrap template is current. The css classes in these files will now use the BS classes.
+- An additional file (/includes/languages/english/extra_definitions/bootstrap/zca_bootstrap_id.php) is added. That file contains a single definition, the presence of which identifies the template as bootstrap or a clone. Support for the Clone a Template plugin. 
+
+Version v1.0.0, 13 Mar 2018:
+- Admin Auto Install Script ( Thank you @lat9 )
+- Reduce core-file overwrites ( Thank you @lat9 )
+- Updated the non-carousel Image Links
+- Updated the Carousel
+- Removed stray Configuration Values
+- Removed unused DEFINES
+- Added center-box div's for consistency to ease styling
+- Added a template screenshot ( Thank you @DrByte )
