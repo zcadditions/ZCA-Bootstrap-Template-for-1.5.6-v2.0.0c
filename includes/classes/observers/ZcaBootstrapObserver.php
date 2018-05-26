@@ -126,7 +126,7 @@ class ZcaBootstrapObserver extends base
                     if (OTHER_IMAGE_PRICE_IS_FREE_ON == '0') {
                         $free_tag = '<div class="p-1 text-center">' . PRODUCTS_PRICE_IS_FREE_TEXT . '</div>';
                     } else {
-                        $free_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT) . '</div>';
+                        $free_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT, '', '', 'class="mx-auto d-block"') . '</div>';
                     }
                 }
 
@@ -134,7 +134,7 @@ class ZcaBootstrapObserver extends base
                     if (PRODUCTS_PRICE_IS_CALL_IMAGE_ON == '0') {
                         $call_tag = '<div class="p-1 text-center">' . PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT . '</div>';
                     } else {
-                        $call_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT) . '</div>';
+                        $call_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT, '', '', 'class="mx-auto d-block"') . '</div>';
                     }
                 }
                 $p2 = true;
