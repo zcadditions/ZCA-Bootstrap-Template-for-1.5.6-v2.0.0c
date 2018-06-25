@@ -75,24 +75,24 @@ if ($num_products_count > 0) {
 /** bof products price */
     $products_price = zen_get_products_display_price($specials_products->fields['products_id']);
 
-$specials_products_price = '<div id="specialsCenterbox-price" class="centerBoxContentsItem-price text-center">' . $products_price . '</div>';
+$specials_products_price = '<div class="centerBoxContentsItem-price text-center">' . $products_price . '</div>';
 /** eof products price */
 
 /** bof products name */
     $specials_products->fields['products_name'] = zen_get_products_name($specials_products->fields['products_id']);   
     
-$specials_products_name = '<div id="specialsCenterbox-name" class="centerBoxContentsItem-name text-center"><a href="' . zen_href_link(zen_get_info_page($specials_products->fields['products_id']), 'cPath=' . $productsInCategory[$specials_products->fields['products_id']] . '&products_id=' . $specials_products->fields['products_id']) . '">' . $specials_products->fields['products_name'] . '</a></div>';
+$specials_products_name = '<div class="centerBoxContentsItem-name text-center"><a href="' . zen_href_link(zen_get_info_page($specials_products->fields['products_id']), 'cPath=' . $productsInCategory[$specials_products->fields['products_id']] . '&products_id=' . $specials_products->fields['products_id']) . '">' . $specials_products->fields['products_name'] . '</a></div>';
 /** eof products name */
 
 /** bof products image */
 if ($specials_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
 $specials_products_image = '';
 } else {
-$specials_products_image = '<div id="specialsCenterbox-image" class="centerBoxContentsItem-image text-center"><a href="' . zen_href_link(zen_get_info_page($specials_products->fields['products_id']), 'cPath=' . $productsInCategory[$specials_products->fields['products_id']] . '&products_id=' . $specials_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $specials_products->fields['products_image'], $specials_products->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a></div>';
+$specials_products_image = '<div class="centerBoxContentsItem-image text-center"><a href="' . zen_href_link(zen_get_info_page($specials_products->fields['products_id']), 'cPath=' . $productsInCategory[$specials_products->fields['products_id']] . '&products_id=' . $specials_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $specials_products->fields['products_image'], $specials_products->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a></div>';
 }
 /** eof products image */  
     
-    $list_box_contents[$row][$col] = array('params' => 'id="specials-centerBoxContents" class="centerBoxContents card mb-3 p-3 text-center"',
+    $list_box_contents[$row][$col] = array('params' => 'class="centerBoxContents card mb-3 p-3 text-center"',
     'text' => $specials_products_image . $specials_products_name . $specials_products_price);
 
     $col ++;
