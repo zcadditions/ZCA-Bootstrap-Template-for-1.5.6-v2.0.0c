@@ -55,15 +55,15 @@ class ZcaBootstrapObserver extends base
                         } else {
                             $show_discount_amount = '';
                         }
-                        $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</div>';
+                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
                     } else {
-                        $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_sale_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</div>';
+                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_sale_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
                     }
                 } else {
                     if (SHOW_SALE_DISCOUNT == 1) {
-                        $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($this->display_special_price / $this->display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</div>';
+                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($this->display_special_price / $this->display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
                     } else {
-                        $show_sale_discount = '<div class="p-1 text-center productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_special_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</div>';
+                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_special_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
                     }
                 }
                 $p2 = true;
@@ -73,19 +73,19 @@ class ZcaBootstrapObserver extends base
             case 'NOTIFY_ZEN_GET_PRODUCTS_DISPLAY_PRICE_SPECIAL':
                 $this->setVariables($eventID, $p1);
                 
-                $show_normal_price = '<div class="p-1 text-center normalprice">' . $this->displayPrice($this->display_normal_price) . ' </div>';
+                $show_normal_price = '<span class="mx-auto w-100 p-1 normalprice">' . $this->displayPrice($this->display_normal_price) . ' </span>';
                 if ($this->display_sale_price && $this->display_sale_price != $this->display_special_price) {
-                    $show_special_price = '<div class="p-1 text-center productSpecialPriceSale">' . $this->displayPrice($this->display_special_price) . '</div>';
+                    $show_special_price = '<span class="mx-auto w-100 p-1 productSpecialPriceSale">' . $this->displayPrice($this->display_special_price) . '</span>';
                     if ($this->product_is_free == '1') {
-                        $show_sale_price = '<div class="p-1 text-center productSalePrice">' . PRODUCT_PRICE_SALE . '<s>' . $this->displayPrice($this->display_sale_price) . '</s></div>';
+                        $show_sale_price = '<span class="mx-auto w-100 p-1 productSalePrice">' . PRODUCT_PRICE_SALE . '<s>' . $this->displayPrice($this->display_sale_price) . '</s></span>';
                     } else {
-                        $show_sale_price = '<div class="p-1 text-center productSalePrice">' . PRODUCT_PRICE_SALE . $this->displayPrice($this->display_sale_price) . '</div>';
+                        $show_sale_price = '<span class="mx-auto w-100 p-1 productSalePrice">' . PRODUCT_PRICE_SALE . $this->displayPrice($this->display_sale_price) . '</span>';
                     }
                 } else {
                     if ($this->product_is_free == '1') {
-                        $show_special_price = '<div class="p-1 text-center productSpecialPrice">' . '<s>' . $this->displayPrice($this->display_special_price) . '</s>' . '</div>';
+                        $show_special_price = '<span class="mx-auto w-100 p-1 productSpecialPrice">' . '<s>' . $this->displayPrice($this->display_special_price) . '</s>' . '</span>';
                     } else {
-                        $show_special_price = '<div class="p-1 text-center productSpecialPrice">' . $this->displayPrice($this->display_special_price) . '</div>';
+                        $show_special_price = '<span class="mx-auto w-100 p-1 productSpecialPrice">' . $this->displayPrice($this->display_special_price) . '</span>';
                     }
                     $show_sale_price = '';
                 }
@@ -99,14 +99,14 @@ class ZcaBootstrapObserver extends base
                 $this->setVariables($eventID, $p1);
                 
                 if ($this->display_sale_price) {
-                    $show_normal_price = '<div class="p-1 text-center normalprice">' . $this->displayPrice($this->display_normal_price) . ' </div>';
+                    $show_normal_price = '<span class="mx-auto w-100 p-1 normalprice">' . $this->displayPrice($this->display_normal_price) . ' </span>';
                     $show_special_price = '';
-                    $show_sale_price = '<div class="p-1 text-center productSalePrice">' . PRODUCT_PRICE_SALE . $this->displayPrice($this->display_sale_price) . '</div>';
+                    $show_sale_price = '<span class="mx-auto w-100 p-1 productSalePrice">' . PRODUCT_PRICE_SALE . $this->displayPrice($this->display_sale_price) . '</span>';
                 } else {
                     if ($this->product_is_free == '1') {
-                        $show_normal_price = '<div class="p-1 text-center productFreePrice"><s>' . $this->displayPrice($this->display_normal_price) . '</s></div>';
+                        $show_normal_price = '<span class="mx-auto w-100 p-1 productFreePrice"><s>' . $this->displayPrice($this->display_normal_price) . '</s></span>';
                     } else {
-                        $show_normal_price = '<div class="p-1 text-center productBasePrice">' . $this->displayPrice($this->display_normal_price) . '</div>';
+                        $show_normal_price = '<span class="mx-auto w-100 p-1 productBasePrice">' . $this->displayPrice($this->display_normal_price) . '</span>';
                     }
                     $show_special_price = '';
                     $show_sale_price = '';
@@ -124,17 +124,17 @@ class ZcaBootstrapObserver extends base
                 
                 if ($this->product_is_free == '1') {
                     if (OTHER_IMAGE_PRICE_IS_FREE_ON == '0') {
-                        $free_tag = '<div class="p-1 text-center">' . PRODUCTS_PRICE_IS_FREE_TEXT . '</div>';
+                        $free_tag = '<span class="mx-auto w-100 p-1">' . PRODUCTS_PRICE_IS_FREE_TEXT . '</span>';
                     } else {
-                        $free_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT, '', '', 'class="mx-auto d-block"') . '</div>';
+                        $free_tag = '<span class="mx-auto w-100 p-1">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT, '', '', '') . '</span>';
                     }
                 }
 
                 if ($this->product_is_call) {
                     if (PRODUCTS_PRICE_IS_CALL_IMAGE_ON == '0') {
-                        $call_tag = '<div class="p-1 text-center">' . PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT . '</div>';
+                        $call_tag = '<span class="mx-auto w-100 p-1">' . PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT . '</span>';
                     } else {
-                        $call_tag = '<div class="p-1 text-center">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT, '', '', 'class="mx-auto d-block"') . '</div>';
+                        $call_tag = '<span class="mx-auto w-100 p-1">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT, '', '', '') . '</span>';
                     }
                 }
                 $p2 = true;
