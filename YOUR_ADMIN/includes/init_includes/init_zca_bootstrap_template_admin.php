@@ -170,7 +170,7 @@ if ($current_page == (FILENAME_TEMPLATE_SELECT . '.php') && isset($_GET['action'
         $zca_bootstrap_configs = array(
             'IMAGE_USE_CSS_BUTTONS' => 'Yes',
             'MAX_DISPLAY_PAGE_LINKS' => '3',
-            'BREAD_CRUMBS_SEPARATOR' => '&nbsp;/&nbsp;',
+            'BREAD_CRUMBS_SEPARATOR' => '<li>/</li>',
             'CATEGORIES_SEPARATOR_SUBS' => '&vdash;&nbsp;',
             'CATEGORIES_COUNT_PREFIX' => '',
             'CATEGORIES_COUNT_SUFFIX' => '',
