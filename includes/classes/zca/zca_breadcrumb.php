@@ -52,13 +52,14 @@ class zca_breadcrumb extends breadcrumb
                 } else {
 //                    $trail_string .= '  <a href="' . $this->_trail[$i]['link'] . '">' . $this->_trail[$i]['title'] . '</a>';
                     $trail_string .= '<li><a href="' . $this->_trail[$i]['link'] . '">' . $this->_trail[$i]['title'] . '</a></li>';
-//-eof-zca_bootstrap  *** 1 of 1 ***
+
 
                 }
             } else {
-                $trail_string .= $this->_trail[$i]['title'];
+//                $trail_string .= $this->_trail[$i]['title'];
+                $trail_string .= '<li>' . $this->_trail[$i]['title'] . '</li>';               
             }
-
+//-eof-zca_bootstrap  *** 1 of 1 ***
             if (($i+1) < $n) {
                 $trail_string .= $separator;
             }
