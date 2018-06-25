@@ -13,10 +13,10 @@
 
 
       <li class="nav-item dropdown d-lg-none">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php echo BOX_HEADING_CATEGORIES; ?>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="categoryDropdown">
 <?php
 
 	echo '<ul class="m-0 p-0">';
@@ -85,10 +85,10 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL == 'true') {
 
       
       <li class="nav-item dropdown d-lg-none">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php echo BOX_HEADING_INFORMATION; ?>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="infoDropdown">
 <?php
 
 	echo '<ul class="m-0 p-0">';
@@ -138,10 +138,10 @@ if (DEFINE_PAGE_4_STATUS <= 1) {
   if (EZPAGES_STATUS_SIDEBOX == '1' or (EZPAGES_STATUS_SIDEBOX== '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
  ?>
       <li class="nav-item dropdown d-lg-none">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="ezpagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php echo BOX_HEADING_EZPAGES; ?>
         </a>
-        <div class="dropdown-menu mb-2" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu mb-2" aria-labelledby="ezpagesDropdown">
 <?php
 
 	echo '<ul class="m-0 p-0">';
