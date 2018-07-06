@@ -12,6 +12,18 @@
  */
 require DIR_WS_MODULES . zen_get_module_directory(FILENAME_MAIN_PRODUCT_IMAGE);
 
+if (ZCA_PHOTOSWIPE_STATUS == 'true') {
+
+echo '<div class="my-gallery row mx-auto" itemscope itemtype="http://schema.org/ImageGallery"><figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="card col-md p-3">';
+
+echo '<a href="' . zca_photoswipe($products_image_large, '', LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT) . '" itemprop="contentUrl" data-size="1024x1024">';
+
+echo '<img src="' . zca_photoswipe($products_image_medium, '', MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '" itemprop="thumbnail" alt="Image description" class="mx-auto d-block" style="width:' .  MEDIUM_IMAGE_WIDTH . 'px;" /></a>';
+      
+echo '<figcaption itemprop="caption description"><?php echo addslashes($products_name); ?></figcaption></figure></div>';  
+
+ 	} else {
+
 if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS == 'Yes') {
     require $template->get_template_dir('tpl_image.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes'). '/tpl_image.php';
 
@@ -36,3 +48,4 @@ document.write('<?php echo '<a href="javascript:popupWindow(\\\'' . zen_href_lin
 </div>
 <?php
 }
+ 	}
