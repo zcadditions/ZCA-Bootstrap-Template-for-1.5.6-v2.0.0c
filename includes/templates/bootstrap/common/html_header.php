@@ -124,6 +124,8 @@ if (sizeof($lng->catalog_languages) > 1) {
     echo '<link rel="stylesheet" type="text/css" media="print" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . $value . '" />'."\n";
   }
 
+    require($template->get_template_dir('stylesheet_zca_colors.php',DIR_WS_TEMPLATE, $current_page_base,'css'). '/stylesheet_zca_colors.php');    
+    
 /** CDN for jQuery core **/
 ?>
 
