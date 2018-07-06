@@ -10,50 +10,50 @@
  */
  
 /* BOF HEADER */
-/* HEADER MAIN NAV */
+/* HEADER MAIN NAV
 #navMain .navbar {background:#333;}
 #navMain .navbar a {color:#FFF;}
-.navbar .navbar-toggler {background-color:#FFF; }
+.navbar .navbar-toggler {background-color:#FFF; }*/
 
-/* HEADER MOBILE MENU */
+/* HEADER MOBILE MENU
 .dropdown-item {color:#05a5cb!important;}
-.dropdown-item:hover {color:#0099CC!important;}
+.dropdown-item:hover {color:#0099CC!important;} */
 
-/* HEADER CATEGORY TABS */
+/* HEADER CATEGORY TABS
 .category-top:hover {background:#05a5cb;color:#FFF;}
-.activeLink {background:#33b5e5;color:#FFF;}
+.activeLink {background:#33b5e5;color:#FFF;}*/
 
-/* HEADER EZPAGES BAR */
+/* HEADER EZPAGES BAR
 #ezpagesBarHeader.ezpagesBar {background:#333;} 
-#ezpagesBarHeader.ezpagesBar a {color:#FFF;}
+#ezpagesBarHeader.ezpagesBar a {color:#FFF;} */
 /* EOF HEADER */
 
-/* BOF BUTTONS */
+/* BOF BUTTONS
 .btn {background:#33b5e5;color:#FFF;}
-.btn:hover {background:#0099CC;color:#FFF;}
+.btn:hover {background:#0099CC;color:#FFF;} */
 /* EOF BUTTONS */
 
-/* BOF SIDEBOXES */
+/* BOF SIDEBOXES
 a, .list-group-item-action {color:#05a5cb;}
 a:hover, .list-group-item-action:hover {color:#0099CC;}
-.badge {background:#05a5cb;color:#FFF;}
+.badge {background:#05a5cb;color:#FFF;} */
 .fa-cart-plus {color:#00C851;}
-.leftBoxHeading, .rightBoxHeading {background:#333;color:#FFF;}
+/* .leftBoxHeading, .rightBoxHeading {background:#333;color:#FFF;}
 .leftBoxHeading a, .rightBoxHeading a {color:#FFF;}
-/* EOF SIDEBOXES */
+EOF SIDEBOXES */
 
-/* BOF CENTERBOXES */
-.centerBoxHeading {background:#333; color:#FFF;}
+/* BOF CENTERBOXES
+.centerBoxHeading {background:#333; color:#FFF;} */
 /* EOF CENTERBOXES */
 
 /* BOF FOOTER */
-/* FOOTER EZPAGES BAR */
+/* FOOTER EZPAGES BAR
 #ezpagesBarFooter.ezpagesBar {background:#333;} 
-#ezpagesBarFooter.ezpagesBar a {color:#FFF;}
+#ezpagesBarFooter.ezpagesBar a {color:#FFF;} */
 /* EOF FOOTER */
 
-/* BOF PRODUCT LISTING PAGES */
-.active .page-link {background:#05a5cb!important;color:#FFF!important;border-color:#05a5cb!important;}
+/* BOF PRODUCT LISTING PAGES
+.active .page-link {background:#05a5cb!important;color:#FFF!important;border-color:#05a5cb!important;} */
 .button_add_selected {background:#00C851;color:#FFF;}
 .button_add_selected:hover {background:#007E33;color:#FFF;}
 /* EOF PRODUCT LISTING PAGES */
@@ -64,11 +64,11 @@ a:hover, .list-group-item-action:hover {color:#0099CC;}
 #addToCart-card {border-color:#00C851;}
 /* EOF PRODUCT INFO PAGES */
 
-/* BOF PRODUCT PRICES */
-.productSpecialPrice, .productSalePrice, .productSpecialPriceSale, .productPriceDiscount {color:#FF0000;}
+/* BOF PRODUCT PRICES
+.productSpecialPrice, .productSalePrice, .productSpecialPriceSale, .productPriceDiscount {color:#FF0000;} */
 /* EOF PRODUCT PRICES */
 
-/* BOF MISC FORMS */
-.required-info {color:red;}
+/* BOF MISC FORMS
+.required-info {color:red;} */
 /* EOF MISC FORMS */
 
