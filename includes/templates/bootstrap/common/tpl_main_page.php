@@ -247,4 +247,10 @@ Parse Time: <?php echo $parse_time; ?> - Number of Queries: <?php echo $db->quer
   $zco_notifier->notify('NOTIFY_FOOTER_END', $current_page);
 ?>
 </div>
+  
+<?php 
+if (ZCA_PHOTOSWIPE_STATUS == 'true') {
+require($template->get_template_dir('tpl_photoswipe.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_photoswipe.php'); 
+}
+?> 
 </body>
