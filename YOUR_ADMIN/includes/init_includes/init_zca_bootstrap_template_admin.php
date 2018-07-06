@@ -87,6 +87,17 @@ if (zen_is_superuser()) {
         );
     }
 //-eof-GitHub#21
+//bof photoswipe
+    if (!defined('ZCA_PHOTOSWIPE_STATUS')) {
+        $zca_bootstrap_config_changes[] = $zca_which_group . 'Use Photoswipe Lightbox';
+        $db->Execute(
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+             VALUES
+                ('Use Photoswipe Lightbox', 'ZCA_PHOTOSWIPE_STATUS', 'false', 'Default is <b>false</b>, Opens images in an individual modal, <b>true</b> opens images in a photoswipe lightbox.', 18, NOW(), 203, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+        );
+    }		
+//eof photoswipe
     if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE')) {
         $zca_bootstrap_config_changes[] = $zca_which_group . 'Use Bootstrap Additional Image Carousel';
         $db->Execute(
