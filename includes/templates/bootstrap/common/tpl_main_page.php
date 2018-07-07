@@ -248,9 +248,10 @@ Parse Time: <?php echo $parse_time; ?> - Number of Queries: <?php echo $db->quer
 ?>
 </div>
   
-<?php 
-if (ZCA_PHOTOSWIPE_STATUS == 'true') {
+<?php
+  if (in_array($current_page_base,explode(",",'document_general_info,document_product_info,page,product_free_shipping_info,product_info,product_music_info,product_reviews,product_reviews_info,product_reviews_write')) && ZCA_PHOTOSWIPE_STATUS == 'true') {
+
 require($template->get_template_dir('tpl_photoswipe.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_photoswipe.php'); 
 }
-?> 
+?>
 </body>
