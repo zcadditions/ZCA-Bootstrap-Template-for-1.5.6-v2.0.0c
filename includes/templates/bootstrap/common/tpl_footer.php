@@ -47,8 +47,19 @@ if (SHOW_FOOTER_IP == '1') {
 <?php
   if (SHOW_BANNERS_GROUP_SET5 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET5)) {
     if ($banner->RecordCount() > 0) {
+$find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET5);
+$show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET5);
 ?>
-<div id="bannerFive" class="banners text-center"><?php echo zen_display_banner('static', $banner); ?></div>
+
+<div class="bannerFive rounded">
+<?php 
+if (ZCA_ACTIVATE_BANNER_FIVE_CAROUSEL == 'true') {
+require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
+} else {
+echo zen_display_banner('static', $banner);
+}
+?>
+</div>
 <?php
     }
   }
