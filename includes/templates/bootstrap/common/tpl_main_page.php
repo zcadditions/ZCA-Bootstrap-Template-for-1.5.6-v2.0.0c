@@ -89,8 +89,19 @@ $center_column_width = $center_column - $side_columns_total;
 <?php
   if (SHOW_BANNERS_GROUP_SET1 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET1)) {
     if ($banner->RecordCount() > 0) {
+$find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET1);
+$show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET1);
 ?>
-<div id="bannerOne" class="banners text-center"><?php echo zen_display_banner('static', $banner); ?></div>
+
+<div class="bannerOne rounded">
+<?php 
+if (ZCA_ACTIVATE_BANNER_ONE_CAROUSEL == 'true') {
+require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
+} else {
+echo zen_display_banner('static', $banner);
+}
+?>
+</div>
 <?php
     }
   }
@@ -147,9 +158,18 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
 <?php
   if (SHOW_BANNERS_GROUP_SET3 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET3)) {
     if ($banner->RecordCount() > 0) {
+$find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET3);
+$show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET3);
 ?>
-<div id="bannerThree" class="banners">
-<?php echo zen_display_banner('static', $banner); ?>
+
+<div class="bannerThree rounded">
+<?php 
+if (ZCA_ACTIVATE_BANNER_THREE_CAROUSEL == 'true') {
+require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
+} else {
+echo zen_display_banner('static', $banner);
+}
+?>
 </div>
 <?php
     }
@@ -170,9 +190,18 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
 <?php
   if (SHOW_BANNERS_GROUP_SET4 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET4)) {
     if ($banner->RecordCount() > 0) {
+$find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET4);
+$show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET4);
 ?>
-<div id="bannerFour" class="banners">
-<?php echo zen_display_banner('static', $banner); ?>
+
+<div class="bannerFour rounded">
+<?php 
+if (ZCA_ACTIVATE_BANNER_FOUR_CAROUSEL == 'true') {
+require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
+} else {
+echo zen_display_banner('static', $banner);
+}
+?>
 </div>
 <?php
     }
@@ -235,8 +264,19 @@ Parse Time: <?php echo $parse_time; ?> - Number of Queries: <?php echo $db->quer
 <?php
   if (SHOW_BANNERS_GROUP_SET6 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET6)) {
     if ($banner->RecordCount() > 0) {
+$find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET6);
+$show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET6);
 ?>
-<div id="bannerSix" class="banners text-center"><?php echo zen_display_banner('static', $banner); ?></div>
+
+<div class="bannerSix rounded">
+<?php 
+if (ZCA_ACTIVATE_BANNER_SIX_CAROUSEL == 'true') {
+require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
+} else {
+echo zen_display_banner('static', $banner);
+}
+?>
+</div>
 <?php
     }
   }
