@@ -47,7 +47,60 @@ if (zen_is_superuser()) {
                 ('Responsive Right Column Width', 'SET_COLUMN_RIGHT_LAYOUT', '3', 'Set Width of Right Column<br />Default is <b>3</b>, Total columns <b>12</b>.<br />Responsive Left, Center & Right Column Width must sum to 12', 19, NOW(), 202, NULL, 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\', \'11\', \'12\'),')"
         );
     }
-    
+    if (!defined('ZCA_ACTIVATE_BANNER_ONE_CAROUSEL')) {
+        $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Header Position 1 Carousel Feature';
+        $db->Execute(
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+             VALUES
+                ('<i>Bootstrap Banner Display</i> - Enable Header Position 1 Carousel Feature', 'ZCA_ACTIVATE_BANNER_ONE_CAROUSEL', 'false', 'Enable the Header Position 1 Banner Carousel.', 19, NOW(), 213, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+        );
+    }
+    if (!defined('ZCA_ACTIVATE_BANNER_TWO_CAROUSEL')) {
+        $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Header Position 2 Carousel Feature';
+        $db->Execute(
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+             VALUES
+                ('<i>Bootstrap Banner Display</i> - Enable Header Position 2 Carousel Feature', 'ZCA_ACTIVATE_BANNER_TWO_CAROUSEL', 'false', 'Enable the Header Position 2 Banner Carousel.', 19, NOW(), 214, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+        );
+    }	
+    if (!defined('ZCA_ACTIVATE_BANNER_THREE_CAROUSEL')) {
+        $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Header Position 3 Carousel Feature';
+        $db->Execute(
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+             VALUES
+                ('<i>Bootstrap Banner Display</i> - Enable Header Position 3 Carousel Feature', 'ZCA_ACTIVATE_BANNER_THREE_CAROUSEL', 'false', 'Enable the Header Position 3 Banner Carousel.', 19, NOW(), 215, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+        );
+    }	
+    if (!defined('ZCA_ACTIVATE_BANNER_FOUR_CAROUSEL')) {
+        $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Footer Position 1 Carousel Feature';
+        $db->Execute(
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+             VALUES
+                ('<i>Bootstrap Banner Display</i> - Enable Footer Position 1 Carousel Feature', 'ZCA_ACTIVATE_BANNER_FOUR_CAROUSEL', 'false', 'Enable the Footer Position 1 Banner Carousel.', 19, NOW(), 216, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+        );
+    }	
+    if (!defined('ZCA_ACTIVATE_BANNER_FIVE_CAROUSEL')) {
+        $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Footer Position 2 Carousel Feature';
+        $db->Execute(
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+             VALUES
+                ('<i>Bootstrap Banner Display</i> - Enable Footer Position 2 Carousel Feature', 'ZCA_ACTIVATE_BANNER_FIVE_CAROUSEL', 'false', 'Enable the Footer Position 2 Banner Carousel.', 19, NOW(), 217, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+        );
+    }	
+    if (!defined('ZCA_ACTIVATE_BANNER_SIX_CAROUSEL')) {
+        $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Footer Position 3 Carousel Feature';
+        $db->Execute(
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
+             VALUES
+                ('<i>Bootstrap Banner Display</i> - Enable Footer Position 3 Carousel Feature', 'ZCA_ACTIVATE_BANNER_SIX_CAROUSEL', 'false', 'Enable the Footer Position 3 Banner Carousel.', 19, NOW(), 218, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+        );
+    }	  
     // -----
     // 2) Configuration->Product Listing
     //
