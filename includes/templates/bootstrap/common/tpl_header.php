@@ -117,13 +117,24 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
               }
 ?>
 <?php
-              if (SHOW_BANNERS_GROUP_SET2 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2)) {
-                if ($banner->RecordCount() > 0) {
+  if (SHOW_BANNERS_GROUP_SET2 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2)) {
+    if ($banner->RecordCount() > 0) {
+$find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET2);
+$show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2);
 ?>
-      <div id="bannerTwo" class="banners"><?php echo zen_display_banner('static', $banner);?></div>
+
+<div class="bannerTwo rounded">
+<?php 
+if (ZCA_ACTIVATE_BANNER_TWO_CAROUSEL == 'true') {
+require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
+} else {
+echo zen_display_banner('static', $banner);
+}
+?>
+</div>
 <?php
-                }
-              }
+    }
+  }
 ?>
     </div>
 <?php } 
