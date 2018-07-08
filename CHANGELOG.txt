@@ -1,5 +1,12 @@
 CHANGELOG
 
+Version: 1.0.5 08 July 2018:
+
+- Several HTML validations (github issue #62)
+- Adds Responsive Carousel Banners (github issue #63)
+- Adds the PhotoSwipe Lightbox to the document_general_info, document_product_info, page, product_free_shipping_info, product_info, product_music_info, product_reviews, product_reviews_info & product_reviews_write pages (github issue #64)
+- Adds Admin controlled Template Colors Configuration (github issue #65) 
+
 Version: 1.0.5 25 Apr 2018:
 - OPC Template Override Integration
 (Optional-OPC-Template-Overrides)
