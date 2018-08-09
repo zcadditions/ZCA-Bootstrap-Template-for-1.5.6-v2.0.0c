@@ -217,7 +217,6 @@ $cfg_group = $db->Execute("SELECT configuration_group_title
       </div>
     </div>
     <link rel="stylesheet" href="includes/css/colorpicker.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/0.11.1/tinycolor.min.js"></script>
     <script src="includes/javascript/colorpicker.js"></script>
 
