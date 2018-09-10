@@ -35,7 +35,7 @@
 
 <!--bof attribute options card-->
 <div id="attributeOptions<?php echo $options_html_id[$i]; ?>-card" class="card mb-3">
-<h4 id="attributeOptions<?php echo $options_html_id[$i]; ?>-card-header" class="card-header"><?php echo $options_name[$i]; ?></h4>
+<h4 id="attributeOptions<?php echo $options_html_id[$i]; ?>-card-header" class="card-header optionName"><?php echo $options_name[$i]; ?></h4>
 <div id="attributeOptions<?php echo $options_html_id[$i]; ?>-card-body" class="card-body p-3">
 <?php echo "\n" . $options_menu[$i]; ?>
 
