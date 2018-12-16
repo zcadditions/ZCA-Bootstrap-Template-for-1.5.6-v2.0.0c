@@ -18,66 +18,49 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="categoryDropdown">
 <?php
-
 	echo '<ul class="m-0 p-0">';
-
 	$categories_tab_query = "SELECT c.categories_id, cd.categories_name FROM ".TABLE_CATEGORIES." c, ".TABLE_CATEGORIES_DESCRIPTION . " cd WHERE c.categories_id=cd.categories_id AND c.parent_id= '0' AND cd.language_id='" . (int)$_SESSION['languages_id'] . "' AND c.categories_status='1' ORDER BY c.sort_order, cd.categories_name;";
 	$categories_tab = $db->Execute($categories_tab_query);
-
 	while (!$categories_tab->EOF) 
 	{
 	// currently selected category
-
 		echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_DEFAULT,'cPath=' . (int)$categories_tab->fields['categories_id']).'">'; 
 		if((int)$cPath == $categories_tab->fields['categories_id']) 
 		 echo '<span class="category-subs-selected">'.$categories_tab->fields['categories_name'].'</span>';
 		else 
 		 echo $categories_tab->fields['categories_name'];
-
 		echo '</a></li>';
-
 		$categories_tab->MoveNext();
 	}
 	echo '</ul>';
-
-
   if (SHOW_CATEGORIES_BOX_SPECIALS == 'true') {
    $show_this = $db->Execute("select s.products_id from " . TABLE_SPECIALS . " s where s.status= 1 limit 1");
    if ($show_this->RecordCount() > 0) {
     echo '<div class="dropdown-divider"></div><a class="dropdown-item" href="'.zen_href_link(FILENAME_SPECIALS) . '">' . CATEGORIES_BOX_HEADING_SPECIALS.'</a>';
-
     }
   }
-
       
 if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW == 'true') {
       // display limits
 //    $display_limit = zen_get_products_new_timelimit();
       $display_limit = zen_get_new_date_range();
-
       $show_this = $db->Execute("select p.products_id
                                  from " . TABLE_PRODUCTS . " p
                                  where p.products_status = 1 " . $display_limit . " limit 1");
       if ($show_this->RecordCount() > 0) { 
-
     echo '<div class="dropdown-divider"></div><a class="dropdown-item" href="'.zen_href_link(FILENAME_PRODUCTS_NEW) . '">' . CATEGORIES_BOX_HEADING_WHATS_NEW.'</a>';
  
     }
   } 
-
 if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS == 'true') {
        $show_this = $db->Execute("select products_id from " . TABLE_FEATURED . " where status= 1 limit 1");
        if ($show_this->RecordCount() > 0) { 
-
     echo '<div class="dropdown-divider"></div><a class="dropdown-item" href="'.zen_href_link(FILENAME_FEATURED_PRODUCTS) . '">' . CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS.'</a>';
-
     }
   }
-
 if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL == 'true') {
    echo '<div class="dropdown-divider"></div><a class="dropdown-item" href="'.zen_href_link(FILENAME_PRODUCTS_ALL) . '">' . CATEGORIES_BOX_HEADING_PRODUCTS_ALL.'</a>';
  }   
-
 ?>
         </div>
       </li>
@@ -90,9 +73,7 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL == 'true') {
         </a>
         <div class="dropdown-menu" aria-labelledby="infoDropdown">
 <?php
-
 	echo '<ul class="m-0 p-0">';
-
 if (DEFINE_SHIPPINGINFO_STATUS <= 1) {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_SHIPPING) . '">'. BOX_INFORMATION_SHIPPING.'</a></li>';
 }
@@ -126,10 +107,7 @@ if (DEFINE_PAGE_3_STATUS <= 1) {
 if (DEFINE_PAGE_4_STATUS <= 1) {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_PAGE_4) . '">'. BOX_INFORMATION_PAGE_4.'</a></li>';
 }
-
 	echo '</ul>';
-
-
 ?>
         </div>
       </li>  
@@ -143,13 +121,26 @@ if (DEFINE_PAGE_4_STATUS <= 1) {
         </a>
         <div class="dropdown-menu mb-2" aria-labelledby="ezpagesDropdown">
 <?php
-
 	echo '<ul class="m-0 p-0">';
 	
 if (isset($var_linksList)) {
       unset($var_linksList);
     }
-    $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title");
+		
+// BOE - Bootstrap for 1.5.6     
+    $page_query = $db->Execute("SELECT e.*, ec.*
+                                FROM " . TABLE_EZPAGES . " e,
+                                     " . TABLE_EZPAGES_CONTENT . " ec
+                                WHERE e.pages_id = ec.pages_id
+                                AND ec.languages_id = " . (int)$_SESSION['languages_id'] . "
+                                AND e.status_sidebox = 1
+                                AND e.sidebox_sort_order > 0
+                                ORDER BY e.sidebox_sort_order, ec.pages_title");   
+    
+// old code for 1.5.5:
+//    $page_query = $db->Execute("select * from " . TABLE_EZPAGES . " where status_sidebox = 1 and sidebox_sort_order > 0 order by sidebox_sort_order, pages_title");
+// EOE - Bootstrap for 1.5.6  
+
     if ($page_query->RecordCount()>0) {
       $title =  BOX_HEADING_EZPAGES;
       $box_id =  'ezpages';
@@ -177,7 +168,6 @@ if (isset($var_linksList)) {
           ($page_query->fields['alt_url']=='' ? '' : zen_href_link($page_query->fields['alt_url'], '', ($page_query->fields['page_is_ssl']=='0' ? 'NONSSL' : 'SSL'), true, true, true));
           break;
         }
-
         // if altURL is specified, use it; otherwise, use EZPage ID to create link
         $page_query_list_sidebox[$rows]['link'] = ($page_query_list_sidebox[$rows]['altURL'] =='') ?
         zen_href_link(FILENAME_EZPAGES, 'id=' . $page_query->fields['pages_id'] . ($page_query->fields['toc_chapter'] > 0 ? '&chapter=' . $page_query->fields['toc_chapter'] : ''), ($page_query->fields['page_is_ssl']=='0' ? 'NONSSL' : 'SSL')) :
@@ -185,24 +175,16 @@ if (isset($var_linksList)) {
         $page_query_list_sidebox[$rows]['link'] .= ($page_query->fields['page_open_new_window'] == '1' ? '" target="_blank' : '');
         $page_query->MoveNext();
       }
-
       $title_link = false;
-
       $var_linksList = $page_query_list_sidebox;
-
     }
-
   for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) { 
     echo '<li><a class="dropdown-item" href="' . $var_linksList[$i]['link'] . '">' . $var_linksList[$i]['name'] . '</a></li>';
   } // end FOR loop
-
 	echo '</ul>';
-
-
 ?>
         </div>
       </li>  
 <?php
 } // test for display
- ?>     
-      
+ ?>  
