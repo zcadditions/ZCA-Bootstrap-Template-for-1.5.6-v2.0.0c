@@ -20,7 +20,7 @@ if (!zca_bootstrap_active()) {
 
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
-$define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_FEATURED_PRODUCTS, 'false');
+// $define_page = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/', FILENAME_DEFINE_FEATURED_PRODUCTS, 'false');
 
 // display order dropdown
 $disp_order_default = PRODUCT_FEATURED_LIST_SORT_DEFAULT;
