@@ -1,17 +1,15 @@
 <?php
 /**
  * Page Template
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * Loaded automatically by index.php?main_page=create_account.<br />
  * Displays Create Account form.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: rbarbour zcadditions.com Fri Feb 26 00:03:33 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: rbarbour zcadditions.com Tue Aug 21 07:00:53 2018 -0400 Modified in v1.5.6 $
  */
 ?>
 
@@ -85,6 +83,10 @@
 <?php echo zen_draw_input_field('lastname', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_lastname', '40') . ' id="lastname" placeholder="' . ENTRY_LAST_NAME_TEXT . '"'. ((int)ENTRY_LAST_NAME_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <div class="p-2"></div>
 
+<label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label><?php if (zen_not_null(ENTRY_COUNTRY_TEXT) ? '<span class="alert">' . ENTRY_COUNTRY_TEXT . '</span>': ''); ?>
+<?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" ' . ($flag_show_pulldown_states == true ? 'onchange="update_zone(this.form);"' : '')); ?>
+<div class="p-2"></div>
+
 <label class="inputLabel" for="street-address"><?php echo ENTRY_STREET_ADDRESS; ?></label>
   <?php echo zen_draw_input_field('street_address', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_street_address', '40') . ' id="street-address" placeholder="' . ENTRY_STREET_ADDRESS_TEXT . '"'. ((int)ENTRY_STREET_ADDRESS_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <div class="p-2"></div>
@@ -137,10 +139,6 @@
 ); ?>
 <div class="p-2"></div>
 
-<label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?><?php if (zen_not_null(ENTRY_COUNTRY_TEXT)) echo '<span class="alert">' . ENTRY_COUNTRY_TEXT . '</span>';?></label>
-
-<?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" ' . ($flag_show_pulldown_states == true ? 'onchange="update_zone(this.form);"' : '')); ?>
-  
 </div>
 </div>
 <!--eof address details card-->
