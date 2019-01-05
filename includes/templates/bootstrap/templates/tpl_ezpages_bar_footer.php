@@ -10,7 +10,7 @@
  * @copyright Copyright 2003-2010 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_ezpages_bar_footer.php 15645 2010-03-07 18:17:19Z drbyte $
+ * @version $Id: DrByte 2019 Jan 04 Modified in v1.5.6a $
  */
 
    /**
@@ -19,7 +19,7 @@
   include(DIR_WS_MODULES . zen_get_module_directory('ezpages_bar_footer.php'));
 ?>
 
-<?php if (sizeof($var_linksList) >= 1) { ?>
+<?php if (!empty($var_linksList)) { ?>
 <div id="ezpagesBarFooter" class="ezpagesBar rounded">
 <ul class="nav nav-pills">
 <?php for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) {  ?>
