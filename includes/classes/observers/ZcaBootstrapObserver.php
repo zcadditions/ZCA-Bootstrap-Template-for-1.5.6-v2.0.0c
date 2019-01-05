@@ -200,9 +200,27 @@ class ZcaBootstrapObserver extends base
                 $zc_coupon_link = '<a data-toggle="modal" data-id="'. $p1['coupon_id']. '" href="#couponHelpModal">';
                 $p2 = $zc_coupon_link;
                 break;
-                
+
+            case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_THUMB_SLASHES':
+    if (ZCA_PHOTOSWIPE_STATUS == 'true') { 
+                $thumb_slashes = $p2;
+                $p2 = preg_replace("/([^\\\\])'/", '$1\\\'', $thumb_slashes);
+    }            
+                break;
+      
             case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_SCRIPT_LINK':
-                if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS == 'Yes') {
+   if (ZCA_PHOTOSWIPE_STATUS == 'true') {  
+                    $products_image_large = $p1['products_image_large'];
+                    $products_name = $p1['products_name'];
+                    $height = '1024';
+                    $width = '1024';
+                    $i = $p1['index'] + 1;
+                    $script_link = '<a href="' . zca_photoswipe($products_image_large, '', $width, $height) . '" itemprop="contentUrl" data-size="'.$width.'x'.$height.'" class="mx-auto d-block img-fluid">';
+                    $script_link .= '<img src="' . zca_photoswipe($products_image_large, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '" itemprop="thumbnail" class="mx-auto d-block img-fluid" />';
+                    $script_link .= '</a><figcaption itemprop="caption description">' . $products_name . ' ( img ' . $i . ' )</figcaption>';                   
+                    $p2 = $script_link;
+    }            
+    if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS == 'Yes') {
                     $products_image_large = $p1['products_image_large'];
                     $i = $p1['index'];
                     $link = '<a href="javascript:void(0)" class="imageModal">';
