@@ -1,17 +1,15 @@
 <?php
 /**
  * Page Template
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * Loaded automatically by index.php?main_page=shopping_cart.<br />
  * Displays shopping-cart contents
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Thu Jan 7 22:38:14 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: Drbyte Sun Jan 7 21:28:50 2018 -0500 Modified in v1.5.6 $
  */
 ?>
 <div id="shoppingCartDefault" class="centerColumn">
@@ -23,7 +21,7 @@
   if ($_SESSION['cart']->count_contents() > 0) {
 ?>
 <div id="shoppingCartDefault-helpLink" class="helpLink float-right p-3">
-<a data-toggle="modal" href="#cartHelpModal"><?php echo TEXT_VISITORS_CART; ?></a>
+<a data-toggle="modal" href="#cartHelpModal"><?php echo TEXT_CART_HELP; ?></a>
 </div>
 
 <?php require($template->get_template_dir('tpl_info_shopping_cart.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_info_shopping_cart.php'); ?>
