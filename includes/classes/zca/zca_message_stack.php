@@ -8,11 +8,8 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id:  Aug 2017 Modified in v1.5.6 $
  */
-// ----
-// Modified for use by the ZCA-Bootstrap template.
-//
 if (!defined('IS_ADMIN_FLAG')) {
-    die('Illegal Access');
+  die('Illegal Access');
 }
 /**
  * messageStack Class.
@@ -20,50 +17,103 @@ if (!defined('IS_ADMIN_FLAG')) {
  *
  * @package classes
  */
-// -----
-// Provides a modified version of the $messageStack formatting; instantiated by
-// /includes/init_includes/init_zca_bootstrap.php if the 'bootstrap' template is the
-// currently-active template.
-//
-// Note that the built-in messageStack class is created at CP 130.
-//
-// Other than some PSR-2 reformatting, the specific changes are marked by bof/eof comments.
-//
-class zca_messageStack extends messageStack 
-{
-    function add($class, $message, $type = 'error') 
-    {
-        global $template, $current_page_base;
-        $message = trim($message);
-        $duplicate = false;
-        if (strlen($message) > 0) {
-//-bof-zca_bootstrap  *** 1 of 1 ***
-            if ($type == 'error') {
-//                $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
-                $theAlert = array('params' => 'class="alert alert-danger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
-            } elseif ($type == 'warning') {
-//                $theAlert = array('params' => 'class="messageStackWarning larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
-                $theAlert = array('params' => 'class="alert alert-warning"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
-            } elseif ($type == 'success') {
-//                $theAlert = array('params' => 'class="messageStackSuccess larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
-                $theAlert = array('params' => 'class="alert alert-success"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
-            } elseif ($type == 'caution') {
-//                $theAlert = array('params' => 'class="messageStackCaution larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
-                $theAlert = array('params' => 'class="alert alert-warning"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
-            } else {
-//                $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => $message);
-                $theAlert = array('params' => 'class="alert alert-danger"', 'class' => $class, 'text' => $message);
-            }
-//-eof-zca_bootstrap  *** 1 of 1 ***
+class zca_messageStack extends base {
 
-            for ($i=0, $n=count($this->messages); $i<$n; $i++) {
-                if ($theAlert['text'] == $this->messages[$i]['text'] && $theAlert['class'] == $this->messages[$i]['class']) {
-                    $duplicate = true;
-                }
-            }
-            if (!$duplicate) {
-                $this->messages[] = $theAlert;
-            }
-        }
+  // class constructor
+  function __construct() {
+
+    $this->messages = array();
+
+    if (isset($_SESSION['messageToStack']) && $_SESSION['messageToStack']) {
+      $messageToStack = $_SESSION['messageToStack'];
+      for ($i=0, $n=sizeof($messageToStack); $i<$n; $i++) {
+        $this->add($messageToStack[$i]['class'], $messageToStack[$i]['text'], $messageToStack[$i]['type']);
+      }
     }
+
+  }
+
+  function add($class, $message, $type = 'error') {
+    global $template, $current_page_base;
+    $message = trim($message);
+    $duplicate = false;
+    if (strlen($message) > 0) {
+      if ($type == 'error') {
+//-bof-zca_bootstrap  *** 1 of 1 ***          
+//        $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-danger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
+        
+      } elseif ($type == 'warning') {
+//        $theAlert = array('params' => 'class="messageStackWarning larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-warning"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+        
+      } elseif ($type == 'success') {
+//        $theAlert = array('params' => 'class="messageStackSuccess larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-success"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
+        
+      } elseif ($type == 'caution') {
+//        $theAlert = array('params' => 'class="messageStackCaution larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-warning"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+        
+      } else {
+//        $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => $message);
+    $theAlert = array('params' => 'class="alert alert-danger"', 'class' => $class, 'text' => $message);
+        
+      }
+//-eof-zca_bootstrap  *** 1 of 1 ***      
+
+      for ($i=0, $n=sizeof($this->messages); $i<$n; $i++) {
+        if ($theAlert['text'] == $this->messages[$i]['text'] && $theAlert['class'] == $this->messages[$i]['class']) $duplicate = true;
+      }
+      if (!$duplicate) $this->messages[] = $theAlert;
+    }
+  }
+
+  function add_session($class, $message, $type = 'error') {
+
+    if (!$_SESSION['messageToStack']) {
+      $messageToStack = array();
+    } else {
+      $messageToStack = $_SESSION['messageToStack'];
+    }
+
+    $messageToStack[] = array('class' => $class, 'text' => $message, 'type' => $type);
+    $_SESSION['messageToStack'] = $messageToStack;
+    $this->add($class, $message, $type);
+  }
+
+  function reset() {
+    $this->messages = array();
+  }
+
+  function output($class) {
+    global $template, $current_page_base;
+
+    $_SESSION['messageToStack'] = '';
+
+    $output = array();
+    for ($i=0, $n=sizeof($this->messages); $i<$n; $i++) {
+      if ($this->messages[$i]['class'] == $class) {
+        $output[] = $this->messages[$i];
+      }
+    }
+
+    // remove duplicates before displaying
+//    $output = array_values(array_unique($output));
+
+    require($template->get_template_dir('tpl_message_stack_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_message_stack_default.php');
+  }
+
+  function size($class) {
+    $count = 0;
+
+    for ($i=0, $n=sizeof($this->messages); $i<$n; $i++) {
+      if ($this->messages[$i]['class'] == $class) {
+        $count++;
+      }
+    }
+
+    return $count;
+  }
+
 }
