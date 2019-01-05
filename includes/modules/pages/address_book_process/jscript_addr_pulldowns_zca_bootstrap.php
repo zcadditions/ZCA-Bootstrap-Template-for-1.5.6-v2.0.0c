@@ -48,11 +48,13 @@ function update_zone(theForm) {
     theForm.state.setAttribute('className', 'invisible');
     document.getElementById("stateLabel").className = 'invisible';
     document.getElementById("stateLabel").setAttribute('className', 'invisible');
+    if (document.getElementById("stText")) {
     document.getElementById("stText").className = 'invisible';
     document.getElementById("stText").setAttribute('className', 'invisible');
     document.getElementById("stBreak").className = 'invisible';
     document.getElementById("stBreak").setAttribute('className', 'invisible');
   }
+  } 
 
   function showStateField(theForm) {
     theForm.state.disabled = false;
