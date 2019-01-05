@@ -1,17 +1,15 @@
 <?php
 /**
  * Page Template
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * Loaded automatically by index.php?main_page=account_newsletters.<br />
  * Subscribe/Unsubscribe from General Newsletter
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_account_newsletters_default.php 2896 2006-01-26 19:10:56Z birdbrain $
+ * @version $Id: Zcwilt Sat Sep 15 18:30:02 2018 +0100 Modified in v1.5.6 $
  */
 ?>
 <div id="accountNewslettersDefault" class="centerColumn">
@@ -19,6 +17,8 @@
 <?php echo zen_draw_form('account_newsletter', zen_href_link(FILENAME_ACCOUNT_NEWSLETTERS, '', 'SSL')) . zen_draw_hidden_field('action', 'process'); ?>
 
 <h1 id="accountNewslettersDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+
+	<?php if ($messageStack->size('newsletter') > 0) echo $messageStack->output('newsletter'); ?>
 
 <!--bof general newsletter card-->
 <div id="generalNewsletter-card" class="card mb-3">
