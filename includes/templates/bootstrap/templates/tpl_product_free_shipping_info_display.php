@@ -2,16 +2,14 @@
 /**
  * Page Template
  *
- * BOOTSTRAP v1.0.BETA
- * 
  * Loaded automatically by index.php?main_page=product_free_shipping_info.<br />
  * Displays details of a "free-shipping" product (provided it is assigned to the product-free-shipping product type)
  *
  * @package templateSystem
- * @copyright Copyright 2003-2014 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: $
+ * @version $Id: mc12345678 Thu Sep 21 10:37:10 2017 -0400 Modified in v1.5.6 $
  */
 ?>
 
@@ -250,7 +248,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
             } else {
               // show the quantity box
     $the_button = '<div class="input-group mb-3">';
-    $the_button .= '<input class="form-control" type="text" name="cart_quantity" value="' . (zen_get_buy_now_qty($_GET['products_id'])) . '" />';
+    $the_button .= '<input class="form-control" type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" />';
     $the_button .= '<div class="input-group-append">';
 
     
