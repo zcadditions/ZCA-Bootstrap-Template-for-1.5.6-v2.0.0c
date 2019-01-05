@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Sat Oct 17 21:54:07 2015 -0400 Modified in v1.5.5 $
+ * @version $Id: DrByte 2019 Jan 04 Modified in v1.5.6a $
  */
 
   unset($information);
@@ -36,11 +36,11 @@
   }
 
   // only show GV FAQ when installed
-  if (MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
+  if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
     $information[] = '<a class="list-group-item list-group-item-action" href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>';
   }
   // only show Discount Coupon FAQ when installed
-  if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
+  if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && defined('MODULE_ORDER_TOTAL_COUPON_STATUS') && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {      
     $information[] = '<a class="list-group-item list-group-item-action" href="' . zen_href_link(FILENAME_DISCOUNT_COUPON) . '">' . BOX_INFORMATION_DISCOUNT_COUPONS . '</a>';
   }
 
