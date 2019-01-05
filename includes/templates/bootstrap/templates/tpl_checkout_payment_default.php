@@ -1,17 +1,15 @@
 <?php
 /**
  * Page Template
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * Loaded automatically by index.php?main_page=checkout_payment.<br />
  * Displays the allowed payment modules, for selection by customer.
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Sat Oct 17 21:58:04 2015 -0400 Modified in v1.5.5 $
+ * @version $Id: mc12345678 Tue May 8 00:42:18 2018 -0400 Modified in v1.5.6 $
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
@@ -93,13 +91,13 @@
   $selection =  $order_total_modules->credit_selection();
   if (sizeof($selection)>0) {
     for ($i=0, $n=sizeof($selection); $i<$n; $i++) {
-      if ($_GET['credit_class_error_code'] == $selection[$i]['id']) {
+            if (isset($_GET['credit_class_error_code']) && ($_GET['credit_class_error_code'] == (isset($selection[$i]['id'])) ? $selection[$i]['id'] : 0)) {
 ?>
 <div class="alert alert-danger" role="alert"><?php echo zen_output_string_protected($_GET['credit_class_error']); ?></div>
 
 <?php
       }
-      for ($j=0, $n2=sizeof($selection[$i]['fields']); $j<$n2; $j++) {
+      for ($j=0, $n2=(isset($selection[$i]['fields']) ? sizeof($selection[$i]['fields']) : 0); $j<$n2; $j++) {
 ?>
 
 <!--bof discount coupon card-->
@@ -111,7 +109,7 @@
 
 <?php echo $selection[$i]['redeem_instructions']; ?>
 
-<div id="discountCoupon-gvBal"><?php echo $selection[$i]['checkbox']; ?></div>
+<div id="discountCoupon-gvBal"><?php echo (isset($selection[$i]['checkbox'])) ? $selection[$i]['checkbox'] : ''; ?></div>
 
 <label class="inputLabel"<?php echo ($selection[$i]['fields'][$j]['tag']) ? ' for="'.$selection[$i]['fields'][$j]['tag'].'"': ''; ?>><?php echo $selection[$i]['fields'][$j]['title']; ?></label>
 <?php echo $selection[$i]['fields'][$j]['field']; ?>
