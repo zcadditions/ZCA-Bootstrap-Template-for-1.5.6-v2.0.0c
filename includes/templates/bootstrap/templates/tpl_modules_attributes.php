@@ -1,16 +1,14 @@
 <?php
 /**
  * Module Template
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * Template used to render attribute display/input fields
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Sat Oct 17 21:58:04 2015 -0400 Modified in v1.5.5 $
+ * @version $Id: mc12345678 Tue May 8 00:42:18 2018 -0400 Modified in v1.5.6 $
  */
 ?>
 <!--bof attributes card-->
@@ -21,7 +19,7 @@
 
 <div id="attributes-card-body" class="card-body p-3">
 <?php
-    for($i=0;$i<sizeof($options_name);$i++) {
+    for($i=0, $j=sizeof($options_name); $i<$j; $i++) {
 ?>
 
 <?php
@@ -47,7 +45,7 @@
 
 <div class="row text-center">
 <?php
-if ($options_attributes_image[$i] != '') {
+	if (isset($options_attributes_image[$i]) && $options_attributes_image[$i] != '') {
 ?>
 <?php echo $options_attributes_image[$i]; ?>
 <?php
