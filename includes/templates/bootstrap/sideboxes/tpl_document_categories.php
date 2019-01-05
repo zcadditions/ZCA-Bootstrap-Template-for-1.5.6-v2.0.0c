@@ -1,19 +1,17 @@
 <?php
 /**
  * Side Box Template
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_document_categories.php 2975 2006-02-05 19:33:51Z birdbrain $
+ * @version $Id: Drbyte Sun Jan 7 21:28:50 2018 -0500 Modified in v1.5.6 $
  */
-  $content = "";
+  $content = '';
   
   $content .= '<div id="' . str_replace('_', '-', $box_id . 'Content') . '" class="list-group-flush sideBoxContent">';
-  for ($i=0;$i<sizeof($box_categories_array);$i++) {
+  for ($i=0, $j=sizeof($box_categories_array);$i<$j;$i++) {
 /*
     if ($box_categories_array[$i]['has_sub_cat'] or $box_categories_array[$i]['parent'] == 'true') {
       $new_style = 'category-parent';
@@ -57,4 +55,3 @@
       $content .= '</a>';
     }
       $content .= '</div>';
-?>
