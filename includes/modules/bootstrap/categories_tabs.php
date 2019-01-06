@@ -28,7 +28,7 @@ while (!$categories_tab->EOF) {
 //    $new_style = 'category-top';
 		$new_style = 'nav-item nav-link m-1 activeLink';
 //    $categories_tab_current = '<span class="category-subs-selected">' . $categories_tab->fields['categories_name'] . '</span>';
-    $categories_tab_current = $categories_tab->fi'categories_name'];
+    $categories_tab_current = $categories_tab->fields['categories_name'];
   } else {
 //    $new_style = 'category-top';
     $new_style = 'nav-item nav-link m-1';
