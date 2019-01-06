@@ -30,5 +30,5 @@ define('TEXT_TOTAL_ITEMS', 'Total Items: ');
 define('TEXT_TOTAL_WEIGHT', '&nbsp;&nbsp;Weight: ');
 define('TEXT_TOTAL_AMOUNT', '&nbsp;&nbsp;Amount: ');
 define('HEADING_TITLE_MODAL', 'Visitors Cart / Members Cart');
-define('TEXT_VISITORS_CART', '[help (?)]');
+define('TEXT_CART_HELP', '[help (?)]');
 define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
