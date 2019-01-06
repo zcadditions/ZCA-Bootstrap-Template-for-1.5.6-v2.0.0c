@@ -89,10 +89,10 @@ if (!empty($external_bb_url) && !empty($external_bb_text)) { // forum/bb link
 if (DEFINE_SITE_MAP_STATUS <= 1) {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_SITE_MAP) . '">'. BOX_INFORMATION_SITE_MAP.'</a></li>';
 }
-if (MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
+  if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS == 'true') {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_GV_FAQ) . '">'. BOX_INFORMATION_GV.'</a></li>';
 }
-if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
+  if (DEFINE_DISCOUNT_COUPON_STATUS <= 1 && defined('MODULE_ORDER_TOTAL_COUPON_STATUS') && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_DISCOUNT_COUPON) . '">'. BOX_INFORMATION_DISCOUNT_COUPONS.'</a></li>';
 }
 if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK == 'true') {
@@ -187,4 +187,4 @@ if (isset($var_linksList)) {
       </li>  
 <?php
 } // test for display
- ?>  
+ ?> 
