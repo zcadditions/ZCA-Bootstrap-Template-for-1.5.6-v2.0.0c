@@ -1,13 +1,80 @@
 CHANGELOG
 
+Version: 2.0.0 06 January 2019:
+1.) This version incorporates changes for 1.5.6 and 1.5.6a
+2.) Does not include updates for Optional-OPC-Template-Overrides
+
+Files Changed for 1.5.6 and 1.5.6a
+- includes/templates/bootstrap/common/tpl_offcanvas_menu.php
+- includes/templates/bootstrap/templates/tpl_site_map_default.php
+- includes/templates/bootstrap/templates/tpl_modules_shipping_estimator.php
+- includes/templates/bootstrap/templates/tpl_index_product_list.php
+- includes/templates/bootstrap/templates/tpl_ezpages_bar_header.php
+- includes/templates/bootstrap/templates/tpl_ezpages_bar_footer.php
+- includes/modules/sideboxes/bootstrap/information.php
+- includes/classes/order.php
+- includes/modules/pages/specials/main_template_vars.php
+- includes/modules/pages/create_account/jscript_addr_pulldowns_zca_bootstrap.php
+- includes/modules/pages/checkout_payment_address/jscript_addr_pulldowns_zca_bootstrap.php
+- includes/modules/pages/address_book_process/jscript_addr_pulldowns_zca_bootstrap.php
+- includes/templates/bootstrap/modalboxes/tpl_coupon_help.php
+- includes/templates/bootstrap/sideboxes/tpl_best_sellers.php
+- includes/templates/bootstrap/sideboxes/tpl_categories.php
+- includes/templates/bootstrap/sideboxes/tpl_document_categories.php
+- includes/templates/bootstrap/sideboxes/tpl_information.php
+- includes/templates/bootstrap/sideboxes/tpl_languages.php
+- includes/templates/bootstrap/sideboxes/tpl_more_information.php
+- includes/templates/bootstrap/sideboxes/tpl_order_history.php
+- includes/templates/bootstrap/sideboxes/tpl_search.php
+- includes/templates/bootstrap/sideboxes/tpl_search_header.php
+- includes/templates/bootstrap/sideboxes/tpl_whos_online.php
+- includes/templates/bootstrap/common/html_header.php
+- includes/templates/bootstrap/common/tpl_columnar_display.php
+- includes/templates/bootstrap/templates/tpl_account_newsletters_default.php
+- includes/templates/bootstrap/templates/tpl_checkout_payment_default.php
+- includes/templates/bootstrap/templates/tpl_checkout_success_default.php
+- includes/templates/bootstrap/templates/tpl_document_general_info_display.php
+- includes/templates/bootstrap/templates/tpl_document_product_info_display.php
+- includes/templates/bootstrap/templates/tpl_modules_attributes.php
+- includes/templates/bootstrap/templates/tpl_modules_create_account.php
+- includes/templates/bootstrap/templates/tpl_modules_downloads.php
+- includes/templates/bootstrap/templates/tpl_modules_media_manager.php
+- includes/templates/bootstrap/templates/tpl_product_free_shipping_info_display.php
+- includes/templates/bootstrap/templates/tpl_product_info_display.php
+- includes/templates/bootstrap/templates/tpl_product_music_info_display.php
+- includes/templates/bootstrap/templates/tpl_time_out_default.php
+- includes/templates/bootstrap/templates/tpl_shopping_cart_default.php
+- includes/templates/bootstrap/centerboxes/tpl_modules_upcoming_products.php
+- includes/templates/bootstrap/templates/tpl_zc_install_suggested_default.php
+- includes/modules/centerboxes/specials_index.php
+- includes/modules/centerboxes/specials_index.php
+- includes/modules/centerboxes/upcoming_products.php
+- includes/modules/centerboxes/featured_products.php
+- includes/modules/bootstrap/categories_tabs.php
+- includes/modules/bootstrap/attributes.php
+- includes/modules/order_total/ot_gv.php
+- includes/modules/order_total/ot_coupon.php
+- includes/classes/site_map.php
+- includes/classes/zca/zca_message_stack.php
+- includes/classes/order.php
+- includes/classes/observers/ZcaBootstrapObserver.php
+
+Files Deleted for 1.5.6 and 1.5.6a
+- includes/modules/bootstrap/shipping_estimator.php
+- includes/modules/bootstrap/product_prev_next.php
+- includes/modules/bootstrap/additional_images.php
+- includes/functions/html_output.php
+- includes/functions/functions_prices.php
+----------------------------------------------------------------------------------------------------------------------------
 Version: 1.0.5 08 July 2018:
 
 - Several HTML validations (github issue #62)
 - Adds Responsive Carousel Banners (github issue #63)
 - Adds the PhotoSwipe Lightbox to the document_general_info, document_product_info, page, product_free_shipping_info, product_info, product_music_info, product_reviews, product_reviews_info & product_reviews_write pages (github issue #64)
 - Adds Admin controlled Template Colors Configuration (github issue #65) 
-
+----------------------------------------------------------------------------------------------------------------------------
 Version: 1.0.5 25 Apr 2018:
+
 - OPC Template Override Integration
 (Optional-OPC-Template-Overrides)
 - Integrate ImageHandler in additional image modal
@@ -20,8 +87,9 @@ Version: 1.0.5 25 Apr 2018:
 (includes/classes/observers/ZcaBootstrapObserver.php)
 - Centering FREE_SHIPPING_ICON
 (includes/languages/english/bootstrap/product_free_shipping.php)
-
+----------------------------------------------------------------------------------------------------------------------------
 Version: 1.0.4 25 Apr 2018:
+
 - Added spacing to category tab links
 - Fixed the missing "PRIMARY_ADDRESS" define statement.
 - Added stock order-totals formatting so template is compatible with "One Page Checkout".
@@ -32,8 +100,9 @@ Version: 1.0.4 25 Apr 2018:
 - Added unique names to the bootstrap modals.
 - Stylesheet change for class ezpagesBarHeader & ezpagesBarFooter.
 - Added padding to logo and tagline wrapper. 
-
+----------------------------------------------------------------------------------------------------------------------------
 Version: 1.0.3, 2 Apr 2018:
+
 - Update to move Required indicator for country pulldown menus right of label.
 - Rename configurations in init_zca_bootstrap_template_admin.php.
 - Update for a formatting issue when tagline is blank.
@@ -44,8 +113,9 @@ Version: 1.0.3, 2 Apr 2018:
 - Update to Stylesheet for class ezpagesBar.
 - Update to Attribute textarea's and added BS classes.
 - Update to replace hardcoded require paths within the Modal files.
-
+----------------------------------------------------------------------------------------------------------------------------
 Version: 1.0.2, 26 Mar 2018:
+
 - Updated so the Clone a Template plugin can be used.
 - Replace page specific jscript_addr_pulldowns.php files with jscript_addr_pulldowns_zca_bootstrap.php to include bootstrap classes.
 - Update tpl_checkout_shipping_default.php to address a formatting issue.
@@ -53,13 +123,15 @@ Version: 1.0.2, 26 Mar 2018:
 - Update "/includes/languages/english/bootstrap/" document_general_info.php, document_product_info.php, product_free_shipping_info.php, product_info.php, product_music_info.php to reword "Larger Images" to "Additional Images".
 - Update "/includes/templates/bootstrap/modalboxes/" tpl_bootstrap_images.php so the Main Image thumb and Additional Images thumbs are same size.
 - Update "includes/templates/bootstrap/common" tpl_offcanvas_menu.php so the more_information drop-down adheres to the EZ-Pages Display Status - Sidebox configuration.
-
+----------------------------------------------------------------------------------------------------------------------------
 Version: 1.0.1, 18 Mar 2018:
+
 - Fixes the formatting issue with shipping options when multiple choices are available.
 - New page scripts (jscript_addr_pulldowns_zca_bootstrap.php) have been created to provide template-specific rendering if the bootstrap template is current. The css classes in these files will now use the BS classes.
 - An additional file (/includes/languages/english/extra_definitions/bootstrap/zca_bootstrap_id.php) is added. That file contains a single definition, the presence of which identifies the template as bootstrap or a clone. Support for the Clone a Template plugin. 
-
+----------------------------------------------------------------------------------------------------------------------------
 Version v1.0.0, 13 Mar 2018:
+
 - Admin Auto Install Script ( Thank you @lat9 )
 - Reduce core-file overwrites ( Thank you @lat9 )
 - Updated the non-carousel Image Links
