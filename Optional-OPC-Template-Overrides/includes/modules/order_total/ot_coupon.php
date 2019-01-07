@@ -719,4 +719,5 @@ class ot_coupon {
 
     $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in (" . $keys . ")");
   }
+	}
 }
