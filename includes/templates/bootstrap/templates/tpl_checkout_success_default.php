@@ -1,6 +1,8 @@
 <?php
 /**
  * Page Template
+ * 
+ * BOOTSTRAP 2.0.1
  *
  * Loaded automatically by index.php?main_page=checkout_success.<br />
  * Displays confirmation details after order has been successfully processed.
@@ -57,8 +59,7 @@ if (isset($additional_payment_messages) && $additional_payment_messages != '') {
   }
 ?>
 
-    <div id="logOff-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
-    <a href="<?php echo zen_href_link(FILENAME_CONTACT_US, '', 'SSL'); ?>" name="linkContactUs"><?php echo zen_image_button(BUTTON_IMAGE_CONTACT_US , BUTTON_CONTACT_US_TEXT); ?></a>
+    <div id="logOff-btn-toolbar" class="btn-toolbar justify-content-between mt-3" role="toolbar">
     <a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>" name="linkMyAccount"><?php echo zen_image_button(BUTTON_IMAGE_MY_ORDERS , BUTTON_MY_ORDERS_TEXT); ?></a>
     <a href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>" name="linkLogoff"><?php echo zen_image_button(BUTTON_IMAGE_LOG_OFF , BUTTON_LOG_OFF_ALT); ?></a>
     </div>
@@ -71,6 +72,11 @@ if (isset($additional_payment_messages) && $additional_payment_messages != '') {
     <div id="myAccount-card" class="card">
         <div id="myAccount-card-body" class="card-body">
 <?php echo TEXT_CONTACT_STORE_OWNER;?>
+
+    <div id="cust-btn-toolbar" class="btn-toolbar justify-content-center mt-3" role="toolbar">
+    <a href="<?php echo zen_href_link(FILENAME_CONTACT_US, '', 'SSL'); ?>" name="linkContactUs"><?php echo zen_image_button(BUTTON_IMAGE_CONTACT_US , BUTTON_CONTACT_US_TEXT); ?></a>
+    </div>
+
         </div>
     </div>
 <!--eof my account card-->
