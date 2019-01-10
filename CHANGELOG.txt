@@ -1,5 +1,21 @@
 CHANGELOG
 
+Version 2.0.0a 10 January 2019:
+1.) Removes Optional-OPC-Template-Overrides
+    Note: Once this is updated for 1.5.6 I will provide a separate GitHub repository which will provide Bootstrap compatibility.
+    https://github.com/zcadditions/ZCA-OPC-for-1.5.6
+
+Files changed in 2.0.0a
+1 - includes/templates/bootstrap/templates/tpl_checkout_success_default.php 
+2 - includes/languages/english/bootstrap/button_names.php
+3 - includes/modules/order_total/ot_coupon.php
+4 - includes/templates/bootstrap/templates/tpl_checkout_payment_default.php
+5 - includes/templates/bootstrap/templates/tpl_ajax_checkout_confirmation_default.php
+6 - includes/classes/ajax/zcAjaxPayment.php
+
+Files deleted in 2.0.0a
+1 - All Optional-OPC-Template-Overrides file
+
 Version: 2.0.0 06 January 2019:
 1.) This version incorporates changes for 1.5.6 and 1.5.6a
 2.) Does not include updates for Optional-OPC-Template-Overrides
