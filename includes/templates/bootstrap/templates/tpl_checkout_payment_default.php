@@ -13,7 +13,7 @@
  */
 ?>
 <?php echo $payment_modules->javascript_validation(); ?>
-<div id="checkoutPaymentDefault" class="centerColumn">
+<div id="checkoutPayment" class="centerColumn">
     
 <div class="progress">
   <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
@@ -277,7 +277,7 @@
 
 </div>    
     
-<div id="checkoutPaymentDefault-btn-toolbar1" class="btn-toolbar justify-content-between" role="toolbar">
+<div id="paymentSubmit" class="btn-toolbar justify-content-between" role="toolbar">
 <?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?>
 <?php echo zen_image_submit(BUTTON_IMAGE_CONTINUE_CHECKOUT, BUTTON_CONTINUE_ALT, 'onclick="submitFunction('.zen_user_has_gv_account($_SESSION['customer_id']).','.$order->info['total'].')"'); ?>
 </div>
