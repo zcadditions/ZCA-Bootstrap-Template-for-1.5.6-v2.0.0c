@@ -160,6 +160,8 @@ if ($product['flagShowFixedQuantity']) {
 
 <!--eof shopping cart buttons-->
 
+</form>  
+  
 <?php
       if (SHOW_SHIPPING_ESTIMATOR_BUTTON == '2') {
 /**
@@ -245,8 +247,6 @@ while (!$show_display_shopping_cart_empty->EOF) {
   $show_display_shopping_cart_empty->MoveNext();
 } // !EOF
 ?>
-
-</form>
 
 <?php
   }
