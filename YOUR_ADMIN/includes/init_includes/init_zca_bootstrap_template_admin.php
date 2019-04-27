@@ -252,9 +252,10 @@ if ($current_page == (FILENAME_TEMPLATE_SELECT . '.php') && isset($_GET['action'
             'SHOW_PRODUCT_INFO_COLUMNS_SPECIALS_PRODUCTS' => '2'
         );
         $sql_update = '';
+	$zca_table_configuration = preg_replace(DB_PREFIX, '', TABLE_CONFIGURATION, 1);
         foreach ($zca_bootstrap_configs as $key => $value) {
             if (constant($key) != $value) {
-                $sql_update .= ("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '$value', last_modified = now() WHERE configuration_key = '$key' LIMIT 1;" . PHP_EOL);
+                $sql_update .= ("UPDATE " . $zca_table_configuration . " SET configuration_value = '$value', last_modified = now() WHERE configuration_key = '$key' LIMIT 1;" . PHP_EOL);
             }
         }
         
