@@ -15,7 +15,7 @@ if (zen_is_superuser()) {
     // So far, no additional values have been inserted.
     //
     $zca_bootstrap_config_changes = array();
-    
+
     // -----
     // 1) Configuration->Layout Settings:
     //
@@ -64,7 +64,7 @@ if (zen_is_superuser()) {
              VALUES
                 ('<i>Bootstrap Banner Display</i> - Enable Header Position 2 Carousel Feature', 'ZCA_ACTIVATE_BANNER_TWO_CAROUSEL', 'false', 'Enable the Header Position 2 Banner Carousel.', 19, NOW(), 214, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
         );
-    }	
+    }
     if (!defined('ZCA_ACTIVATE_BANNER_THREE_CAROUSEL')) {
         $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Header Position 3 Carousel Feature';
         $db->Execute(
@@ -73,7 +73,7 @@ if (zen_is_superuser()) {
              VALUES
                 ('<i>Bootstrap Banner Display</i> - Enable Header Position 3 Carousel Feature', 'ZCA_ACTIVATE_BANNER_THREE_CAROUSEL', 'false', 'Enable the Header Position 3 Banner Carousel.', 19, NOW(), 215, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
         );
-    }	
+    }
     if (!defined('ZCA_ACTIVATE_BANNER_FOUR_CAROUSEL')) {
         $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Footer Position 1 Carousel Feature';
         $db->Execute(
@@ -82,7 +82,7 @@ if (zen_is_superuser()) {
              VALUES
                 ('<i>Bootstrap Banner Display</i> - Enable Footer Position 1 Carousel Feature', 'ZCA_ACTIVATE_BANNER_FOUR_CAROUSEL', 'false', 'Enable the Footer Position 1 Banner Carousel.', 19, NOW(), 216, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
         );
-    }	
+    }
     if (!defined('ZCA_ACTIVATE_BANNER_FIVE_CAROUSEL')) {
         $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Footer Position 2 Carousel Feature';
         $db->Execute(
@@ -91,7 +91,7 @@ if (zen_is_superuser()) {
              VALUES
                 ('<i>Bootstrap Banner Display</i> - Enable Footer Position 2 Carousel Feature', 'ZCA_ACTIVATE_BANNER_FIVE_CAROUSEL', 'false', 'Enable the Footer Position 2 Banner Carousel.', 19, NOW(), 217, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
         );
-    }	
+    }
     if (!defined('ZCA_ACTIVATE_BANNER_SIX_CAROUSEL')) {
         $zca_bootstrap_config_changes[] = $zca_which_group . '<i>Bootstrap Banner Display</i> - Enable Footer Position 3 Carousel Feature';
         $db->Execute(
@@ -100,7 +100,7 @@ if (zen_is_superuser()) {
              VALUES
                 ('<i>Bootstrap Banner Display</i> - Enable Footer Position 3 Carousel Feature', 'ZCA_ACTIVATE_BANNER_SIX_CAROUSEL', 'false', 'Enable the Footer Position 3 Banner Carousel.', 19, NOW(), 218, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
         );
-    }	  
+    }
     // -----
     // 2) Configuration->Product Listing
     //
@@ -124,7 +124,7 @@ if (zen_is_superuser()) {
                 ('Listing Columns Per Row', 'PRODUCT_LISTING_COLUMNS_PER_ROW', '2', '<br /><br />Select the number of columns of products to show in each row in the product listing. The default setting is 2.', 8, NOW(), 201, NULL , NULL)"
         );
     }
-    
+
     // -----
     // 3) Configuration->Product Info
     //
@@ -149,7 +149,7 @@ if (zen_is_superuser()) {
              VALUES
                 ('Use Photoswipe Lightbox', 'ZCA_PHOTOSWIPE_STATUS', 'false', 'Default is <b>false</b>, Opens images in an individual modal, <b>true</b> opens images in a photoswipe lightbox.', 18, NOW(), 203, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
         );
-    }		
+    }
 //eof photoswipe
     if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE')) {
         $zca_bootstrap_config_changes[] = $zca_which_group . 'Use Bootstrap Additional Image Carousel';
@@ -178,7 +178,7 @@ if (zen_is_superuser()) {
                 ('Display the Notifications Box on Product Pages', 'PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX', '1', 'Used by the ZCA Bootstrap template. Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', 18, NOW(), 204, NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),')"
         );
     }
-    
+
     // -----
     // If any insertions were performed above, let the admin know via message.
     //
@@ -186,7 +186,7 @@ if (zen_is_superuser()) {
         $zca_bootstrap_changes = '<ol><li>' . implode('</li><li>', $zca_bootstrap_config_changes) . '</li></ol>';
         $messageStack->add(sprintf(ZCA_BOOTSTRAP_SETTINGS_ADDED, $zca_bootstrap_changes), 'warning');
     }
-    
+
     // -----
     // Next, update the description of a couple of the built-in settings to let the store owner know that
     // they're not applicable/used when the ZCA bootstrap template is active.
@@ -252,17 +252,17 @@ if ($current_page == (FILENAME_TEMPLATE_SELECT . '.php') && isset($_GET['action'
             'SHOW_PRODUCT_INFO_COLUMNS_SPECIALS_PRODUCTS' => '2'
         );
         $sql_update = '';
-	$zca_table_configuration = preg_replace(DB_PREFIX, '', TABLE_CONFIGURATION, 1);
+        $zca_table_configuration = preg_replace("/".DB_PREFIX."/", '', TABLE_CONFIGURATION, 1);
         foreach ($zca_bootstrap_configs as $key => $value) {
             if (constant($key) != $value) {
                 $sql_update .= ("UPDATE " . $zca_table_configuration . " SET configuration_value = '$value', last_modified = now() WHERE configuration_key = '$key' LIMIT 1;" . PHP_EOL);
             }
         }
-        
+
         if ($sql_update != '') {
             $logfile_name = DIR_FS_LOGS . '/zca_bootstrap_' . date('YmdHis') . '.log';
             $messageStack->add(sprintf(ZCA_BOOTSTRAP_CONFIG_WARNING, $logfile_name), 'warning');
-            
+
             $logfile_data = 'The ZCA "bootstrap" template (or a clone) was activated on ' . date('Y-m-d H:i:s') . ' and some of its default settings are different than those currently set.  You can copy and paste the following SQL into your admin\'s Tools->Install SQL Patches to change those defaults:' . PHP_EOL . PHP_EOL . $sql_update;
             error_log($logfile_data, 3, $logfile_name);
         }
