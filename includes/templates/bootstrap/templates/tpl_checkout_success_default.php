@@ -135,12 +135,13 @@ if (isset($additional_payment_messages) && $additional_payment_messages != '') {
 <div id="productNotifications-card-body" class="card-body p-3">
 <?php echo zen_draw_form('order', zen_href_link(FILENAME_CHECKOUT_SUCCESS, 'action=update', 'SSL')); ?>
 
-<div class="custom-control custom-checkbox">
+
 <?php foreach ($notificationsArray as $notifications) { ?>
+<div class="custom-control custom-checkbox">
 <?php echo zen_draw_checkbox_field('notify[]', $notifications['products_id'], true, 'id="notify-' . $notifications['counter'] . '"') ;?>
 <label class="custom-control-label checkboxLabel" for="<?php echo 'notify-' . $notifications['counter']; ?>"><?php echo $notifications['products_name']; ?></label>
-<?php } ?>
-</div>
+</div><br />
+  <?php } ?>
 <div id="productNotifications-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
 <?php echo zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?>
 </div>
