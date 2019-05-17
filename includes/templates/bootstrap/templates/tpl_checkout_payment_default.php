@@ -171,7 +171,7 @@
   for ($i=0, $n=sizeof($selection); $i<$n; $i++) {
 ?><div id="paymentMethodsOption-card" class="card mb-3">
 <?php
-    if (sizeof($selection) > 1) {
+    if (sizeof($selection) >= 1) {
         if (empty($selection[$i]['noradio'])) {
  ?>
 <div id="paymentMethodsOption-card-header" class="card-header">
