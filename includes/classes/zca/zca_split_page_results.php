@@ -147,7 +147,7 @@ class zca_splitPageResults extends base {
     for ($jump_to_page = 1 + (($cur_window_num - 1) * $max_page_links); ($jump_to_page <= ($cur_window_num * $max_page_links)) && ($jump_to_page <= $this->number_of_pages); $jump_to_page++) {
       if ($jump_to_page == $this->current_page_number) {
         $display_links_string .= '<li class="page-item active"><span class="page-link">' . $jump_to_page . '</span></li>';
-        $ul_elements .= '<li class="page-item active">' . $jump_to_page . '</li>';
+        $ul_elements .= '<li class="page-item active"><span class="page-link">' . $jump_to_page . '</span></li>';
         $counter_actual_page_links++;
       } else {
         $link = '<a class="page-link" href="' . zen_href_link($_GET['main_page'], $parameters . $this->page_name . '=' . $jump_to_page, $request_type) . '" title=" ' . sprintf(PREVNEXT_TITLE_PAGE_NO, $jump_to_page) . ' ">' . $jump_to_page . '</a>';
