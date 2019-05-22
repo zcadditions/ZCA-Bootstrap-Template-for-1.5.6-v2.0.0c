@@ -17,6 +17,22 @@ img{max-width:100%;height:auto;border:0;}
 	text-decoration: line-through;
 	}
 
+#back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+}
+
+#back-to-top.show {
+    opacity: 1;
+    z-index: 1;
+}
+
 /* These CSS media queries control how many columns of cards display on the login, checkout_shipping, checkout_payment & checkout_confirmation pages */
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
