@@ -39,12 +39,12 @@
 if (!isset($flag_disable_header) || !$flag_disable_header) {
 ?>
 
-<div id="headerWrapper">
+<div id="headerWrapper" class="mt-5">
 <!--bof-navigation display-->
 <div id="navMainWrapper">
 <div id="navMain">
 
-<nav class="navbar navbar-expand-lg rounded-bottom">
+<nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom">
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars"></i>
