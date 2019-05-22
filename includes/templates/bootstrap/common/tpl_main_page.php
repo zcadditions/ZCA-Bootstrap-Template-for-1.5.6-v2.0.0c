@@ -286,6 +286,9 @@ echo zen_display_banner('static', $banner);
 <?php /* add any end-of-page code via an observer class */
   $zco_notifier->notify('NOTIFY_FOOTER_END', $current_page);
 ?>
+  
+<a href="#" id="back-to-top" class="btn" title="Back to top" role="button"><i class="fas fa-chevron-circle-up"></i></a>
+  
 </div>
   
 <?php
