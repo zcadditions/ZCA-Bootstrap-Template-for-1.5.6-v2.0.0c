@@ -1,29 +1,26 @@
 <?php
 /**
  * Module Template - for shipping-estimator display
- * 
- * BOOTSTRAP v1.0.BETA
  *
  * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: DrByte 2019 Jan 04 Modified in v1.5.6a $
  */
 ?>
-<div id="shippingEstimator-content" class="content">
-    
+	<div id="shippingEstimator-content" class="content">
 <?php echo zen_draw_form('estimator', zen_href_link($show_in . '#view', '', $request_type), 'post'); ?>
 <?php echo zen_draw_hidden_field('scid', $selected_shipping['id']); ?>
 <?php echo zen_draw_hidden_field('action', 'submit'); ?>
 <?php
   if($_SESSION['cart']->count_contents()) {
-    if (!empty($_SESSION['customer_id'])) {
+    if (zen_is_logged_in()) {
 ?>
+	<div id="shippingEstimator-card" class="card mb-3">
+			<h2 id="shippingEstimator-card-header" class="card-header"><?php echo CART_SHIPPING_OPTIONS; ?></h2>
+			<div id="shippingEstimator-card-body" class="card-body p-3">
 
-<div id="shippingEstimator-card" class="card mb-3">
-<h2 id="shippingEstimator-card-header" class="card-header"><?php echo CART_SHIPPING_OPTIONS; ?></h2>
-<div id="shippingEstimator-card-body" class="card-body p-3">
 
 <?php if (!empty($totalsDisplay)) { ?>
 <div id="shippingEstimator-cartTotalsDisplay" class="cartTotalsDisplay text-center font-weight-bold p-3"><?php echo $totalsDisplay; ?></div>
@@ -34,24 +31,19 @@
       if ($addresses->RecordCount() > 1){
 ?>
 <label class="inputLabel" for="seAddressPulldown"><?php echo CART_SHIPPING_METHOD_ADDRESS; ?></label>
-
 <?php echo zen_draw_pull_down_menu('address_id', $addresses_array, $selected_address, 'onchange="return shipincart_submit();" id="seAddressPulldown"'); ?>
 <?php
       }
 ?>
 
-<div><?php echo CART_SHIPPING_METHOD_TO; ?></div>
-<address><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<div class="p-1"></div>'); ?></address>
-
-
+	<div><?php echo CART_SHIPPING_METHOD_TO; ?></div>
+	<address><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<div class="p-1"></div>'); ?></address>
 <?php
     } else {
 ?>
-
 <div id="shippingEstimator-card" class="card mb-3">
-<h2 id="shippingEstimator-card-header" class="card-header"><?php echo CART_SHIPPING_OPTIONS; ?></h2>
-<div id="shippingEstimator-card-body" class="card-body p-3">
-
+			<h2 id="shippingEstimator-card-header" class="card-header"><?php echo CART_SHIPPING_OPTIONS; ?></h2>
+			<div id="shippingEstimator-card-body" class="card-body p-3">
 <?php if (!empty($totalsDisplay)) { ?>
 <div id="shippingEstimator-cartTotalsDisplay" class="cartTotalsDisplay text-center font-weight-bold p-3"><?php echo $totalsDisplay; ?></div>
 <?php } ?>
@@ -61,13 +53,12 @@
 
 <label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label>
 <?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" onchange="update_zone(this.form);"'); ?>
-<div class="p-2"></div>
+<div class="p-1"></div>
 
 <a name="view"></a>
 <label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
 <?php echo zen_draw_pull_down_menu('zone_id', zen_prepare_country_zones_pull_down($selected_country), $state_zone_id, 'id="stateZone"');?>
-<div class="p-1"></div>
-
+<br class="clearBoth" id="stBreak" />
 <label class="inputLabel" for="state" id="stateLabel"><?php echo (isset($state_field_label) ? $state_field_label : ''); ?></label>
 <?php echo zen_draw_input_field('state', $selectedState, zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"') .'&nbsp;<span class="alert" id="stText">&nbsp;</span>'; ?>
 <div class="p-1"></div>
@@ -77,15 +68,13 @@
 ?>
 <label class="inputLabel"><?php echo ENTRY_POST_CODE; ?></label>
 <?php echo  zen_draw_input_field('zip_code', $zip_code, 'size="7"'); ?>
-
+<div class="p-1"></div>
 <?php
         }
 ?>
-
 <div id="shippingEstimator-btn-toolbar" class="btn-toolbar justify-content-end my-3" role="toolbar">
-<?php echo  zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?>
-</div>
-
+			<?php echo  zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?>
+			</div>
 <?php
       }
     }
@@ -99,10 +88,8 @@
 <?php
     }else{
 ?>
-
-<table id="shippingEstimator-shippingTableDisplay" class="table table-bordered">
-
-<?php if (empty($_SESSION['customer_id'])){ ?>
+	<table id="shippingEstimator-shippingTableDisplay" class="table table-bordered">
+<?php if (!zen_is_logged_in()){ ?>
     <tr>
       <td colspan="2" id="shippingTableDisplay-address">
         <?php echo CART_SHIPPING_QUOTE_CRITERIA; ?><br />
@@ -115,14 +102,12 @@
        <th scope="col" id="shippingTableDisplay-ratesHeading"><?php echo CART_SHIPPING_METHOD_RATES; ?></th>
      </tr>
 <?php
-
-if (empty($extra)) {
-		$extra = '';
-        }
-		
+      if (empty($extra)) {
+        $extra = '';
+      }
       for ($i=0, $n=sizeof($quotes); $i<$n; $i++) {
-          $thisquoteid = '';
-                if(isset($quotes[$i]['id']) && sizeof($quotes[$i]['methods'])==1 && isset($quotes[$i]['methods'][0]['id'])){
+        $thisquoteid = '';
+        if(isset($quotes[$i]['id']) && sizeof($quotes[$i]['methods'])==1 && isset($quotes[$i]['methods'][0]['id'])){
           // simple shipping method
           $thisquoteid = $quotes[$i]['id'].'_'.$quotes[$i]['methods'][0]['id'];
 ?>
@@ -149,12 +134,12 @@ if (empty($extra)) {
             }
           }
         } else {
-          // shipping method with sub methods (multipickup)
-          for ($j=0, $n2=sizeof($quotes[$i]['methods']); $j<$n2; $j++) {
+          // shipping method with sub methods (multipickup) or none
+          for ($j=0, $n2=(empty($quotes[$i]['methods']) ? 0 : sizeof($quotes[$i]['methods'])); $j<$n2; $j++) {
             $thisquoteid = '';
-    if (isset($quotes[$i]['id']) && isset($quotes[$i]['methods'][$j]['id'])) {
-            $thisquoteid = $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id'];
-        }
+            if (isset($quotes[$i]['id']) && isset($quotes[$i]['methods'][$j]['id'])) {
+                $thisquoteid = $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id'];
+            }
 ?>
     <tr class="<?php echo $extra; ?>">
 <?php
@@ -183,15 +168,11 @@ if (empty($extra)) {
       }
 ?>
 </table>
-
-
-
 <?php
    }
   }
 ?>
 </div>
-</div>
-
+			</div>
 </form>
 </div>
