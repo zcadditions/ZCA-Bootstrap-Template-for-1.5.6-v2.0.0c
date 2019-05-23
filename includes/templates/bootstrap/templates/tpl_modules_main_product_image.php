@@ -16,7 +16,7 @@ if (ZCA_PHOTOSWIPE_STATUS == 'true') {
 
 echo '<div class="my-gallery row mx-auto" itemscope itemtype="http://schema.org/ImageGallery"><figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="card col-md p-3">';
 
-echo '<a href="' . zca_photoswipe($products_image_large, '', LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT) . '" itemprop="contentUrl" data-size="1024x1024">';
+echo '<a href="' . zca_photoswipe($products_image_large, '', MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '" itemprop="contentUrl" data-size="1024x1024">';
 
 echo '<img src="' . zca_photoswipe($products_image_medium, '', MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '" itemprop="thumbnail" alt="Image description" class="mx-auto d-block" style="width:' .  MEDIUM_IMAGE_WIDTH . 'px;" /></a>';
       
