@@ -84,7 +84,7 @@ if (DEFINE_CONDITIONS_STATUS <= 1) {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_CONDITIONS) . '">'. BOX_INFORMATION_CONDITIONS.'</a></li>';
 }
 if (!empty($external_bb_url) && !empty($external_bb_text)) { // forum/bb link
-        echo '<li><a class="dropdown-item" href="'.external_bb_url.'" target="_blank">'. external_bb_text.'</a></li>';
+        echo '<li><a class="dropdown-item" href="' . $external_bb_url . '" target="_blank">' . $external_bb_text . '</a></li>';
 }
 if (DEFINE_SITE_MAP_STATUS <= 1) {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_SITE_MAP) . '">'. BOX_INFORMATION_SITE_MAP.'</a></li>';
