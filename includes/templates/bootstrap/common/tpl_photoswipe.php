@@ -25,13 +25,13 @@
 
                 <div class="pswp__counter"></div>
 
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--close" title="<?php echo ZCA_PHOTOSWIPE_CLOSE; ?>"></button>
 
-                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--share" title="<?php echo ZCA_PHOTOSWIPE_SHARE; ?>"></button>
 
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--fs" title="<?php echo ZCA_PHOTOSWIPE_FULLSCREEN; ?>"></button>
 
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <button class="pswp__button pswp__button--zoom" title="<?php echo ZCA_PHOTOSWIPE_ZOOM; ?>"></button>
 
                 <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
                 <!-- element will get class pswp__preloader--active when preloader is running -->
@@ -48,10 +48,10 @@
                 <div class="pswp__share-tooltip"></div> 
             </div>
 
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            <button class="pswp__button pswp__button--arrow--left" title="<?php echo ZCA_PHOTOSWIPE_PREVIOUS; ?>">
             </button>
 
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            <button class="pswp__button pswp__button--arrow--right" title="<?php echo ZCA_PHOTOSWIPE_NEXT; ?>">
             </button>
 
             <div class="pswp__caption">
