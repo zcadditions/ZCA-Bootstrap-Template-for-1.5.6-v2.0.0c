@@ -82,10 +82,10 @@
   for ($i=0, $n=sizeof($order->totals); $i<$n; $i++) {
 ?>
 <tr>
-    <td colspan="2" class="text-right bg-white">
+    <td colspan="2" class="text-right">
 <?php echo $order->totals[$i]['title'] ?>
     </td>
-    <td class="text-left bg-white">
+    <td class="text-left">
 <?php echo $order->totals[$i]['text'] ?>
     </td>
 </tr>
