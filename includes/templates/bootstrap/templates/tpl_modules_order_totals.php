@@ -18,10 +18,10 @@
   for ($i=0; $i<$size; $i++) { ?>
 
     <tr id="<?php echo str_replace('_', '', $GLOBALS[$class]->code); ?>">
-<td colspan="2" class="text-right bg-white">
+<td colspan="2" class="text-right">
 <?php echo $GLOBALS[$class]->output[$i]['title']; ?>
 </td>
-<td class="text-left bg-white">
+<td class="text-left">
 <?php echo $GLOBALS[$class]->output[$i]['text']; ?>
 </td> 
     </tr>
