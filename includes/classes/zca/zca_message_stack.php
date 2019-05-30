@@ -41,19 +41,19 @@ class zca_messageStack extends base {
       if ($type == 'error') {
 //-bof-zca_bootstrap  *** 1 of 1 ***          
 //        $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
-    $theAlert = array('params' => 'class="alert alert-danger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_ERROR, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_ERROR, ICON_ERROR_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-danger"', 'class' => $class, 'text' => '<i class="fas fa-exclamation-triangle fa-lg" data-title="'.ICON_ERROR_ALT.'"></i>' . '  ' . $message);
         
       } elseif ($type == 'warning') {
 //        $theAlert = array('params' => 'class="messageStackWarning larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
-    $theAlert = array('params' => 'class="alert alert-warning"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-warning"', 'class' => $class, 'text' => '<i class="fas fa-exclamation-circle fa-lg" data-title="'.ICON_WARNING_ALT.'"></i>' . '  ' . $message);
         
       } elseif ($type == 'success') {
 //        $theAlert = array('params' => 'class="messageStackSuccess larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
-    $theAlert = array('params' => 'class="alert alert-success"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_SUCCESS, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_SUCCESS, ICON_SUCCESS_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-success"', 'class' => $class, 'text' => '<i class="fas fa-check-circle fa-lg" data-title="'.ICON_SUCCESS_ALT.'"></i>' . '  ' . $message);
         
       } elseif ($type == 'caution') {
 //        $theAlert = array('params' => 'class="messageStackCaution larger"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
-    $theAlert = array('params' => 'class="alert alert-warning"', 'class' => $class, 'text' => zen_image($template->get_template_dir(ICON_IMAGE_WARNING, DIR_WS_TEMPLATE, $current_page_base,'images/icons'). '/' . ICON_IMAGE_WARNING, ICON_WARNING_ALT) . '  ' . $message);
+    $theAlert = array('params' => 'class="alert alert-info"', 'class' => $class, 'text' => '<i class="fas fa-question-circle fa-lg" data-title="'.ICON_WARNING_ALT.'"></i>' . '  ' . $message);
         
       } else {
 //        $theAlert = array('params' => 'class="messageStackError larger"', 'class' => $class, 'text' => $message);
