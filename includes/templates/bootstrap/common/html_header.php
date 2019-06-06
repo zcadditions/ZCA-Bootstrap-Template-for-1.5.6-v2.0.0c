@@ -8,7 +8,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson Wed Oct 10 07:03:50 2018 -0400 Modified in v1.5.6 $
+ * @version $Id: Zen4All 2019 Apr 25 Modified in v1.5.6b $
  */
 
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
@@ -24,13 +24,14 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
  * output main page HEAD tag and related headers/meta-tags, etc
  */
 ?>
-<!DOCTYPE html>
-<html <?php echo HTML_PARAMS; ?>>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html <?php echo HTML_PARAMS; ?>>		<html xmlns="http://www.w3.org/1999/xhtml" <?php echo HTML_PARAMS; ?>>
   <head>
-  <meta charset="<?php echo CHARSET; ?>">
   <title><?php echo META_TAG_TITLE; ?></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>" />  
   <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>" />
   <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
+  <meta http-equiv="imagetoolbar" content="no" />  
   <meta name="author" content="<?php echo STORE_NAME ?>" />
   <meta name="generator" content="shopping cart program by Zen Cart&reg;, http://www.zen-cart.com eCommerce" />
 <?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance' || $robotsNoIndex === true) { ?>
@@ -53,7 +54,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
   if (!isset($lng) || (isset($lng) && !is_object($lng))) {
     $lng = new language;
   }
-  reset($lng->catalog_languages);
+
 	if (count($lng->catalog_languages) > 1) {
 	    foreach($lng->catalog_languages as $key => $value) {
     echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type, false) : $canonicalLink . (strpos($canonicalLink, '?') ? '&amp;' : '?') . 'language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
@@ -127,7 +128,8 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 /** CDN for jQuery core **/
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"%3E%3C/script%3E'));</script>
+<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
