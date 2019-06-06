@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: mc12345678 Wed Jan 24 21:14:33 2018 -0500 Modified in v1.5.6 $
+ * @version $Id: lat9 2019 Jan 06 Modified in v1.5.6b $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,7 +17,7 @@ $categories_products_id_list = array();
 $list_of_products = '';
 $special_products_query = '';
 
-$display_limit = zen_get_new_date_range();
+$display_limit = '';
 
 if ( (($manufacturers_id > 0 && empty($_GET['filter_id'])) || !empty($_GET['music_genre_id']) || !empty($_GET['record_company_id'])) || empty($new_products_category_id) ) {
   $special_products_query = "SELECT p.products_id, p.products_image, pd.products_name, p.master_categories_id, p.product_is_call
@@ -67,10 +67,13 @@ if ($num_products_count > 0) {
   } else {
     $col_width = floor(100/SHOW_PRODUCT_INFO_COLUMNS_SPECIALS_PRODUCTS);
   }
-
+  
+  $list_box_contents = array();
   while (!$special_products->EOF) {
     $products_price = zen_get_products_display_price($special_products->fields['products_id']);
     if (!isset($productsInCategory[$special_products->fields['products_id']])) $productsInCategory[$special_products->fields['products_id']] = zen_get_generated_category_path_rev($special_products->fields['master_categories_id']);
+
+    $zco_notifier->notify('NOTIFY_MODULES_SPECIALS_INDEX_B4_LIST_BOX', array(), $specials_index->fields, $products_price);
 
     $list_box_contents[$row][$col] = array('params' => 'class="centerBoxContents card mb-3 p-3 text-center" id="centerBoxContentsNew"',
     'text' => (($special_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : '<a href="' . zen_href_link(zen_get_info_page($special_products->fields['products_id']), 'cPath=' . $productsInCategory[$special_products->fields['products_id']] . '&products_id=' . $special_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $special_products->fields['products_image'], $special_products->fields['products_name'], IMAGE_PRODUCT_NEW_WIDTH, IMAGE_PRODUCT_NEW_HEIGHT) . '</a><br />') . '<a href="' . zen_href_link(zen_get_info_page($special_products->fields['products_id']), 'cPath=' . $productsInCategory[$special_products->fields['products_id']] . '&products_id=' . $special_products->fields['products_id']) . '">' . $special_products->fields['products_name'] . '</a><br />' . $products_price);
