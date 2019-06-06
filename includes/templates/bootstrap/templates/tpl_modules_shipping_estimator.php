@@ -3,13 +3,13 @@
  * Module Template - for shipping-estimator display
  *
  * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2017 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2019 Jan 04 Modified in v1.5.6a $
+ * @version $Id: mc12345678 2019 Apr 30 Modified in v1.5.6b $
  */
 ?>
-	<div id="shippingEstimator-content" class="content">
+<div id="shippingEstimatorContent">
 <?php echo zen_draw_form('estimator', zen_href_link($show_in . '#view', '', $request_type), 'post'); ?>
 <?php echo zen_draw_hidden_field('scid', $selected_shipping['id']); ?>
 <?php echo zen_draw_hidden_field('action', 'submit'); ?>
@@ -17,13 +17,11 @@
   if($_SESSION['cart']->count_contents()) {
     if (zen_is_logged_in()) {
 ?>
-	<div id="shippingEstimator-card" class="card mb-3">
-			<h2 id="shippingEstimator-card-header" class="card-header"><?php echo CART_SHIPPING_OPTIONS; ?></h2>
-			<div id="shippingEstimator-card-body" class="card-body p-3">
+<h2><?php echo CART_SHIPPING_OPTIONS; ?></h2>
 
 
 <?php if (!empty($totalsDisplay)) { ?>
-<div id="shippingEstimator-cartTotalsDisplay" class="cartTotalsDisplay text-center font-weight-bold p-3"><?php echo $totalsDisplay; ?></div>
+<div class="cartTotalsDisplay important"><?php echo $totalsDisplay; ?></div>
 <?php } ?>
 
 <?php
@@ -36,16 +34,15 @@
       }
 ?>
 
-	<div><?php echo CART_SHIPPING_METHOD_TO; ?></div>
-	<address><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<div class="p-1"></div>'); ?></address>
+<div class="bold back" id="seShipTo"><?php echo CART_SHIPPING_METHOD_TO; ?></div>
+<address class="back"><?php echo zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br />'); ?></address>
+<br class="clearBoth" />
 <?php
     } else {
 ?>
-<div id="shippingEstimator-card" class="card mb-3">
-			<h2 id="shippingEstimator-card-header" class="card-header"><?php echo CART_SHIPPING_OPTIONS; ?></h2>
-			<div id="shippingEstimator-card-body" class="card-body p-3">
+<h2><?php echo CART_SHIPPING_OPTIONS; ?></h2>
 <?php if (!empty($totalsDisplay)) { ?>
-<div id="shippingEstimator-cartTotalsDisplay" class="cartTotalsDisplay text-center font-weight-bold p-3"><?php echo $totalsDisplay; ?></div>
+<div class="cartTotalsDisplay important"><?php echo $totalsDisplay; ?></div>
 <?php } ?>
 <?php
       if($_SESSION['cart']->get_content_type() != 'virtual'){
@@ -53,7 +50,7 @@
 
 <label class="inputLabel" for="country"><?php echo ENTRY_COUNTRY; ?></label>
 <?php echo zen_get_country_list('zone_country_id', $selected_country, 'id="country" onchange="update_zone(this.form);"'); ?>
-<div class="p-1"></div>
+<br class="clearBoth" />
 
 <a name="view"></a>
 <label class="inputLabel" for="stateZone" id="zoneLabel"><?php echo ENTRY_STATE; ?></label>
@@ -61,20 +58,19 @@
 <br class="clearBoth" id="stBreak" />
 <label class="inputLabel" for="state" id="stateLabel"><?php echo (isset($state_field_label) ? $state_field_label : ''); ?></label>
 <?php echo zen_draw_input_field('state', $selectedState, zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state"') .'&nbsp;<span class="alert" id="stText">&nbsp;</span>'; ?>
-<div class="p-1"></div>
+<br class="clearBoth" />
 
 <?php
         if(CART_SHIPPING_METHOD_ZIP_REQUIRED == "true"){
 ?>
 <label class="inputLabel"><?php echo ENTRY_POST_CODE; ?></label>
 <?php echo  zen_draw_input_field('zip_code', $zip_code, 'size="7"'); ?>
-<div class="p-1"></div>
+<br class="clearBoth" />
 <?php
         }
 ?>
-<div id="shippingEstimator-btn-toolbar" class="btn-toolbar justify-content-end my-3" role="toolbar">
-			<?php echo  zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?>
-			</div>
+<div class="buttonRow forward"><?php echo  zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?></div>
+<br class="clearBoth" />
 <?php
       }
     }
@@ -88,26 +84,26 @@
 <?php
     }else{
 ?>
-	<table id="shippingEstimator-shippingTableDisplay" class="table table-bordered">
+<table id="seQuoteResults">
 <?php if (!zen_is_logged_in()){ ?>
     <tr>
-      <td colspan="2" id="shippingTableDisplay-address">
+      <td colspan="2" class="seDisplayedAddressLabel">
         <?php echo CART_SHIPPING_QUOTE_CRITERIA; ?><br />
-        <?php echo '<address>' . zen_get_zone_name($selected_country, $state_zone_id, '') . ($selectedState != '' ? ' ' . $selectedState : '') . ' ' . (isset($order->delivery['postcode']) ? $order->delivery['postcode'] : '') . ' ' . zen_get_country_name($order->delivery['country_id']) . '</address>'; ?>
+        <?php echo '<span class="seDisplayedAddressInfo">' . zen_get_zone_name($selected_country, $state_zone_id, '') . ($selectedState != '' ? ' ' . $selectedState : '') . ' ' . (isset($order->delivery['postcode']) ? $order->delivery['postcode'] : '') . ' ' . zen_get_country_name($order->delivery['country_id']) . '</span>'; ?>
       </td>
     </tr>
 <?php } ?>
+  <thead>
      <tr>
-       <th scope="col" id="shippingTableDisplay-methodsHeading"><?php echo CART_SHIPPING_METHOD_TEXT; ?></th>
-       <th scope="col" id="shippingTableDisplay-ratesHeading"><?php echo CART_SHIPPING_METHOD_RATES; ?></th>
+       <th scope="col" id="seProductsHeading"><?php echo CART_SHIPPING_METHOD_TEXT; ?></th>
+       <th scope="col" id="seTotalHeading"><?php echo CART_SHIPPING_METHOD_RATES; ?></th>
      </tr>
+  </thead>
+  <tbody>
 <?php
-      if (empty($extra)) {
-        $extra = '';
-      }
       for ($i=0, $n=sizeof($quotes); $i<$n; $i++) {
         $thisquoteid = '';
-        if(isset($quotes[$i]['id']) && sizeof($quotes[$i]['methods'])==1 && isset($quotes[$i]['methods'][0]['id'])){
+			        if(isset($quotes[$i]['id']) && sizeof($quotes[$i]['methods'])==1 && isset($quotes[$i]['methods'][0]['id'])){
           // simple shipping method
           $thisquoteid = $quotes[$i]['id'].'_'.$quotes[$i]['methods'][0]['id'];
 ?>
@@ -121,25 +117,25 @@
           }else{
             if($selected_shipping['id'] == $thisquoteid){
 ?>
-         <td class="methodsCell"><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][0]['title']; ?>)</td>
-         <td class="ratesCell"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][0]['cost'], isset($quotes[$i]['tax']) ? $quotes[$i]['tax'] : 0)); ?></td>
+         <td class="bold"><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][0]['title']; ?>)</td>
+         <td class="cartTotalDisplay bold"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][0]['cost'], isset($quotes[$i]['tax']) ? $quotes[$i]['tax'] : 0)); ?></td>
        </tr>
 <?php
             }else{
 ?>
-          <td class="methodsCell"><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][0]['title']; ?>)</td>
-          <td class="ratesCell"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][0]['cost'], $quotes[$i]['tax'])); ?></td>
+          <td><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][0]['title']; ?>)</td>
+          <td class="cartTotalDisplay"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][0]['cost'], isset($quotes[$i]['tax']) ? $quotes[$i]['tax'] : 0)); ?></td>
        </tr>
 <?php
             }
           }
         } else {
-          // shipping method with sub methods (multipickup) or none
+          // shipping method with sub methods (multipickup)
           for ($j=0, $n2=(empty($quotes[$i]['methods']) ? 0 : sizeof($quotes[$i]['methods'])); $j<$n2; $j++) {
             $thisquoteid = '';
-            if (isset($quotes[$i]['id']) && isset($quotes[$i]['methods'][$j]['id'])) {
-                $thisquoteid = $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id'];
-            }
+			            if (isset($quotes[$i]['id']) && isset($quotes[$i]['methods'][$j]['id'])) {
+			                $thisquoteid = $quotes[$i]['id'].'_'.$quotes[$i]['methods'][$j]['id'];
+			            }
 ?>
     <tr class="<?php echo $extra; ?>">
 <?php
@@ -151,14 +147,14 @@
             }else{
               if($selected_shipping['id'] == $thisquoteid){
 ?>
-         <td class="methodsCell"><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][$j]['title']; ?>)</td>
-         <td class="ratesCell"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][$j]['cost'], isset($quotes[$i]['tax']) ? $quotes[$i]['tax'] : 0)); ?></td>
+         <td class="bold"><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][$j]['title']; ?>)</td>
+         <td class="cartTotalDisplay bold"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][$j]['cost'], isset($quotes[$i]['tax']) ? $quotes[$i]['tax'] : 0)); ?></td>
        </tr>
 <?php
               }else{
 ?>
-        <td class="methodsCell"><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][$j]['title']; ?>)</td>
-        <td class="ratesCell"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][$j]['cost'], $quotes[$i]['tax'])); ?></td>
+        <td><?php echo $quotes[$i]['module']; ?>&nbsp;(<?php echo $quotes[$i]['methods'][$j]['title']; ?>)</td>
+        <td class="cartTotalDisplay"><?php echo $currencies->format(zen_add_tax($quotes[$i]['methods'][$j]['cost'], isset($quotes[$i]['tax']) ? $quotes[$i]['tax'] : 0)); ?></td>
       </tr>
 <?php
               }
@@ -167,12 +163,11 @@
         }
       }
 ?>
+  </tbody>
 </table>
 <?php
    }
   }
 ?>
-</div>
-			</div>
 </form>
 </div>
