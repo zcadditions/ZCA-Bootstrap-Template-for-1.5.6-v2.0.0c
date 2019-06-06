@@ -16,7 +16,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Sat Oct 17 22:01:06 2015 -0400 Modified in v1.5.5 $
+ * @version $Id: lat9 2019 Mar 03 Modified in v1.5.6b $
  */
 ?>
 
@@ -39,12 +39,12 @@
 if (!isset($flag_disable_header) || !$flag_disable_header) {
 ?>
 
-<div id="headerWrapper" class="mt-5">
+<div id="headerWrapper">
 <!--bof-navigation display-->
 <div id="navMainWrapper">
 <div id="navMain">
 
-<nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom">
+<nav class="navbar navbar-expand-lg rounded-bottom">
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars"></i>
@@ -54,10 +54,10 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
     <ul class="navbar-nav mr-auto">
 <?php if (!$this_is_home_page) { ?>        
       <li class="nav-item">
-        <?php echo '<a class="nav-link" href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><?php echo HEADER_TITLE_CATALOG; ?></a>
+        <?php echo '<a class="nav-link" href="' . HTTP_SERVER . DIR_WS_CATALOG . '">'; ?><?php echo '<i class="fas fa-home"></i> ' . HEADER_TITLE_CATALOG; ?></a>
       </li>
 <?php } ?>
-<?php if ($_SESSION['customer_id']) { ?>
+<?php if (zen_is_logged_in() && !zen_in_guest_checkout()) { ?>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><?php echo HEADER_TITLE_LOGOFF; ?></a>
       </li>
@@ -69,7 +69,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
         if (STORE_STATUS == '0') {
 ?>
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo zen_href_link(FILENAME_LOGIN, '', 'SSL'); ?>"><?php echo HEADER_TITLE_LOGIN; ?></a>
+        <a class="nav-link" href="<?php echo zen_href_link(FILENAME_LOGIN, '', 'SSL'); ?>"><?php echo '<i class="fas fa-sign-in-alt"></i> ' . HEADER_TITLE_LOGIN; ?></a>
       </li>
 <?php } } ?>
 <?php if ($_SESSION['cart']->count_contents() != 0) { ?>
@@ -98,21 +98,18 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--bof-branding display-->
 <div id="logoWrapper">
     
-  <div id="logo" class="row align-items-center p-3">
-        <?php if (HEADER_SALES_TEXT != '') {
-            echo '<div class="col-sm-4">';
-        } else {
-            echo '<div class="col-sm-12">';
-            }
+  <div id="logo" class="row text-center p-3">
+        <?php  echo '<div class="col-sm-12 text-center">';
+
             ?>
-        <?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a>'; ?>
+        <?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a><br />'; ?>
     </div>
 <?php if (HEADER_SALES_TEXT != '' || (SHOW_BANNERS_GROUP_SET2 != '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2))) { ?>    
-    <div id="taglineWrapper" class="text-center col-sm-8">
+    <div id="taglineWrapper" class="col-sm-12 text-center">
 <?php
               if (HEADER_SALES_TEXT != '') {
 ?>
-      <div id="tagline"><?php echo HEADER_SALES_TEXT;?></div>
+      <div id="tagline" class="text-center"><?php echo HEADER_SALES_TEXT;?></div>
 <?php
               }
 ?>
