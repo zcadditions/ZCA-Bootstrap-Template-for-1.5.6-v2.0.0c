@@ -11,7 +11,7 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  May 3 2016  Modified in v1.5.5a $
+ * @version $Id: lat9 2019 Mar 10 Modified in v1.5.6b $
  */
 ?>
 <div id="accountHistoryInfoDefault" class="centerColumn">
@@ -82,10 +82,10 @@
   for ($i=0, $n=sizeof($order->totals); $i<$n; $i++) {
 ?>
 <tr>
-    <td colspan="2" class="text-right">
+    <td colspan="2" class="text-right bg-white">
 <?php echo $order->totals[$i]['title'] ?>
     </td>
-    <td class="text-left">
+    <td class="text-left bg-white">
 <?php echo $order->totals[$i]['text'] ?>
     </td>
 </tr>
@@ -150,7 +150,7 @@ if (sizeof($statusArray)) {
 
 <div class="card-deck">
 <?php
-  if ($order->delivery != false) {
+  if (!empty($order->delivery['format_id'])) {
 ?>
 <!--bof ship to address card-->
   <div id="shipToAddress-card" class="card">
