@@ -39,12 +39,12 @@
 if (!isset($flag_disable_header) || !$flag_disable_header) {
 ?>
 
-<div id="headerWrapper">
+<div id="headerWrapper" class="mt-5">
 <!--bof-navigation display-->
 <div id="navMainWrapper">
 <div id="navMain">
 
-<nav class="navbar navbar-expand-lg rounded-bottom">
+<nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom">
   
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars"></i>
@@ -98,9 +98,12 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 <!--bof-branding display-->
 <div id="logoWrapper">
     
-  <div id="logo" class="row text-center p-3">
-        <?php  echo '<div class="col-sm-12 text-center">';
-
+   <div id="logo" class="row align-items-center p-3"> 
+   <?php if (HEADER_SALES_TEXT != '') {
+           echo '<div class="col-sm-4">';
+        } else {
+            echo '<div class="col-sm-12">';
+            }
             ?>
         <?php echo '<a href="' . HTTP_SERVER . DIR_WS_CATALOG . '">' . zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base,'images'). '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) . '</a><br />'; ?>
     </div>
