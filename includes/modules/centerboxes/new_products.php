@@ -8,14 +8,14 @@
  * @copyright Copyright 2003-2008 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: new_products.php 8730 2008-06-28 01:31:22Z drbyte $
+ * @version $Id: lat9 2019 Jan 06 Modified in v1.5.6b $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 
 // initialize vars
-$categories_products_id_list = '';
+$categories_products_id_list = array();
 $list_of_products = '';
 $new_products_query = '';
 
@@ -30,7 +30,7 @@ if ( (($manufacturers_id > 0 && $_GET['filter_id'] == 0) || $_GET['music_genre_i
                            and   p.products_status = 1 " . $display_limit;
 } else {
   // get all products and cPaths in this subcat tree
-  $productsInCategory = zen_get_categories_products_list( (($manufacturers_id > 0 && $_GET['filter_id'] > 0) ? zen_get_generated_category_path_rev($_GET['filter_id']) : $cPath), false, true, 0, $display_limit);
+  $productsInCategory = zen_get_categories_products_list( (($manufacturers_id > 0 && !empty($_GET['filter_id'])) ? zen_get_generated_category_path_rev($_GET['filter_id']) : $cPath), false, true, 0, $display_limit);
 
   if (is_array($productsInCategory) && sizeof($productsInCategory) > 0) {
     // build products-list string to insert into SQL query
@@ -90,6 +90,8 @@ $new_products_image = '<div class="centerBoxContentsItem-image text-center"><a h
 }
 /** eof products image */  
 
+    $zco_notifier->notify('NOTIFY_MODULES_NEW_PRODUCTS_B4_LIST_BOX', array(), $new_products->fields, $products_price);
+
     $list_box_contents[$row][$col] = array('params' => 'class="centerBoxContents card mb-3 p-3 text-center"',
     'text' => $new_products_image . $new_products_name . $new_products_price);
 
@@ -102,7 +104,7 @@ $new_products_image = '<div class="centerBoxContentsItem-image text-center"><a h
   }
 
   if ($new_products->RecordCount() > 0) {
-    if (isset($new_products_category_id) && $new_products_category_id != 0) {
+    if (!empty($new_products_category_id)) {
       $category_title = zen_get_categories_name((int)$new_products_category_id);
       $title = '<h4 id="newCenterbox-card-header" class="centerBoxHeading card-header">' . sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')) . ($category_title != '' ? ' - ' . $category_title : '' ) . '</h4>';
     } else {
@@ -111,4 +113,3 @@ $new_products_image = '<div class="centerBoxContentsItem-image text-center"><a h
     $zc_show_new_products = true;
   }
 }
-?>
