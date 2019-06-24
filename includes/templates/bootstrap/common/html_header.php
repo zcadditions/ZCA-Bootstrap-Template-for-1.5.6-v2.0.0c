@@ -10,7 +10,6 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Zen4All 2019 Apr 25 Modified in v1.5.6b $
  */
-
 $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_dir);
 
 // Prevent clickjacking risks by setting X-Frame-Options:SAMEORIGIN
@@ -24,163 +23,169 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
  * output main page HEAD tag and related headers/meta-tags, etc
  */
 ?>
-  <!DOCTYPE html>
-  <html <?php echo HTML_PARAMS; ?>>
+<!DOCTYPE html>
+<html <?php echo HTML_PARAMS; ?>>
   <head>
-  <title><?php echo META_TAG_TITLE; ?></title>
-  <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>" />  
-  <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>" />
-  <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>" />
-  <meta http-equiv="imagetoolbar" content="no" />  
-  <meta name="author" content="<?php echo STORE_NAME ?>" />
-  <meta name="generator" content="shopping cart program by Zen Cart&reg;, http://www.zen-cart.com eCommerce" />
-<?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base,explode(",",constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base=='down_for_maintenance' || $robotsNoIndex === true) { ?>
-  <meta name="robots" content="noindex, nofollow" />
-<?php } ?>
+    <meta charset="<?php echo CHARSET; ?>">
+    <title><?php echo META_TAG_TITLE; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>">
+    <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>">
+    <meta name="author" content="<?php echo STORE_NAME ?>">
+    <meta name="generator" content="shopping cart program by Zen Cart&reg;, http://www.zen-cart.com eCommerce">
+    <?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base, explode(",", constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base == 'down_for_maintenance' || $robotsNoIndex === true) { ?>
+      <meta name="robots" content="noindex, nofollow">
+    <?php } ?>
+    <?php if (defined('FAVICON')) { ?>
+      <link href="<?php echo FAVICON; ?>" type="image/x-icon" rel="icon">
+      <link href="<?php echo FAVICON; ?>" type="image/x-icon" rel="shortcut icon">
+    <?php } //endif FAVICON  ?>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+    <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_CATALOG ); ?>" />
+    <?php if (isset($canonicalLink) && $canonicalLink != '') { ?>
+      <link href="<?php echo $canonicalLink; ?>" rel="canonical">
+    <?php } ?>
+    <?php
+    // BOF hreflang for multilingual sites
+    if (!isset($lng) || (isset($lng) && !is_object($lng))) {
+      $lng = new language;
+    }
 
-<?php if (defined('FAVICON')) { ?>
-  <link rel="icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
-  <link rel="shortcut icon" href="<?php echo FAVICON; ?>" type="image/x-icon" />
-<?php } //endif FAVICON ?>
+    if (count($lng->catalog_languages) > 1) {
+      foreach ($lng->catalog_languages as $key => $value) {
+        echo '<link href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type, false) : $canonicalLink . (strpos($canonicalLink, '?') ? '&amp;' : '?') . 'language=' . $key) . '" hreflang="' . $key . '" rel="alternate">' . "\n";
+      }
+    }
+    // EOF hreflang for multilingual sites
+    // Important to load Bootstrap CSS First...
+    ?>
 
-  <base href="<?php echo (($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_CATALOG : HTTP_SERVER . DIR_WS_CATALOG ); ?>" />
-<?php if (isset($canonicalLink) && $canonicalLink != '') { ?>
-  <link rel="canonical" href="<?php echo $canonicalLink; ?>" />
-<?php } ?>
-<?php
-  // BOF hreflang for multilingual sites
-  if (!isset($lng) || (isset($lng) && !is_object($lng))) {
-    $lng = new language;
-  }
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" rel="stylesheet">
 
-	if (count($lng->catalog_languages) > 1) {
-	    foreach($lng->catalog_languages as $key => $value) {
-    echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type, false) : $canonicalLink . (strpos($canonicalLink, '?') ? '&amp;' : '?') . 'language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
-  }
-  }
-  // EOF hreflang for multilingual sites
-  
-  // Important to load Bootstrap CSS First...
-?>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <?php
+    /**
+     * load all template-specific stylesheets, named like "style*.css", alphabetically
+     */
+    $directory_array = $template->get_template_part($template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^style/', '.css');
+    foreach ($directory_array as $key => $value) {
+      echo '<link href="' . $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value . '"  rel="stylesheet">' . "\n";
+    }
+    /**
+     * load stylesheets on a per-page/per-language/per-product/per-manufacturer/per-category basis. Concept by Juxi Zoza.
+     */
+    $manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id'] : '';
+    $tmp_products_id = (isset($_GET['products_id'])) ? (int)$_GET['products_id'] : '';
+    $tmp_pagename = ($this_is_home_page) ? 'index_home' : $current_page_base;
+    if ($current_page_base == 'page' && isset($ezpage_id)) {
+      $tmp_pagename = $current_page_base . (int)$ezpage_id;
+    }
+    $sheets_array = array('/' . $_SESSION['language'] . '_stylesheet',
+      '/' . $tmp_pagename,
+      '/' . $_SESSION['language'] . '_' . $tmp_pagename,
+      '/c_' . $cPath,
+      '/' . $_SESSION['language'] . '_c_' . $cPath,
+      '/m_' . $manufacturers_id,
+      '/' . $_SESSION['language'] . '_m_' . (int)$manufacturers_id,
+      '/p_' . $tmp_products_id,
+      '/' . $_SESSION['language'] . '_p_' . $tmp_products_id
+    );
+    foreach ($sheets_array as $key => $value) {
+      //echo "<!--looking for: $value-->\n";
+      $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . $value . '.css';
+      if (file_exists($perpagefile)) {
+        echo '<link href="' . $perpagefile . '"  rel="stylesheet">' . "\n";
+      }
+    }
 
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    /**
+     *  custom category handling for a parent and all its children ... works for any c_XX_XX_children.css  where XX_XX is any parent category
+     */
+    $tmp_cats = explode('_', $cPath);
+    $value = '';
+    foreach ($tmp_cats as $val) {
+      $value .= $val;
+      $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/c_' . $value . '_children.css';
+      if (file_exists($perpagefile)) {
+        echo '<link href="' . $perpagefile . '"  rel="stylesheet">' . "\n";
+      }
+      $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $_SESSION['language'] . '_c_' . $value . '_children.css';
+      if (file_exists($perpagefile)) {
+        echo '<link href="' . $perpagefile . '"  rel="stylesheet">' . "\n";
+      }
+      $value .= '_';
+    }
 
-<?php
-/**
- * load all template-specific stylesheets, named like "style*.css", alphabetically
- */
-  $directory_array = $template->get_template_part($template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css'), '/^style/', '.css');
-  foreach($directory_array as $key => $value) {
-    echo '<link rel="stylesheet" type="text/css" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . $value . '" />'."\n";
-  }
-/**
- * load stylesheets on a per-page/per-language/per-product/per-manufacturer/per-category basis. Concept by Juxi Zoza.
- */
-  $manufacturers_id = (isset($_GET['manufacturers_id'])) ? $_GET['manufacturers_id'] : '';
-  $tmp_products_id = (isset($_GET['products_id'])) ? (int)$_GET['products_id'] : '';
-  $tmp_pagename = ($this_is_home_page) ? 'index_home' : $current_page_base;
-  if ($current_page_base == 'page' && isset($ezpage_id)) $tmp_pagename = $current_page_base . (int)$ezpage_id;
-  $sheets_array = array('/' . $_SESSION['language'] . '_stylesheet',
-                        '/' . $tmp_pagename,
-                        '/' . $_SESSION['language'] . '_' . $tmp_pagename,
-                        '/c_' . $cPath,
-                        '/' . $_SESSION['language'] . '_c_' . $cPath,
-                        '/m_' . $manufacturers_id,
-                        '/' . $_SESSION['language'] . '_m_' . (int)$manufacturers_id,
-                        '/p_' . $tmp_products_id,
-                        '/' . $_SESSION['language'] . '_p_' . $tmp_products_id
-                        );
-  foreach($sheets_array as $key => $value) {
-    //echo "<!--looking for: $value-->\n";
-    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . $value . '.css';
-    if (file_exists($perpagefile)) echo '<link rel="stylesheet" type="text/css" href="' . $perpagefile .'" />'."\n";
-  }
+    /**
+     * load printer-friendly stylesheets -- named like "print*.css", alphabetically
+     */
+    $directory_array = $template->get_template_part($template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^print/', '.css');
+    sort($directory_array);
+    foreach ($directory_array as $key => $value) {
+      echo '<link href="' . $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value . '" media="print" rel="stylesheet">' . "\n";
+    }
 
-/**
- *  custom category handling for a parent and all its children ... works for any c_XX_XX_children.css  where XX_XX is any parent category
- */
-  $tmp_cats = explode('_', $cPath);
-  $value = '';
-  foreach($tmp_cats as $val) {
-    $value .= $val;
-    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/c_' . $value . '_children.css';
-    if (file_exists($perpagefile)) echo '<link rel="stylesheet" type="text/css" href="' . $perpagefile .'" />'."\n";
-    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $_SESSION['language'] . '_c_' . $value . '_children.css';
-    if (file_exists($perpagefile)) echo '<link rel="stylesheet" type="text/css" href="' . $perpagefile .'" />'."\n";
-    $value .= '_';
-  }
+    require($template->get_template_dir('stylesheet_zca_colors.php', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/stylesheet_zca_colors.php');
 
-/**
- * load printer-friendly stylesheets -- named like "print*.css", alphabetically
- */
-  $directory_array = $template->get_template_part($template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css'), '/^print/', '.css');
-  sort($directory_array);
-  foreach($directory_array as $key => $value) {
-    echo '<link rel="stylesheet" type="text/css" media="print" href="' . $template->get_template_dir('.css',DIR_WS_TEMPLATE, $current_page_base,'css') . '/' . $value . '" />'."\n";
-  }
+    /** CDN for jQuery core * */
+    ?>
 
-    require($template->get_template_dir('stylesheet_zca_colors.php',DIR_WS_TEMPLATE, $current_page_base,'css'). '/stylesheet_zca_colors.php');    
-    
-/** CDN for jQuery core **/
-?>
+    <script>window.jQuery || document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"%3E%3C/script%3E'));</script>
+    <script>window.jQuery || document.write(unescape('%3Cscript src="<?php echo $template->get_template_dir('.js', DIR_WS_TEMPLATE, $current_page_base, 'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
 
-<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"%3E%3C/script%3E'));</script>
-<script type="text/javascript">window.jQuery || document.write(unescape('%3Cscript type="text/javascript" src="<?php echo $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'); ?>/jquery.min.js"%3E%3C/script%3E'));</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <?php
+    /**
+     * load all site-wide jscript_*.js files from includes/templates/YOURTEMPLATE/jscript, alphabetically
+     */
+    $directory_array = $template->get_template_part($template->get_template_dir('.js', DIR_WS_TEMPLATE, $current_page_base, 'jscript'), '/^jscript_/', '.js');
+    foreach ($directory_array as $key => $value) {
+      echo '<script src="' . $template->get_template_dir('.js', DIR_WS_TEMPLATE, $current_page_base, 'jscript') . '/' . $value . '"></script>' . "\n";
+    }
 
-<?php
-/**
- * load all site-wide jscript_*.js files from includes/templates/YOURTEMPLATE/jscript, alphabetically
- */
-  $directory_array = $template->get_template_part($template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript'), '/^jscript_/', '.js');
-  foreach($directory_array as $key => $value) {
-    echo '<script type="text/javascript" src="' .  $template->get_template_dir('.js',DIR_WS_TEMPLATE, $current_page_base,'jscript') . '/' . $value . '"></script>'."\n";
-  }
+    /**
+     * load all page-specific jscript_*.js files from includes/modules/pages/PAGENAME, alphabetically
+     */
+    $directory_array = $template->get_template_part($page_directory, '/^jscript_/', '.js');
+    foreach ($directory_array as $key => $value) {
+      echo '<script src="' . $page_directory . '/' . $value . '"></script>' . "\n";
+    }
 
-/**
- * load all page-specific jscript_*.js files from includes/modules/pages/PAGENAME, alphabetically
- */
-  $directory_array = $template->get_template_part($page_directory, '/^jscript_/', '.js');
-  foreach($directory_array as $key => $value) {
-    echo '<script type="text/javascript" src="' . $page_directory . '/' . $value . '"></script>' . "\n";
-  }
-
-/**
- * load all site-wide jscript_*.php files from includes/templates/YOURTEMPLATE/jscript, alphabetically
- */
-  $directory_array = $template->get_template_part($template->get_template_dir('.php',DIR_WS_TEMPLATE, $current_page_base,'jscript'), '/^jscript_/', '.php');
-  foreach($directory_array as $key => $value) {
-/**
- * include content from all site-wide jscript_*.php files from includes/templates/YOURTEMPLATE/jscript, alphabetically.
- * These .PHP files can be manipulated by PHP when they're called, and are copied in-full to the browser page
- */
-    require($template->get_template_dir('.php',DIR_WS_TEMPLATE, $current_page_base,'jscript') . '/' . $value); echo "\n";
-  }
-/**
- * include content from all page-specific jscript_*.php files from includes/modules/pages/PAGENAME, alphabetically.
- */
-  $directory_array = $template->get_template_part($page_directory, '/^jscript_/');
-  foreach($directory_array as $key => $value) {
-/**
- * include content from all page-specific jscript_*.php files from includes/modules/pages/PAGENAME, alphabetically.
- * These .PHP files can be manipulated by PHP when they're called, and are copied in-full to the browser page
- */
-    require($page_directory . '/' . $value); echo "\n";
-  }
+    /**
+     * load all site-wide jscript_*.php files from includes/templates/YOURTEMPLATE/jscript, alphabetically
+     */
+    $directory_array = $template->get_template_part($template->get_template_dir('.php', DIR_WS_TEMPLATE, $current_page_base, 'jscript'), '/^jscript_/', '.php');
+    foreach ($directory_array as $key => $value) {
+      /**
+       * include content from all site-wide jscript_*.php files from includes/templates/YOURTEMPLATE/jscript, alphabetically.
+       * These .PHP files can be manipulated by PHP when they're called, and are copied in-full to the browser page
+       */
+      require($template->get_template_dir('.php', DIR_WS_TEMPLATE, $current_page_base, 'jscript') . '/' . $value);
+      echo "\n";
+    }
+    /**
+     * include content from all page-specific jscript_*.php files from includes/modules/pages/PAGENAME, alphabetically.
+     */
+    $directory_array = $template->get_template_part($page_directory, '/^jscript_/');
+    foreach ($directory_array as $key => $value) {
+      /**
+       * include content from all page-specific jscript_*.php files from includes/modules/pages/PAGENAME, alphabetically.
+       * These .PHP files can be manipulated by PHP when they're called, and are copied in-full to the browser page
+       */
+      require($page_directory . '/' . $value);
+      echo "\n";
+    }
 
 // DEBUG: echo '<!-- I SEE cat: ' . $current_category_id . ' || vs cpath: ' . $cPath . ' || page: ' . $current_page . ' || template: ' . $current_template . ' || main = ' . ($this_is_home_page ? 'YES' : 'NO') . ' -->';
-?>
+    ?>
 
-<?php
+  <?php
   $zco_notifier->notify('NOTIFY_HTML_HEAD_END', $current_page_base);
-?>
-</head>
+  ?>
+  </head>
 
-<?php // NOTE: Blank line following is intended: ?>
+<?php // NOTE: Blank line following is intended:   ?>
