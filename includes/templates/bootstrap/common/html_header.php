@@ -32,7 +32,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
     <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>">
     <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>">
     <meta name="author" content="<?php echo STORE_NAME ?>">
-    <meta name="generator" content="shopping cart program by Zen Cart&reg;, http://www.zen-cart.com eCommerce">
+    <meta name="generator" content="shopping cart program by Zen Cart&reg;, https://www.zen-cart.com eCommerce">
     <?php if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base, explode(",", constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base == 'down_for_maintenance' || $robotsNoIndex === true) { ?>
       <meta name="robots" content="noindex, nofollow">
     <?php } ?>
@@ -70,7 +70,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
      */
     $directory_array = $template->get_template_part($template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^style/', '.css');
     foreach ($directory_array as $key => $value) {
-      echo '<link href="' . $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value . '"  rel="stylesheet">' . "\n";
+      echo '<link href="' . $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value . '" rel="stylesheet">' . "\n";
     }
     /**
      * load stylesheets on a per-page/per-language/per-product/per-manufacturer/per-category basis. Concept by Juxi Zoza.
@@ -95,7 +95,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
       //echo "<!--looking for: $value-->\n";
       $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . $value . '.css';
       if (file_exists($perpagefile)) {
-        echo '<link href="' . $perpagefile . '"  rel="stylesheet">' . "\n";
+        echo '<link href="' . $perpagefile . '" rel="stylesheet">' . "\n";
       }
     }
 
@@ -108,11 +108,11 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
       $value .= $val;
       $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/c_' . $value . '_children.css';
       if (file_exists($perpagefile)) {
-        echo '<link href="' . $perpagefile . '"  rel="stylesheet">' . "\n";
+        echo '<link href="' . $perpagefile . '" rel="stylesheet">' . "\n";
       }
       $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $_SESSION['language'] . '_c_' . $value . '_children.css';
       if (file_exists($perpagefile)) {
-        echo '<link href="' . $perpagefile . '"  rel="stylesheet">' . "\n";
+        echo '<link href="' . $perpagefile . '" rel="stylesheet">' . "\n";
       }
       $value .= '_';
     }
