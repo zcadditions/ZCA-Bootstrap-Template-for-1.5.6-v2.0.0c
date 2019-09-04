@@ -178,10 +178,11 @@ if (isset($var_linksList)) {
       $title_link = false;
       $var_linksList = $page_query_list_sidebox;
     }
-  for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) { 
-    echo '<li><a class="dropdown-item" href="' . $var_linksList[$i]['link'] . '">' . $var_linksList[$i]['name'] . '</a></li>';
-  } // end FOR loop
-	echo '</ul>';
+    if (empty($var_linksList)) $var_linksList = array();
+    for ($i=1, $n=sizeof($var_linksList); $i<=$n; $i++) { 
+      echo '<li><a class="dropdown-item" href="' . $var_linksList[$i]['link'] . '">' . $var_linksList[$i]['name'] . '</a></li>';
+    } // end FOR loop
+	  echo '</ul>';
 ?>
         </div>
       </li>  
