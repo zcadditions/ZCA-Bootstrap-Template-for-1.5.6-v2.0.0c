@@ -169,7 +169,7 @@
 <?php
   $radio_buttons = 0;
   for ($i=0, $n=sizeof($selection); $i<$n; $i++) {
-?><div id="paymentMethodsOption-card" class="card mb-3">
+?><div id="paymentMethodsOption-card" class="card mb-3 custom-control">
 <?php
     if (sizeof($selection) >= 1) {
         if (empty($selection[$i]['noradio'])) {
