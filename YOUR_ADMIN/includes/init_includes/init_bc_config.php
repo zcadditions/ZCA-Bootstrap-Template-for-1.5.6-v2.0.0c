@@ -7,7 +7,9 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: init_bc_config.php
  */
-
+if (defined('ZCA_BODY_TEXT_COLOR')) {
+  return; 
+}
     $bc_menu_title = 'ZCA Bootstrap Colors';
     $bc_menu_text = 'ZCA Bootstrap Colors';
 
@@ -293,15 +295,7 @@
 		VALUES ('Centerbox Header Text Color', 'ZCA_CENTERBOX_HEADER_TEXT_COLOR', '#ffffff', 'Default:#ffffff', '".$bc_configuration_id."', 72, NULL, now(), NULL, NULL)";
     $db->Execute($sql);
 
-   if(file_exists(DIR_FS_ADMIN . DIR_WS_INCLUDES . 'auto_loaders/config.bc.php'))
-    {
-        if(!unlink(DIR_FS_ADMIN . DIR_WS_INCLUDES . 'auto_loaders/config.bc.php'))
-	{
-		$messageStack->add('The auto-loader file '.DIR_FS_ADMIN.'includes/auto_loaders/config.bc.php has not been deleted. For this module to work you must delete the '.DIR_FS_ADMIN.'includes/auto_loaders/config.bc.php file manually.  Before you post on the Zen Cart forum to ask, YES you are REALLY supposed to follow these instructions and delete the '.DIR_FS_ADMIN.'includes/auto_loaders/config.bc.php file.','error');
-	};
-    }
-
-       $messageStack->add('ZCA Bootstrap Colors install completed!','success');
+    $messageStack->add('ZCA Bootstrap Colors install completed!','success');
 
     // find next sort order in admin_pages table
     $sql = "SELECT (MAX(sort_order)+2) as sort FROM ".TABLE_ADMIN_PAGES;
