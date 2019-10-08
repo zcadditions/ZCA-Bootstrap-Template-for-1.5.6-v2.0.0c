@@ -1,5 +1,35 @@
 CHANGELOG
 
+Version 2.0.0c 8 October 2019:
+Files changed in 2.0.0c
+- Updated for ZC version 1.5.6c (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/167)
+- Added Back To Top Button (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/66)
+- Fixed special listing page, it now uses the product listing page layout (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/141)
+- Fixed non-functional shopping cart shipping estimator (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/146)
+- Fixed PHP Warning: count(): header_php_shopping_cart_zca_bootstrap.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/147)
+- Fixed typo in stylesheet_zca_colors.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/148)
+- Fixed single payment issue breaking DOM (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/152)
+- Fixed non styles "active" page # on listing pages (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/154)
+- Fixed single checkbox issue on checkout_success page for product update notifications (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/155)
+- Fixed specials center-box product query (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/156)
+-Added unique id's to center-boxes (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/157)
+- Added bootstrap cards to sub-categories for a consistent look (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/158)
+- -Fixed Undefined Constants in ADMIN zca_bootstrap_colors.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/159)
+- Fixed non-multi-language in tpl_photoswipe.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/161)
+- Fixed PHP warning in tpl_modules_shipping_estimator.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/162)
+- Removed LARGE_IMAGE_WIDTH constant (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/163)
+- Replaced messageStack icon images w/ font awesome icons (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/165)
+- Fixed shipping estimator on shopping cart page to be within form (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/164)
+- Fixed photoswipe issue not opening additional images as a gallery (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/issues/170)
+- Removed bs class in tpl_checkout_payment_default.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/pull/177/commits/5501ed09cefd2abf3caa4c126c0dfae3fbd35b40)
+- Update header_php_shopping_cart_zca_bootstrap.php to include $productArray check (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/pull/176/commits/773d6ab2b769eaea3bd982df15116236aa416934)
+- Added bs class to tpl_checkout_payment_default.php to ensure radio button custom style appears (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/pull/175/commits/c5ec408dce496d7a4776bbcd4503962f34f7c94b)
+- Updated tpl_page_not_found_default.php to ensure GV and COUPON status values set before referencing (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/pull/174/commits/056d2c11e2cc9ee4168006afb6f09a928e6bdf67)
+- Added a check instead of removing to YOUR_ADMIN/includes/init_includes/init_bc_config.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/pull/173/commits/970544206d8f2047fe3dae2a55971dc2a0e1556f#diff-5769ca6d8801df439706b02fa4ba9546)
+- Added a check to initialize variable in case it wasn't created in tpl_offcanvas_menu.php (https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c/pull/172/commits/770391f727add6d2b799284edae1881ffc9885b6)
+- 
+
+
 Version 2.0.0a 10 January 2019:
 1.) Removes Optional-OPC-Template-Overrides
     Note: Once this is updated for 1.5.6 I will provide a separate GitHub repository which will provide Bootstrap compatibility.
