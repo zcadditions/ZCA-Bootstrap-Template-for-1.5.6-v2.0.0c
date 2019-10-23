@@ -41,9 +41,14 @@ $breadcrumb = new zca_breadcrumb();
 // instantiation with that version.
 //
 require DIR_WS_CLASSES . 'zca/zca_message_stack.php';
-unset($messageStack);
-$messageStack = new zca_messageStack();
-
+if (isset($messageStack)) {
+  $messages = $messageStack->messages;
+  unset($messageStack);
+  $messageStack = new zca_messageStack();
+  $messageStack->messages = $messages; 
+} else { 
+  $messageStack = new zca_messageStack();
+}
 // -----
 // Next, load the modified version of the splitPagesResult class adapted for
 // use by this template.
