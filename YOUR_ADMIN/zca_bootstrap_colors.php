@@ -151,7 +151,10 @@ $cfg_group = $db->Execute("SELECT configuration_group_title
                     }
                     ?>
                   <td class="dataTableContent"><?php echo $item['configuration_title']; ?></td>
-                  <td class="dataTableContent"><?php echo htmlspecialchars($cfgValue, ENT_COMPAT, CHARSET, TRUE); ?></td>
+                  <td class="dataTableContent">
+                    <i class="fa fa-square fa-border" aria-hidden="true" style="font-size: 1.35em;margin-right:.5em;background-color:#ffffff;color:<?php echo htmlspecialchars($cfgValue, ENT_COMPAT, CHARSET, TRUE); ?>;"></i>
+                    <?php echo htmlspecialchars($cfgValue, ENT_COMPAT, CHARSET, TRUE); ?>
+                  </td>
                   <td class="dataTableContent text-right">
                       <?php
                       if ((isset($cInfo) && is_object($cInfo)) && ($item['configuration_id'] == $cInfo->configuration_id)) {
