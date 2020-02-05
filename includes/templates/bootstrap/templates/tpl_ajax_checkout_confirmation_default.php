@@ -45,24 +45,24 @@
 <!--eof bill to address card-->
 
 <!--bof payment method card-->
-  <div id="patmentMethod-card" class="card mb-3">
+  <div id="paymentMethod-card" class="card mb-3">
 <?php
   $class =& $_SESSION['payment'];
 ?>
 
-<h4 id="patmentMethod-card-header" class="card-header"><?php echo HEADING_PAYMENT_METHOD; ?></h4>
-          <div id="patmentMethod-card-body" class="card-body">
-<h4 id="patmentMethod-paymentTitle"><?php echo $GLOBALS[$class]->title; ?></h4>
+<h4 id="paymentMethod-card-header" class="card-header"><?php echo HEADING_PAYMENT_METHOD; ?></h4>
+          <div id="paymentMethod-card-body" class="card-body">
+<h4 id="paymentMethod-paymentTitle"><?php echo $GLOBALS[$class]->title; ?></h4>
 
 <?php
   if (is_array($payment_modules->modules)) {
     if ($confirmation = $payment_modules->confirmation()) {
 ?>
-<div id="patmentMethod-content" class="content"><?php echo $confirmation['title']; ?></div>
+<div id="paymentMethod-content" class="content"><?php echo $confirmation['title']; ?></div>
 <?php
     }
 ?>
-<div id="patmentMethod-content-one" class="content">
+<div id="paymentMethod-content-one" class="content">
 <?php
       for ($i=0, $n=sizeof($confirmation['fields']); $i<$n; $i++) {
 ?>
