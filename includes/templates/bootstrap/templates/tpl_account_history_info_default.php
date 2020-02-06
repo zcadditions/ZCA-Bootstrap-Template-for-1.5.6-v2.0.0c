@@ -202,9 +202,9 @@ if (sizeof($statusArray)) {
 <!--eof bill to address card-->
 
 <!--bof payment method card-->
-  <div id="patmentMethod-card" class="card">
-<?php echo '<h4 id="patmentMethod-card-header" class="card-header">' . HEADING_PAYMENT_METHOD . '</h4>'; ?>    
-          <div id="patmentMethod-card-body" class="card-body">
+  <div id="paymentMethod-card" class="card">
+<?php echo '<h4 id="paymentMethod-card-header" class="card-header">' . HEADING_PAYMENT_METHOD . '</h4>'; ?>    
+          <div id="paymentMethod-card-body" class="card-body">
 
 <div><?php echo $order->info['payment_method']; ?></div>
 
