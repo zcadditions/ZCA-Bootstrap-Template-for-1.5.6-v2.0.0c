@@ -2,11 +2,10 @@
 /**
  * Specials
  *
- * @package page
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 Mon Jul 23 14:00:26 2018 -0400 Modified in v1.5.6 $
+ * @version $Id: mc12345678 2020 May 12 Modified in v1.5.7 $
  */
 
 if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
@@ -22,9 +21,10 @@ if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
 
   $specials_query_raw = $db->bindVars($specials_query_raw, ':languagesID', $_SESSION['languages_id'], 'integer');
   
-  $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_SQL_STRING', array(), $specials_query_raw);
+  $count_key = '*';
+  $zco_notifier->notify('NOTIFY_SPECIALS_MAIN_TEMPLATE_VARS_SQL_STRING', array(), $specials_query_raw, $count_key);
   
-  $specials_split = new splitPageResults($specials_query_raw, MAX_DISPLAY_SPECIAL_PRODUCTS);
+  $specials_split = new splitPageResults($specials_query_raw, MAX_DISPLAY_SPECIAL_PRODUCTS, $count_key);
   $specials = $db->Execute($specials_split->sql_query);
   $row = 0;
   $col = 0;
@@ -45,7 +45,7 @@ if (MAX_DISPLAY_SPECIAL_PRODUCTS > 0 ) {
       $products_price = zen_get_products_display_price($specials->fields['products_id']);
       $specials->fields['products_name'] = zen_get_products_name($specials->fields['products_id']);
 //-bof-zca_bootstrap  *** 1 of 1 ***
-      if (zca_bootstrap_active()) {
+      if (function_exists('zca_bootstrap_active') && zca_bootstrap_active()) {
           $list_box_contents[$row][$col] = array('params' => 'class="card mb-3 p-3 centerBoxContentsListing text-center"',
                                                  'text' => '<a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($specials->fields['master_categories_id']) . '&products_id=' . $specials->fields['products_id']) . '">' . (($specials->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : zen_image(DIR_WS_IMAGES . $specials->fields['products_image'], $specials->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a>') . '<br /><a href="' . zen_href_link(zen_get_info_page($specials->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($specials->fields['master_categories_id']) . '&products_id=' . $specials->fields['products_id']) . '">' . $specials->fields['products_name'] . '</a><br />' . $products_price);
       } else {      
