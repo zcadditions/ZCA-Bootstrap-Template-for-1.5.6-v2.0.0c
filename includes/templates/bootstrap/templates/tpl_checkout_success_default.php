@@ -158,7 +158,9 @@ if (isset($additional_payment_messages) && $additional_payment_messages != '') {
 <div id="checkoutSuccessDefault-content-one" class="content text-center">
 <h3><?php echo TEXT_THANKS_FOR_SHOPPING; ?></h3>
 </div>
-
-<?php require($template->get_template_dir('tpl_coupon_help.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_coupon_help.php'); ?>
-
+<?php
+if (defined('MODULE_ORDER_TOTAL_COUPON_STATUS') && MODULE_ORDER_TOTAL_COUPON_STATUS == 'true') {
+    require $template->get_template_dir('tpl_coupon_help.php',DIR_WS_TEMPLATE, $current_page_base, 'modalboxes') . '/tpl_coupon_help.php';
+}
+?>
 </div>
