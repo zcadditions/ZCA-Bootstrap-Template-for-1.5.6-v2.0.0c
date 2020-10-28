@@ -150,7 +150,7 @@ class ot_coupon {
 
         // note the placement of the redeem code can be moved within the array on the instructions or the title
 //-bof-zca_bootstrap  *** 1 of 1 ***
-    if (function_exists('zca_bootstrap_active') && !zca_bootstrap_active()) {
+    if (!function_exists('zca_bootstrap_active') || !zca_bootstrap_active()) {
         $couponLink = '<a href="javascript:couponpopupWindow(\'' . zen_href_link(FILENAME_POPUP_COUPON_HELP, 'cID=' . $_SESSION['cc_id'], $request_type) . '\')">' . $discount_coupon->fields['coupon_code'] . '</a>';
     } else {
        $couponLink = '<a data-toggle="modal" data-id="'.$_SESSION['cc_id'].'" href="#couponHelpModal">' . $discount_coupon->fields['coupon_code'] . '</a>';
