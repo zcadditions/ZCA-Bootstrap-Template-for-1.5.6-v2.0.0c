@@ -6,7 +6,15 @@
 // That regex "magic" says find the first '<input type="image"{...}/>', replace it with the
 // button and then copy anything else (like the 'hidden' input that follows).
 //
-if (!isset($productArray)) $productArray = array(); 
-for ($i=0, $n=sizeof((array)$productArray); $i<$n; $i++) {
-$productArray[$i]['buttonUpdate'] = preg_replace('/(<input type="image".*?\/>)(.*)/', '<button type="submit" class="btn"><i class="fas fa-sync-alt"></i></button>$2', $productArray[$i]['buttonUpdate']);  
+if (function_exists('zca_bootstrap_active') && !zca_bootstrap_active()) {
+    return;
+}
+if (!isset($productArray) || !is_array($productArray)) {
+    $productArray = array(); 
+}
+for ($i = 0, $n = count($productArray); $i < $n; $i++) {
+    $productArray[$i]['buttonUpdate'] = preg_replace(
+        '/(<input type="image".*?\/>)(.*)/', '<button type="submit" class="btn"><i class="fas fa-sync-alt"></i></button>$2', 
+        $productArray[$i]['buttonUpdate']
+    );  
 }

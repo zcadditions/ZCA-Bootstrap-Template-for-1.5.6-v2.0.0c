@@ -28,7 +28,7 @@ if (!zca_bootstrap_active()) {
   require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER));
 
   $listing_sql = "SELECT p.products_type, p.products_id, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id,
-                                    p.products_date_added, m.manufacturers_name, p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
+                                    p.products_date_added, p.manufacturers_id, m.manufacturers_name, p.products_model, p.products_quantity, p.products_weight, p.product_is_call,
                                     p.product_is_always_free_shipping, p.products_qty_box_status,
                                     p.master_categories_id
                              FROM " . TABLE_PRODUCTS . " p
