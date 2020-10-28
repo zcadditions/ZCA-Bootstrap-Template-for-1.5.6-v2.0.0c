@@ -2,7 +2,7 @@
 /**
  * Override Modal for popup_image
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
@@ -21,11 +21,10 @@
         </button>
       </div>
       <div class="modal-body">
-  <?php echo zen_image($products_image_large, $products_values->fields['products_name']); ?>
+  <?php echo zen_image($products_image_large, $products_name); ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
       </div>
     </div>
   </div>
