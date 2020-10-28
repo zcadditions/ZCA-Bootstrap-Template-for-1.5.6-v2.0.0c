@@ -2,7 +2,7 @@
 /**
  * Common Template - tpl_main_page.php
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Governs the overall layout of an entire page<br />
  * Normally consisting of a header, left side column. center column. right side column and footer<br />
@@ -146,10 +146,10 @@ if (!isset($flag_disable_left) || !$flag_disable_left) {
 ?>
     <div class="col-sm-12 col-lg-<?php echo $center_column_width; ?>">
 <!-- bof  breadcrumb -->
-<?php if (DEFINE_BREADCRUMB_STATUS == '1' || (DEFINE_BREADCRUMB_STATUS == '2' && !$this_is_home_page) ) { ?>
+<?php if (!$breadcrumb->isEmpty() && (DEFINE_BREADCRUMB_STATUS == '1' || (DEFINE_BREADCRUMB_STATUS == '2' && !$this_is_home_page))) { ?>
 <div id="navBreadCrumb">
 <ol class="breadcrumb">
-<?php echo $breadcrumb->trail(BREAD_CRUMBS_SEPARATOR); ?>
+    <?php echo $breadcrumb->trail(BREAD_CRUMBS_SEPARATOR, '<li>', '</li>'); ?>
 </ol>
 </div>
 <?php } ?>
