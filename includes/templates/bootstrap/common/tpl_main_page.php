@@ -57,14 +57,14 @@
   }
 
 // ZCA BOOTSTRAP TEMPLATE (BETA)
-if ($flag_disable_right or COLUMN_RIGHT_STATUS == '0' or SET_COLUMN_RIGHT_LAYOUT == '0') {
+if (!empty($flag_disable_right) or COLUMN_RIGHT_STATUS == '0' or SET_COLUMN_RIGHT_LAYOUT == '0') {
   $box_width_right = '0';
 } else {
   $box_width_right = SET_COLUMN_RIGHT_LAYOUT;
   $box_width_right_new = 'col-sm-' . SET_COLUMN_RIGHT_LAYOUT . ' d-none d-lg-block';
 }
 
-if ($flag_disable_left or COLUMN_LEFT_STATUS == '0' or SET_COLUMN_LEFT_LAYOUT == '0') {
+if (!empty($flag_disable_left) or COLUMN_LEFT_STATUS == '0' or SET_COLUMN_LEFT_LAYOUT == '0') {
   $box_width_left = '0';
 } else {
   $box_width_left = SET_COLUMN_LEFT_LAYOUT;
