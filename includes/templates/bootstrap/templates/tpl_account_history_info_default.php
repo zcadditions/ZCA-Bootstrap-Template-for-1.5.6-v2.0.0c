@@ -79,15 +79,11 @@
 ?>
 <!-- bof order totals -->  
 <?php
-  for ($i=0, $n=sizeof($order->totals); $i<$n; $i++) {
+  for ($i = 0, $n = count($order->totals); $i < $n; $i++) {
 ?>
 <tr>
-    <td colspan="2" class="text-right bg-white">
-<?php echo $order->totals[$i]['title'] ?>
-    </td>
-    <td class="text-left bg-white">
-<?php echo $order->totals[$i]['text'] ?>
-    </td>
+    <td colspan="2" class="ot-title bg-white"><?php echo $order->totals[$i]['title']; ?></td>
+    <td class="ot-text bg-white"><?php echo $order->totals[$i]['text']; ?></td>
 </tr>
 <?php
   }
