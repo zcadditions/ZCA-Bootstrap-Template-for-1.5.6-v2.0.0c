@@ -1,7 +1,7 @@
 /**
  * Main Template CSS Stylesheet
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
@@ -12,10 +12,9 @@
 /* This is used to re-size images */
 img{max-width:100%;height:auto;border:0;}
 
-
 .normalprice, .productSpecialPriceSale {
 	text-decoration: line-through;
-	}
+}
 
 #back-to-top {
     position: fixed;
@@ -32,6 +31,15 @@ img{max-width:100%;height:auto;border:0;}
     opacity: 1;
     z-index: 1;
 }
+
+.ot-title {
+    text-align: right;
+}
+.ot-text,
+.totalCell {
+    text-align: right;
+}
+
 
 /* These CSS media queries control how many columns of cards display on the login, checkout_shipping, checkout_payment & checkout_confirmation pages */
 /* Small devices (landscape phones, 576px and up) */
