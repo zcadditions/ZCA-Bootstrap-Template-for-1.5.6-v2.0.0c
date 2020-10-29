@@ -1,13 +1,11 @@
 <?php
 /**
- * @package languageDefines
+ * BOOTSTRAP 3.0.0
  * 
- * BOOTSTRAP 2.0.1
- * 
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Thu Jan 11 13:27:48 2018 -0500 Modified in v1.5.6 $
+ * @version $Id: Scott C Wilson 2020 Apr 30 Modified in v1.5.7 $
  */
 
 
@@ -58,6 +56,7 @@ define('BUTTON_IMAGE_READ_REVIEWS', 'button_read_reviews.gif');
 define('BUTTON_IMAGE_GOTO_PROD_DETAILS', 'button_goto_prod_details.gif');
 define('BUTTON_IMAGE_MORE_REVIEWS', 'button_more_reviews.gif');
 define('BUTTON_IMAGE_CONTINUE_CHECKOUT', 'button_continue_checkout.gif');
+define('BUTTON_IMAGE_ASK_A_QUESTION', 'button_ask_a_question.gif');
 //define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&gt;&gt;]');
 //define('PREVNEXT_BUTTON_LAST', 'LAST&gt;&gt;');
 
@@ -113,3 +112,4 @@ define('BUTTON_READ_REVIEWS_ALT', 'Read the Review');
 define('BUTTON_GOTO_PROD_DETAILS_ALT', 'Go To This Product\'s Details');
 define('BUTTON_MORE_REVIEWS_ALT', 'Read More Reviews');
 define('BUTTON_VIEW_ALL_ALT', 'View All');
+define('BUTTON_ASK_A_QUESTION_ALT', 'Ask a Question');
