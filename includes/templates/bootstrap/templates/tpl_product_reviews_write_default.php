@@ -37,12 +37,17 @@
 ?>
 <!--eof Main Product Image-->
 
+<?php
+if (!empty($products_model)) {
+?>
 <!--bof Product details list  -->
 <ul id="productReviewsWriteDefault-productDetailsList" class="productDetailsList list-group mb-3">
 <li class="list-group-item"><?php echo TEXT_PRODUCT_MODEL . $products_model; ?></li>
 </ul>
 <!--eof Product details list -->
-
+<?php
+}
+?>
     </div>
     <div class="col-sm">
 <!--bof Product Price block -->
