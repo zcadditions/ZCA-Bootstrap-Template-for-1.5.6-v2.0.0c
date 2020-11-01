@@ -21,7 +21,7 @@
   if ($_SESSION['cart']->count_contents() > 0) {
 ?>
 <div id="shoppingCartDefault-helpLink" class="helpLink float-right p-3">
-<a data-toggle="modal" href="#cartHelpModal"><?php echo TEXT_CART_HELP; ?></a>
+<a data-toggle="modal" href="#cartHelpModal"><?php echo TEXT_CART_MODAL_HELP; ?></a>
 </div>
 
 <?php require($template->get_template_dir('tpl_info_shopping_cart.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_info_shopping_cart.php'); ?>
