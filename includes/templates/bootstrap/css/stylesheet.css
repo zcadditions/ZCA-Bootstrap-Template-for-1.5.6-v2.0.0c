@@ -40,6 +40,10 @@ img{max-width:100%;height:auto;border:0;}
     text-align: right;
 }
 
+.centeredContent {
+    text-align: center;
+    padding: 1rem;
+}
 
 /* These CSS media queries control how many columns of cards display on the login, checkout_shipping, checkout_payment & checkout_confirmation pages */
 /* Small devices (landscape phones, 576px and up) */
