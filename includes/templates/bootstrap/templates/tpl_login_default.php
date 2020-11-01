@@ -88,7 +88,7 @@
   if ($_SESSION['cart']->count_contents() > 0) {
 ?>
 
-<?php echo TEXT_VISITORS_CART; ?><a data-toggle="modal" href="#cartHelpModal"><?php echo TEXT_VISITORS_CART_1; ?></a>
+<?php echo TEXT_VISITORS_CART; ?><a data-toggle="modal" href="#cartHelpModal"><?php echo TEXT_MORE_INFO; ?></a>
 
 <?php require($template->get_template_dir('tpl_info_shopping_cart.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_info_shopping_cart.php'); ?>
 

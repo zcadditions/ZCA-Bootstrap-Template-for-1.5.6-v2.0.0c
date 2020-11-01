@@ -8,15 +8,15 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Drbyte Wed Aug 2 14:55:16 2017 -0400 Modified in v1.5.6 $
  */
+require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . zca_get_language_dir('popup_coupon_help.php') . 'popup_coupon_help.php'; 
 ?>
-<?php require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . $template_dir_select . 'popup_coupon_help.php'); ?>
 <!-- Modal -->
 <div class="modal fade" id="couponHelpModal" tabindex="-1" role="dialog" aria-labelledby="couponHelpModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="couponHelpModalLabel"><?php echo TEXT_COUPON_HELP_HEADER; ?></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo TEXT_MODAL_CLOSE; ?>">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -129,7 +129,7 @@
 ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo TEXT_MODAL_CLOSE; ?></button>
 
       </div>
     </div>

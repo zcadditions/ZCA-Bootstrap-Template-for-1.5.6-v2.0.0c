@@ -49,3 +49,11 @@ function zca_js_zone_list($varname = 'c2z')
     }
     return $output_string;
 }
+
+function zca_get_language_dir($language_filename)
+{
+    global $language_page_directory, $template_dir;
+
+    $language_dir = (file_exists($language_page_directory . $template_dir . '/' . $language_filename)) ? "$template_dir/" : '';
+    return $language_dir;
+}
