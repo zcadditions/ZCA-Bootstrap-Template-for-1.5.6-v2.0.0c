@@ -248,7 +248,7 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
 
 <!--bof- parse time display -->
 <?php
-  if (DISPLAY_PAGE_PARSE_TIME == 'true') {
+  if (defined('DISPLAY_PAGE_PARSE_TIME') && DISPLAY_PAGE_PARSE_TIME == 'true') {
 ?>
 <div class="text-center">
 Parse Time: <?php echo $parse_time; ?> - Number of Queries: <?php echo $db->queryCount(); ?> - Query Time: <?php echo $db->queryTime(); ?>
