@@ -73,7 +73,7 @@ if ($num_products_count > 0) {
     $products_price = zen_get_products_display_price($special_products->fields['products_id']);
     if (!isset($productsInCategory[$special_products->fields['products_id']])) $productsInCategory[$special_products->fields['products_id']] = zen_get_generated_category_path_rev($special_products->fields['master_categories_id']);
 
-    $zco_notifier->notify('NOTIFY_MODULES_SPECIALS_INDEX_B4_LIST_BOX', array(), $specials_index->fields, $products_price);
+    $zco_notifier->notify('NOTIFY_MODULES_SPECIALS_INDEX_B4_LIST_BOX', array(), $special_products->fields, $products_price);
 
     $list_box_contents[$row][$col] = array('params' => 'class="centerBoxContents card mb-3 p-3 text-center" id="centerBoxContentsNew"',
     'text' => (($special_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) ? '' : '<a href="' . zen_href_link(zen_get_info_page($special_products->fields['products_id']), 'cPath=' . $productsInCategory[$special_products->fields['products_id']] . '&products_id=' . $special_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $special_products->fields['products_image'], $special_products->fields['products_name'], IMAGE_PRODUCT_NEW_WIDTH, IMAGE_PRODUCT_NEW_HEIGHT) . '</a><br />') . '<a href="' . zen_href_link(zen_get_info_page($special_products->fields['products_id']), 'cPath=' . $productsInCategory[$special_products->fields['products_id']] . '&products_id=' . $special_products->fields['products_id']) . '">' . $special_products->fields['products_name'] . '</a><br />' . $products_price);
