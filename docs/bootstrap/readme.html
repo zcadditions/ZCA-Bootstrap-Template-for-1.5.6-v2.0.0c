@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bootstrap-4 Template for Zen Cart 1.5.7 and Later</title>
+<style type="text/css">
+<!--
+a, a:active, 
+a:visited { 
+    color: #006666; 
+    text-decoration: none; 
+}
+a:hover { 
+    color:#00CC99; 
+    text-decoration: underline; 
+}
+body, 
+p, 
+h1, 
+h2, 
+h3, 
+h4, 
+li, 
+td { 
+    font-family: Verdana, AvantGarde, Tahoma, Arial, sans-serif; 
+    font-size: 10pt; 
+    color: black; 
+    padding: 0px; 
+    margin: 20px; 
+}
+pre { 
+    margin: 20px; 
+}
+H1, 
+H2, 
+H3, 
+H4 { 
+    font-weight: bold 
+}
+h1 { 
+    font-size: 20px; 
+}
+h2 { 
+    font-size: 16px; 
+    border-top: 1px solid black;
+    padding-top: 5px;
+}
+ol li, 
+ul li { 
+    margin: 5px 0; 
+}
+.corefile, 
+.impt { 
+    color: red; 
+}
+.added { 
+    color: blue; 
+}
+img { 
+    margin-left: 20px; 
+    max-width: 95%; 
+}
+.removed { 
+    text-decoration: line-through; 
+}
+.smaller {
+    font-size: smaller;
+}
+-->
+</style>
+</head>
+
+<body>
+    <h1>Bootstrap-4 Template for Zen Cart v1.5.7 and later</h1>
+    <h3>Version 3.0.0, by lat9</h3>
+    <p>Current Support Thread at Zen Cart Forums: <a href="https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread" target="_blank">https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread</a></p>
+    <p>GitHub repository: <a href="https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c" target="_blank">https://github.com/zcadditions/ZCA-Bootstrap-Template-for-1.5.6-v2.0.0c</a>.</p>
+
+    <h2>What it does</h2>
+    <p>This template uses <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/" target="_blank">Bootstrap-4</a> to provide its styling.  It builds on the base that Raymond Barbour provided over the past few years and provides integration with Zen Cart versions 1.5.7 and later.</p>
+    
+    <h2>Bootstrap Template, Files List</h2>
+    <p>The following files are provided in the current template distribution:</p>
+    <ol>
+        <li>/includes/auto_loaders/config.zca_bootstrap.php</li>
+        <li>/includes/classes/observers/ZcaBootstrapObserver.php</li>
+        <li>/includes/classes/zca/zca_message_stack.php</li>
+        <li>/includes/classes/zca/zca_split_page_result.php</li>
+        <li>/includes/classes/zca/zca_site_map.php</li>
+        <li>/includes/classes/zca_photoswipe/autoload_default.php</li>
+        <li>/includes/classes/zca_photoswipe/jquery_photoswipe.php</li>
+        <li>/includes/functions/zca_bootstrap_functions.php</li>
+        <li>/includes/functions/extra_functions/zen_photoswipe.php</li>
+        <li>/includes/init_includes/init_zca_bootstrap.php</li>
+        <li>/includes/init_includes/init_zca_listing_style.php</li>
+        <li>/includes/languages/english/bootstrap/extra_definitions/*.php</li>
+        <li>/includes/modules/bootstrap/*.php</li>
+        <li>/includes/modules/centerboxes/*.php</li>
+        <li><span class="corefile">/includes/modules/order_total/ot_coupon.php</span></li>
+        <li>/includes/modules/pages/account_history/header_php_account_history_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/featured_products/header_php_featured_products_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/page_not_found/header_php_page_not_found_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/product_reviews/header_php_product_reviews_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/product_reviews_info/header_php_product_reviews_info_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/product_reviews_write/header_php_product_reviews_write_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/products_all/header_php_products_all_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/products_new/header_php_products_new_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/shopping_cart/header_php_shopping_cart_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/site_map/header_php_site_map_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/specials/header_php_specials_zca_bootstrap.php</li>
+        <li>/includes/modules/sideboxes/bootstrap/*.php</li>
+        <li>/includes/templates/bootstrap/template_info.php</li>
+        <li>/includes/templates/bootstrap/template_readme.html</li>
+        <li>/includes/templates/bootstrap/centerboxes/*.php</li>
+        <li>/includes/templates/bootstrap/common/*.php</li>
+        <li>/includes/templates/bootstrap/css/*.*</li>
+        <li>/includes/templates/bootstrap/images/ZCA_BOOTSTRAP_TEMPLATE.png</li>
+        <li>/includes/templates/bootstrap/jscript/*.*</li>
+        <li>/includes/templates/bootstrap/modalboxes/*.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/*.php</li>
+        <li>/includes/templates/bootstrap/templates/*.php</li>
+    </ol>
+
+    <h2>Upgrading from v2.0.0c</h2>
+    <p>As an aid in upgrading from the template's v2.0.0c release, this section identifies the files added, removed and moved in the transition from v2.0.0c of the template to v3.0.0.  They <em>might</em> also apply to upgrades from a previous version, but you'll need to check the <code>CHANGELOG.txt</code> file provided by this template's zip-file for those prior changes.</p>
+    
+    <h3>Files Removed</h3>
+    <ol>
+        <li><span class="corefile">/includes/classes/order.php</span> <span class="smaller">(Removed from this distribution <em>only</em>.  Use the zc157a version of the file.)</span></li>
+        <li><span class="corefile">/includes/classes/site_map.php</span> <span class="smaller">(Removed from this distribution <em>only</em>.  Use the zc157a version of the file.)</span></li>
+        <li>/includes/classes/ajax/zcAjaxPayment.php</li>
+        <li>/includes/classes/zca/zca_breadcrumb.php</li>
+        <li>/includes/languages/english/bootstrap/button_names.php</li>
+        <li>/includes/languages/english/bootstrap/checkout_payment_address.php</li>
+        <li>/includes/languages/english/bootstrap/checkout_shipping_address.php</li>
+        <li>/includes/languages/english/bootstrap/create_account.php</li>
+        <li>/includes/languages/english/bootstrap/create_account_success.php</li>
+        <li>/includes/languages/english/bootstrap/document_general_info.php</li>
+        <li>/includes/languages/english/bootstrap/document_product_info.php</li>
+        <li>/includes/languages/english/bootstrap/featured_products.php</li>
+        <li>/includes/languages/english/bootstrap/info_shopping_cart.php</li>
+        <li>/includes/languages/english/bootstrap/login.php</li>
+        <li>/includes/languages/english/bootstrap/popup_coupon_help.php</li>
+        <li>/includes/languages/english/bootstrap/popup_cvv_help.php</li>
+        <li>/includes/languages/english/bootstrap/popup_search_help.php</li>
+        <li>/includes/languages/english/bootstrap/products_all.php</li>
+        <li>/includes/languages/english/bootstrap/products_new.php</li>
+        <li>/includes/languages/english/bootstrap/product_free_shipping.php</li>
+        <li>/includes/languages/english/bootstrap/product_free_shipping_info.php</li>
+        <li>/includes/languages/english/bootstrap/product_info.php</li>
+        <li>/includes/languages/english/bootstrap/product_music_info.php</li>
+        <li>/includes/languages/english/bootstrap/product_reviews_info.php</li>
+        <li>/includes/languages/english/bootstrap/product_reviews_write.php</li>
+        <li>/includes/languages/english/bootstrap/shopping_cart.php</li>
+        <li>/includes/languages/english/bootstrap/specials.php</li>
+        <li><span class="corefile">/includes/modules/order_total/ot_gv.php</span> <span class="smaller">(Removed from this distribution <em>only</em>.  Use the zc157a version of the file.)</li>
+        <li>/includes/modules/pages/address_book_process/jscript_addr_pulldowns_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/checkout_payment_address/jscript_addr_pulldowns_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/checkout_shipping_address/jscript_addr_pulldowns_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/create_account/jscript_addr_pulldowns_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/login/jscript_addr_pulldowns_zca_bootstrap.php</li>
+        <li>/includes/modules/pages/popup_shipping_estimator/jscript_addr_pulldowns_zca_bootstrap.php</li>
+        <li><span class="corefile">/includes/modules/pages/specials/main_template_vars.php</span> <span class="smaller">(Removed from this distribution <em>only</em>.  Use the zc157a version of the file.)</li>
+        <li>/includes/templates/bootstrap/jscript/jscript_zca_bootstrap.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_banner_box.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_banner_box_all.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_banner_box2.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_currencies.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_languages.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_manufacturer_info.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_music_genres_select.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_no_notifications.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_record_company_select.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_reviews_none.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_reviews_write.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_whos_online.php</li>
+        <li>/includes/templates/bootstrap/sideboxes/tpl_yes_notifications.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_new_payment_address.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_new_shipping_address.php</li>
+    </ol>
+    
+    <h3>Files Added</h3>
+    <ol>
+        <li>/includes/classes/zca/zca_site_map.php</li>
+        <li>/includes/modules/pages/page_not_found/header_php_page_not_found_zca_bootstrap.php</li>
+        <li>/includes/templates/bootstrap/jscript/jscript_addr_pulldowns_zca_bootstrap.php</li>
+        <li>/includes/templates/bootstrap/jscript/jscript_zca_bootstrap.js</li>
+        <li>/includes/templates/bootstrap/templates/tpl_ask_a_question_default.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_common_address_format.php</li>
+    </ol>
+    
+    <h2>Initial Installation</h2>
+    <p>This template currently has one <span class="corefile">core-file overwrite</span>; you should <strong>always</strong> backup your cart's database and files prior to making any changes.</p>
+    <ol>
+        <li>Unzip the template's package file, which you've most likely already done if you're reading this!</li>
+        <li>If you haven't made any changes to the Zen Cart 'base' version of <code>/includes/modules/order_total/ot_coupon.php</code>, you can simply copy that file from the template's distribution.  Otherwise, you'll need to merge the one marked section with your store's version of the file.</li>
+        <li>Rename the distribution's <code>YOUR_ADMIN</code> sub-directory to match the name of your site's Zen Cart admin directory.</li>
+        <li>Copy the files present in the <code>includes</code> and the renamed <code>YOUR_ADMIN</code> sub-directories to your site's file-system.</li>
+        <li>Log into your Zen Cart admin to allow the template's initialization to be run.  If you want to enable the template:<ul>
+            <li>Navigate to <em>Tools :: Template Selection</em> to choose the bootstrap template as your site's current template.</li>
+            <li>Navigate to <em>Tools :: Layout Boxes Controller</em> to enable and position the sideboxes for your site's use.</li>
+        </ul></li>
+    </ol>
+
+    <h2>Version History</h2>
+    <p>This section identifies the template's version history and changes, starting with its v2.0.0c release.  Prior version changes can be found in the root of the template's distribution zip-file (<code>CHANGELOG.txt</code>.</p>
+    <ul>
+        <li>v3.0.0, 2020-11-02 (lat9/drbyte)<ul>
+            <li>BUGFIX: Correct (another) PHP parse error, introduced in v2.1.0.</li>
+            <li>For this release, continue as if <em>all</em> files in the distribution have changed!</li>
+        </ul></li>
+    </ul>
+
+</body>
+</html>
