@@ -31,7 +31,7 @@ $listing_sql =
                     ON p.products_id = pd.products_id
                    AND pd.language_id = :languageID
             )
-      WHERE p.products_products_status = 1
+      WHERE p.products_status = 1
         AND s.status = 1
       $order_by";
 
