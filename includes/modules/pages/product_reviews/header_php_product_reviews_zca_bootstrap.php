@@ -3,7 +3,7 @@
 // product_reviews: Slight modification of the formatting of the 'products_model' and use of the template-specific
 // splitPageResults formatting, if the ZCA Bootstrap template is installed and active.
 //
-if (zca_bootstrap_active()) {
+if (function_exists('zca_bootstrap_active') && zca_bootstrap_active()) {
     if ($review->fields['products_model'] != '') {
         $products_model = $review->fields['products_model'];
     } else {

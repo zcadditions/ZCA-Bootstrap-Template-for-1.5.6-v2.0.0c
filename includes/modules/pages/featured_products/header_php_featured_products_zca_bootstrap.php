@@ -2,7 +2,7 @@
 /**
  * Featured Products
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * @package page
  * @copyright Copyright 2003-2006 Zen Cart Development Team
@@ -14,7 +14,7 @@
 // -----
 // featured_products: Provide updated processing **ONLY IF** the ZCA bootstrap is the active template.
 //
-if (!zca_bootstrap_active()) {
+if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active())) {
     return;
 }
 

@@ -6,9 +6,10 @@
 // That regex "magic" says find the first '<input type="image"{...}/>', replace it with the
 // button and then copy anything else (like the 'hidden' input that follows).
 //
-if (function_exists('zca_bootstrap_active') && !zca_bootstrap_active()) {
+if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active())) {
     return;
 }
+
 if (!isset($productArray) || !is_array($productArray)) {
     $productArray = array(); 
 }
