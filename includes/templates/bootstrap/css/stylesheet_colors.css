@@ -62,6 +62,12 @@ EOF SIDEBOXES */
 #addToCart-card-header, .button_in_cart {background:#00C851;color:#FFF;}
 .button_in_cart:hover {background:#007E33;color:#FFF;}
 #addToCart-card {border-color:#00C851;}
+a.carousel-control-prev,
+a.carousel-control-next,
+a.carousel-control-prev:hover,
+a.carousel-control-next:hover {
+    color: #000;
+}
 /* EOF PRODUCT INFO PAGES */
 
 /* BOF PRODUCT PRICES
