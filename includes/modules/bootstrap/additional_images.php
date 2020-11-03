@@ -117,11 +117,8 @@ if ($num_images > 0) {
         $products_image_large = ($flag_has_large ? $products_image_large : $products_image_directory . $file);
         $flag_display_large = (IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE == 'Yes' || $flag_has_large);
         $base_image = $products_image_directory . $file;
-    if (ZCA_PHOTOSWIPE_STATUS == 'true') {  
-        $thumb_slashes = zca_photoswipe(addslashes($base_image), addslashes($products_name), SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '" itemprop="thumbnail"';
-    } else {    
+
         $thumb_slashes = zen_image(addslashes($base_image), addslashes($products_name), SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
-    }
         
         // -----
         // This notifier lets any image-handler "massage" the name of the current thumbnail image name (with appropriate
@@ -132,11 +129,7 @@ if ($num_images > 0) {
         //
         $zco_notifier->notify('NOTIFY_MODULES_ADDITIONAL_IMAGES_THUMB_SLASHES', array(), $thumb_slashes);
 
-    if (ZCA_PHOTOSWIPE_STATUS == 'true') {  
-        $thumb_regular = zca_photoswipe($base_image, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '" itemprop="thumbnail"';
-    } else {
         $thumb_regular = zen_image($base_image, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
-    } 
         $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large);
 
         // Link Preparation:
@@ -151,11 +144,6 @@ if ($num_images > 0) {
         // $p3 ... (r/w) ... A reference to the $link_parameters value, which defines the parameters associated with the above
         //                     link's display.  If the $script_link is updated, these parameters will be used for the display.
         //
-    if (ZCA_PHOTOSWIPE_STATUS == 'true') {         
-        $height = '1000';
-        $width = '1000';
-            $script_link = '<a href="' . zca_photoswipe($products_image_large, '', LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT) . '" itemprop="contentUrl" data-size="'.$width.'x'.$height.'" class="mx-auto d-block img-fluid"><img src="' . zca_photoswipe($base_image, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '" itemprop="thumbnail" class="mx-auto d-block img-fluid" /></a><figcaption itemprop="caption description">' . $products_name . '</figcaption></figure>';
-    } else { 
         $script_link = false;
         $link_parameters = '';
         $zco_notifier->notify(
@@ -175,7 +163,7 @@ if ($num_images > 0) {
             $script_link = '<script type="text/javascript"><!--' . "\n" . 'document.write(\'' . ($flag_display_large ? '<a href="javascript:popupWindow(\\\'' . str_replace($products_image_large, urlencode(addslashes($products_image_large)), $large_link) . '\\\')">' . $thumb_slashes . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>' : $thumb_slashes) . '\');' . "\n" . '//--></script>';
             $link_parameters = 'class="additionalImages centeredContent back"' . ' ' . 'style="width:' . $col_width . '%;"';
         }
-    }
+
         $noscript_link = '<noscript>' . ($flag_display_large ? '<a href="' . zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $i . '&products_image_large_additional=' . $products_image_large) . '" target="_blank">' . $thumb_regular . '<br /><span class="imgLinkAdditional">' . TEXT_CLICK_TO_ENLARGE . '</span></a>' : $thumb_regular ) . '</noscript>';
 
         //      $alternate_link = '<a href="' . $products_image_large . '" onclick="javascript:popupWindow(\''. $large_link . '\') return false;" title="' . $products_name . '" target="_blank">' . $thumb_regular . '<br />' . TEXT_CLICK_TO_ENLARGE . '</a>';
@@ -184,15 +172,11 @@ if ($num_images > 0) {
         //      $link = $alternate_link;
 
         // List Box array generation:
-    if (ZCA_PHOTOSWIPE_STATUS == 'true') {    
-        $list_box_contents[$row][$col] = array('params' => '',
-            'text' => '<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="card col-md-4 p-3 mx-auto">' . $script_link . '');
-    } else {
         $list_box_contents[$row][$col] = array(
             'params' => $link_parameters,
              'text' => "\n      " . $link
         );
-    }
+
         $col++;
         if ($col > (IMAGES_AUTO_ADDED -1)) {
             $col = 0;
