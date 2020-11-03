@@ -140,17 +140,16 @@ if (zen_is_superuser()) {
         );
     }
 //-eof-GitHub#21
-//bof photoswipe
-    if (!defined('ZCA_PHOTOSWIPE_STATUS')) {
-        $zca_bootstrap_config_changes[] = $zca_which_group . 'Use Photoswipe Lightbox';
+//-bof-GitHub#242-Note that the Photoswipe feature is no longer used for bootstrap templates v3.0.0 and later
+    if (defined('ZCA_PHOTOSWIPE_STATUS')) {
         $db->Execute(
-            "INSERT INTO " . TABLE_CONFIGURATION . "
-                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
-             VALUES
-                ('Use Photoswipe Lightbox', 'ZCA_PHOTOSWIPE_STATUS', 'false', 'Default is <b>false</b>, Opens images in an individual modal, <b>true</b> opens images in a photoswipe lightbox.', 18, NOW(), 203, NULL, 'zen_cfg_select_option(array(''true'',''false''),')"
+            "UPDATE " . TABLE_CONFIGURATION . "
+                SET configuration_description = '<em>Not supported for Bootstrap template v3.0.0 and later.</em> Default is <b>false</b>, Opens images in an individual modal, <b>true</b> opens images in a photoswipe lightbox.'
+              WHERE configuration_key = 'ZCA_PHOTOSWIPE_STATUS'
+              LIMIT 1"
         );
     }
-//eof photoswipe
+//-eof-GitHub#242
     if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE')) {
         $zca_bootstrap_config_changes[] = $zca_which_group . 'Use Bootstrap Additional Image Carousel';
         $db->Execute(
