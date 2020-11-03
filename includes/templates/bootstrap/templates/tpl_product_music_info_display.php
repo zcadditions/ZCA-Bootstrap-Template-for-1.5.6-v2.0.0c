@@ -384,8 +384,9 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 <?php } ?>
 <!--eof Prev/Next bottom position -->
 
+<!--bof Form close-->
+    <?php echo '</form>'; ?>
+<!--bof Form close-->
 </div>
 
-<!--bof Form close-->
-</form>
-<!--bof Form close-->
+
