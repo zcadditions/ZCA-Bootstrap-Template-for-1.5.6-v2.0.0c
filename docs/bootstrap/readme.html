@@ -156,6 +156,7 @@ img {
         <li>/includes/languages/english/bootstrap/specials.php</li>
         <li>/includes/languages/english/extra_definitions/zca_photoswipe.php</li>
         <li><span class="corefile">/includes/modules/order_total/ot_gv.php</span> <span class="smaller">(Removed from this distribution <em>only</em>.  Use the zc157a version of the file.)</li>
+        <li>/includes/modules/bootstrap/additional_images.php</li>
         <li>/includes/modules/pages/address_book_process/jscript_addr_pulldowns_zca_bootstrap.php</li>
         <li>/includes/modules/pages/checkout_payment_address/jscript_addr_pulldowns_zca_bootstrap.php</li>
         <li>/includes/modules/pages/checkout_shipping_address/jscript_addr_pulldowns_zca_bootstrap.php</li>
@@ -216,8 +217,32 @@ img {
     <h2>Version History</h2>
     <p>This section identifies the template's version history and changes, starting with its v2.0.0c release.  Prior version changes can be found in the root of the template's distribution zip-file (<code>CHANGELOG.txt</code>.</p>
     <ul>
-        <li>v3.0.0, 2020-11-02 (lat9/drbyte)<ul>
-            <li>BUGFIX: Correct (another) PHP parse error, introduced in v2.1.0.</li>
+        <li>v3.0.0, 2020-11-03 (lat9/drbyte)<ul>
+            <li>BUGFIX: Correct various PHP notices, deprecations and warnings.</li>
+            <li>CHANGE: Use zc157a version of <code>/includes/modules/order_total/ot_coupon.php</code> as the change-basis.</li>
+            <li>CHANGE: Remove <code>/includes/classes/ajax/zcAjaxPayment.php</code> from this distribution, no change needed.</li>
+            <li>CHANGE: &quot;Rename&quot; the template's <code>jscript_zca_bootstrap.php</code> to use a <code>.js</code> extension, so it's cacheable.</li>
+            <li>CHANGE: Use the zc157+ version of the <code>breadcrumb.php</code> class; no longer a core-file overwrite.</li>
+            <li>CHANGE: Restore the use of a common-format address-block.</li>
+            <li>CHANGE: Remove <code>/includes/classes/order.php</code> from this distribution; using the zc157+ version.</li>
+            <li>CHANGE: Update jQuery to v3.5.1 and don't use <code>document.write</code>.</li>
+            <li>CHANGE: Override <em>only</em> the messageStack's <code>add</code> function (future-proofing).</li>
+            <li>CHANGE: Enable a store to control the justification for the order-totals' section on various pages.</li>
+            <li>CHANGE: Remove <code>/includes/modules/order_total/ot_gv.php</code> from this distribution; using the zc157+ version.</li>
+            <li>CHANGE: Use the <code>template_default</code> version of <code>jscript_framework.php</code> (future-proofing).</li>
+            <li>CHANGE: Incorporate the zc157+ <code>ask_a_question</code> page's formatting.</li>
+            <li>CHANGE: Reduce language-related template overrides.</li>
+            <li>CHANGE: Don't display <em>Model</em> block if no model is supplied.</li>
+            <li>CHANGE: <code>DISPLAY_PAGE_PARSE_TIME</code> setting removed in zc157+.</li>
+            <li>CHANGE: Reduce sidebox-related template overrides.</li>
+            <li>CHANGE: Ensure that <code>zca_bootstrap_active</code> is present prior to calling.</li>
+            <li>CHANGE: <code>specials</code> page SQL, <code>products_description</code> is keyed on both products_id and language_id.</li>
+            <li>BUGFIX: Correct <em>PHP deprecated</em> log in product listings.</li>
+            <li>BUGFIX: Correct <em>PHP warning</em> for specials' centerbox.</li>
+            <li>BUGFIX: Correct missing prev/next icons in image-carousel display.</li>
+            <li>CHANGE: Remove core-file overwrite requirement for the <code>specials</code> page.</li>
+            <li>CHANGE: Remove core-file overwrite requirement for the <code>site_map.php</code> class.</li>
+            <li>CHANGE: Remove the <em>ZCA Photoswipe</em> feature as it's no longer supported by its author.</li>
             <li>For this release, continue as if <em>all</em> files in the distribution have changed!</li>
         </ul></li>
     </ul>
