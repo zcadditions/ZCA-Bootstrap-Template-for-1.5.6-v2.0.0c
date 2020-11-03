@@ -306,17 +306,17 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 <div id="productInfo-moduledDisplayRow" class="row">
 <?php if (PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX == '1') { ?>
 <!--bof Products Notification Module-->
-   <div id="productInfo-moduleDisplayColLeft" class="col-sm">
-<?php include(DIR_WS_MODULES . zen_get_module_directory('centerboxes/product_notifications.php')); ?>
-</div>
+    <div id="productInfo-moduleDisplayColLeft" class="col-sm">
+        <?php require DIR_WS_MODULES . zen_get_module_directory('centerboxes/product_notifications.php'); ?>
+    </div>
 <!--eof Products Notification Module-->
 <?php } ?>
 
 <?php if (PRODUCT_INFO_SHOW_MANUFACTURER_BOX == '1') { ?>
 <!--bof Products Manufacturer Info Module-->
-  <div id="productInfo-moduleDisplayColRight" class="col-sm">
-<?php include(DIR_WS_MODULES . zen_get_module_directory('centerboxes/manufacturer_info.php')); ?>
-</div>
+    <div id="productInfo-moduleDisplayColRight" class="col-sm">
+        <?php require DIR_WS_MODULES . zen_get_module_directory('centerboxes/manufacturer_info.php'); ?>
+    </div>
 <!--eof Products Manufacturer Info Module-->
 <?php } ?>
 </div>
@@ -376,8 +376,9 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 <?php } ?>
 <!--eof Prev/Next bottom position -->
 
+<!--bof Form close-->
+    <?php echo '</form>'; ?>
+<!--bof Form close-->
 </div>
 
-<!--bof Form close-->
-</form>
-<!--bof Form close-->
+
