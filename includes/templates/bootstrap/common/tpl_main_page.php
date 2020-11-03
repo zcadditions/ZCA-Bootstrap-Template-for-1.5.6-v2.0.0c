@@ -290,11 +290,4 @@ echo zen_display_banner('static', $banner);
 <a href="#" id="back-to-top" class="btn" title="Back to top" role="button"><i class="fas fa-chevron-circle-up"></i></a>
   
 </div>
-  
-<?php
-  if (in_array($current_page_base,explode(",",'document_general_info,document_product_info,page,product_free_shipping_info,product_info,product_music_info,product_reviews,product_reviews_info,product_reviews_write')) && ZCA_PHOTOSWIPE_STATUS == 'true') {
-
-require($template->get_template_dir('tpl_photoswipe.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_photoswipe.php'); 
-}
-?>
 </body>
