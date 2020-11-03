@@ -52,15 +52,12 @@ define('HEADING_TITLE_CART_MODAL', 'Visitors Cart / Members Cart');
 // Used on various pages that display the cart's contents.
 //
 define('TABLE_HEADING_QUANTITY', 'Qty.');
-define('TABLE_HEADING_MODEL', 'Model');
 define('SUB_TITLE_TOTAL', 'Total:');
 
 // -----
 // Used by various product listing pages, e.g. SNAF.
 //
-define('TEXT_PRODUCTS_MODEL', 'Model:');
 define('TABLE_HEADING_IMAGE', 'Product Image');
-define('TABLE_HEADING_MODEL', 'Model');
 define('TABLE_HEADING_PRODUCTS', 'Product Name');
 define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
 define('TABLE_HEADING_QUANTITY', 'Quantity');
