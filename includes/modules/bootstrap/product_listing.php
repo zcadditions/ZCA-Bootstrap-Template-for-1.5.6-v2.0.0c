@@ -7,32 +7,39 @@
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2020 May 16 Modified in v1.5.7 $
+ * @version $Id: DrByte 2020 Sep 20 Modified in v1.5.7a $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 
-$show_submit = zen_run_normal();
-$listing_split = new zca_splitPageResults($listing_sql, MAX_DISPLAY_PRODUCTS_LISTING, 'p.products_id', 'page');
-$zco_notifier->notify('NOTIFY_MODULE_PRODUCT_LISTING_RESULTCOUNT', $listing_split->number_of_rows);
-$how_many = 0;
-
-// zca
-$listing_layout_style = PRODUCT_LISTING_LAYOUT_STYLE;
-if (isset($_SESSION['PRODUCT_LISTING_LAYOUT_STYLE']) && ($_SESSION['PRODUCT_LISTING_LAYOUT_STYLE'] == 'rows' || $_SESSION['PRODUCT_LISTING_LAYOUT_STYLE'] == 'columns')) {
-    $listing_layout_style = $_SESSION['PRODUCT_LISTING_LAYOUT_STYLE'];
-}
-
 $row = 0;
 $col = 0;
-$list_box_contents = array();
+$list_box_contents = [];
 $title = '';
-// zca
 
-//zca
-if ($listing_layout_style == 'rows') {
-//zca
+$show_submit = zen_run_normal();
+
+$columns_per_row = defined('PRODUCT_LISTING_COLUMNS_PER_ROW') ? (int)PRODUCT_LISTING_COLUMNS_PER_ROW : 1;
+if ($columns_per_row < 1) $columns_per_row = 1;
+$product_listing_layout_style = $columns_per_row > 1 ? 'columns' : 'rows';
+$css_grid_suffix = '';
+
+$max_results = (int)MAX_DISPLAY_PRODUCTS_LISTING;
+if ($product_listing_layout_style == 'columns' && $columns_per_row > 1) {
+    $max_results = ($columns_per_row * (int)($max_results/$columns_per_row));
+    $css_grid_suffix = '-grid';
+}
+if ($max_results < 1) $max_results = 1;
+
+$listing_split = new zca_splitPageResults($listing_sql, $max_results, 'p.products_id', 'page');
+$zco_notifier->notify('NOTIFY_MODULE_PRODUCT_LISTING_RESULTCOUNT', $listing_split->number_of_rows);
+
+// counter for how many items on the page can use add-to-cart, so we can decide what kinds of submit-buttons to offer in the template
+$how_many = 0;
+
+// Begin Row Headings
+if ($product_listing_layout_style == 'rows') {
     $list_box_contents[0] = array('params' => 'class="productListing-rowheading"');
 
     $zc_col_count_description = 0;
@@ -81,36 +88,34 @@ if ($listing_layout_style == 'rows') {
             $lc_text = zen_create_sort_heading($_GET['sort'], $col+1, $lc_text);
         }
 
+
         $list_box_contents[0][$col] = array(
             'align' => $lc_align,
             'params' => 'class="productListing-heading"',
             'text' => $lc_text 
         );
     }
-//zca
 }
-$num_products_count = $listing_split->number_of_rows;
-//zca
 
-if ($listing_split->number_of_rows > 0) {
+
+// Build row/cell content
+
+$num_products_count = $listing_split->number_of_rows;
+
+if ($num_products_count > 0) {
     $rows = 0;
-  
-//zca
     $column = 0;
-    if ($listing_layout_style == 'columns') {
-        if ($num_products_count < PRODUCT_LISTING_COLUMNS_PER_ROW || PRODUCT_LISTING_COLUMNS_PER_ROW == 0) {
+    if ($product_listing_layout_style == 'columns') {
+        if ($num_products_count < $columns_per_row || $columns_per_row == 0 ) {
             $col_width = floor(100/$num_products_count) - 0.5;
         } else {
-            $col_width = floor(100/PRODUCT_LISTING_COLUMNS_PER_ROW) - 0.5;
+            $col_width = floor(100/$columns_per_row) - 0.5;
         }
     }
-//zca  
-  
     $listing = $db->Execute($listing_split->sql_query);
+    $extra_row = 0;
     while (!$listing->EOF) {
-//zca
-        if ($listing_layout_style == 'rows') {
-//zca
+        if ($product_listing_layout_style == 'rows') {
             $rows++;
 
             if ($rows % 2 == 0) {
@@ -118,10 +123,10 @@ if ($listing_split->number_of_rows > 0) {
             } else {
                 $list_box_contents[$rows] = array('params' => 'class="productListing-odd"');
             }
-//zca
+
+            $cur_row = count($list_box_contents) - 1;
         }
         $product_contents = array();
-//zca
 
         $linkCpath = $listing->fields['master_categories_id'];
         if (!empty($_GET['cPath'])) $linkCpath = $_GET['cPath'];
@@ -138,15 +143,18 @@ if ($listing_split->number_of_rows > 0) {
                     $lc_align = 'center';
                     $lc_text = '<h3 class="itemTitle">
                         <a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($linkCpath) . '&products_id=' . $listing->fields['products_id']) . '">' . $listing->fields['products_name'] . '</a>
-                        </h3>
-                        <div class="listingDescription">' . zen_trunc_string(zen_clean_html(stripslashes(zen_get_products_description($listing->fields['products_id'], $_SESSION['languages_id']))), PRODUCT_LIST_DESCRIPTION) . '</div>';
+                        </h3>';
+                        if ((int)PRODUCT_LIST_DESCRIPTION > 0) {
+                            $lc_text .= '
+                            <div class="listingDescription">' . zen_trunc_string(zen_clean_html(stripslashes(zen_get_products_description($listing->fields['products_id'], $_SESSION['languages_id']))), PRODUCT_LIST_DESCRIPTION) . '</div>';
+                        }
                     break;
                 case 'PRODUCT_LIST_MANUFACTURER':
                     $lc_align = 'center';
                     $lc_text = '<a href="' . zen_href_link(FILENAME_DEFAULT, 'manufacturers_id=' . $listing->fields['manufacturers_id']) . '">' . $listing->fields['manufacturers_name'] . '</a>';
                     break;
                 case 'PRODUCT_LIST_PRICE':
-                    $lc_price = zen_get_products_display_price($listing->fields['products_id']) . '<br />';
+                    $lc_price = zen_get_products_display_price($listing->fields['products_id']) . '<br>';
                     $lc_align = 'center';
                     $lc_text =  $lc_price;
 
@@ -213,36 +221,43 @@ if ($listing_split->number_of_rows > 0) {
                     break;
             }
 
-//zca
-            $product_contents[] = $lc_text;
-            if ($listing_layout_style == 'rows') {
-//zca
-                $list_box_contents[$rows][$col] = array(
-                    'align' => $lc_align,
-                    'params' => 'class="productListing-data"',
-                    'text'  => $lc_text
-                );
-            }
-//zca
-        }
+        $product_contents[] = $lc_text; // (used in column mode)
 
-        if ($listing_layout_style == 'columns') {
-            $lc_text = implode('<br />', $product_contents);
-
-            $list_box_contents[$rows][$column] = array(
-                'params' => 'class="card mb-3 p-3 centerBoxContentsListing text-center"',
-                'text'  => $lc_text
-            );
-            $column++;
-            if ($column >= PRODUCT_LISTING_COLUMNS_PER_ROW) {
-                $column = 0;
-                $rows++;
-            }
-        }
-//zca
-        $listing->MoveNext();
+        if ($product_listing_layout_style == 'rows') {
+            $list_box_contents[$rows][$col] = array('align' => $lc_align,
+                                                    'params' => 'class="productListing-data"',
+                                                    'text'  => $lc_text);
+//        // add description and match alternating colors
+//        if (PRODUCT_LIST_DESCRIPTION > 0) {
+//          $rows++;
+//          if ($extra_row == 1) {
+//            $list_box_description = "productListing-data-description-even";
+//            $extra_row=0;
+//          } else {
+//            $list_box_description = "productListing-data-description-odd";
+//            $extra_row=1;
+//          }
+//          $list_box_contents[$rows][] = array('params' => 'class="' . $list_box_description . '" colspan="' . $zc_col_count_description . '"',
+//                                              'text' => zen_trunc_string(zen_clean_html(stripslashes(zen_get_products_description($listing->fields['products_id'], $_SESSION['languages_id']))), PRODUCT_LIST_DESCRIPTION));
+//        }
+      }
     }
-    $error_categories = false;
+
+    if ($product_listing_layout_style == 'columns') {
+      $lc_text = implode('<br>', $product_contents);
+      $list_box_contents[$rows][$column] = array('params' => 'class="card mb-3 p-3 centerBoxContentsListing text-center"',
+                                                 'text'  => $lc_text);
+      $column ++;
+      if ($column >= $columns_per_row) {
+        $column = 0;
+        $rows ++;
+      }
+    }
+
+    $listing->MoveNext();
+  }
+  $error_categories = false;
+
 } else {
     $list_box_contents = array();
 
