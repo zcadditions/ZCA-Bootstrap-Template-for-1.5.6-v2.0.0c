@@ -28,7 +28,6 @@ define('PRIMARY_ADDRESS', ' (Primary Address)');
 // -----
 // Used on the product*_info pages.
 //
-define('TEXT_PRODUCT_MODEL', 'Model: ');
 define('TEXT_MULTIPLE_IMAGES', ' Additional Images ');
 define('TEXT_SINGLE_IMAGE', ' Larger Image ');
 define('PREV_NEXT_FROM', ' from ');
@@ -51,7 +50,6 @@ define('HEADING_TITLE_CART_MODAL', 'Visitors Cart / Members Cart');
 // -----
 // Used on various pages that display the cart's contents.
 //
-define('TABLE_HEADING_QUANTITY', 'Qty.');
 define('SUB_TITLE_TOTAL', 'Total:');
 
 // -----
@@ -60,7 +58,6 @@ define('SUB_TITLE_TOTAL', 'Total:');
 define('TABLE_HEADING_IMAGE', 'Product Image');
 define('TABLE_HEADING_PRODUCTS', 'Product Name');
 define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
-define('TABLE_HEADING_QUANTITY', 'Quantity');
 define('TABLE_HEADING_PRICE', 'Price');
 define('TABLE_HEADING_WEIGHT', 'Weight');
 define('TABLE_HEADING_BUY_NOW', 'Buy Now');
