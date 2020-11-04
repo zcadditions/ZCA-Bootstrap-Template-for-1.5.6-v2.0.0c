@@ -174,7 +174,8 @@ if ($num_products_count > 0) {
                                 $listing->fields['product_is_call'] == 0
                                 &&
                                 // product is in stock or customers may add it to cart anyway
-                                ($listing->fields['products_quantity'] > 0 || SHOW_PRODUCTS_SOLD_OUT_IMAGE == 0) ) {
+                                ($listing->fields['products_quantity'] > 0 || SHOW_PRODUCTS_SOLD_OUT_IMAGE == 0) ) 
+                            {
                                 $how_many++;
                             }
                             // hide quantity box
@@ -197,8 +198,8 @@ if ($num_products_count > 0) {
                     
                     $the_button = $lc_button;
                     $products_link = '<a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($linkCpath) . '&products_id=' . $listing->fields['products_id']) . '">' . MORE_INFO_TEXT . '</a>';
-                    $lc_text .= '<br />' . zen_get_buy_now_button($listing->fields['products_id'], $the_button, $products_link) . '<br />' . zen_get_products_quantity_min_units_display($listing->fields['products_id']);
-                    $lc_text .= '<br />' . (zen_get_show_product_switch($listing->fields['products_id'], 'ALWAYS_FREE_SHIPPING_IMAGE_SWITCH') ? (zen_get_product_is_always_free_shipping($listing->fields['products_id']) ? TEXT_PRODUCT_FREE_SHIPPING_ICON . '<br />' : '') : '');
+                    $lc_text .= '<br>' . zen_get_buy_now_button($listing->fields['products_id'], $the_button, $products_link) . '<br>' . zen_get_products_quantity_min_units_display($listing->fields['products_id']);
+                    $lc_text .= '<br>' . (zen_get_show_product_switch($listing->fields['products_id'], 'ALWAYS_FREE_SHIPPING_IMAGE_SWITCH') ? (zen_get_product_is_always_free_shipping($listing->fields['products_id']) ? TEXT_PRODUCT_FREE_SHIPPING_ICON . '<br>' : '') : '');
 
                     break;
                 case 'PRODUCT_LIST_QUANTITY':
@@ -259,30 +260,31 @@ if ($num_products_count > 0) {
   $error_categories = false;
 
 } else {
+
     $list_box_contents = array();
 
     $list_box_contents[0] = array('params' => 'class="productListing-odd"');
-    $list_box_contents[0][] = array(
-        'params' => 'class="productListing-data"',
-        'text' => TEXT_NO_PRODUCTS
-    );
+    $list_box_contents[0][] = array('params' => 'class="productListing-data"',
+                                                'text' => TEXT_NO_PRODUCTS);
 
     $error_categories = true;
 }
 
-if (($how_many > 0 and $show_submit == true and $listing_split->number_of_rows > 0) and (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART == 1 or  PRODUCT_LISTING_MULTIPLE_ADD_TO_CART == 3) ) {
+if (($how_many > 0 && $show_submit == true && $num_products_count > 0) && (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART == 1 ||  PRODUCT_LISTING_MULTIPLE_ADD_TO_CART == 3) ) {
     $show_top_submit_button = true;
 } else {
     $show_top_submit_button = false;
 }
-if (($how_many > 0 and $show_submit == true and $listing_split->number_of_rows > 0) and (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART >= 2) ) {
+if (($how_many > 0 && $show_submit == true && $num_products_count > 0) && (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART >= 2) ) {
     $show_bottom_submit_button = true;
 } else {
     $show_bottom_submit_button = false;
 }
 
 $zco_notifier->notify('NOTIFY_PRODUCT_LISTING_END', $current_page_base, $list_box_contents, $listing_split, $show_top_submit_button, $show_bottom_submit_button, $show_submit, $how_many);
-if ($how_many > 0 && PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 and $show_submit == true and $listing_split->number_of_rows > 0) {
+
+  if ($how_many > 0 && PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 && $show_submit == true && $num_products_count > 0) {
     // bof: multiple products
     echo zen_draw_form('multiple_products_cart_quantity', zen_href_link(FILENAME_DEFAULT, zen_get_all_get_params(array('action')) . 'action=multiple_products_add_product', $request_type), 'post', 'enctype="multipart/form-data"');
 }
+
