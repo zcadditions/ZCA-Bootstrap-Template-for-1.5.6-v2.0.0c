@@ -26,6 +26,9 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
+    <link rel="dns-prefetch" href="https://stackpath.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
     <meta charset="<?php echo CHARSET; ?>">
     <title><?php echo META_TAG_TITLE; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
