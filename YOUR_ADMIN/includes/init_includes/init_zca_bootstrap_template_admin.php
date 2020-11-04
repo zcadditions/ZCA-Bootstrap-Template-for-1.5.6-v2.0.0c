@@ -102,31 +102,7 @@ if (zen_is_superuser()) {
         );
     }
     // -----
-    // 2) Configuration->Product Listing
-    //
-    $zca_which_group = 'Configuration->Product Listing->';
-    if (!defined('PRODUCT_LISTING_LAYOUT_STYLE')) {
-        $zca_bootstrap_config_changes[] = $zca_which_group . 'Listing Layout Style';
-        $db->Execute(
-            "INSERT INTO " . TABLE_CONFIGURATION . "
-                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
-             VALUES
-                ('Listing Layout Style', 'PRODUCT_LISTING_LAYOUT_STYLE', 'columns', '<br /><br />Select the layout style:<br />Each product can be listed in its own row (rows option) or products can be listed in multiple columns per row (columns option)', 8, NOW(), 200, NULL, 'zen_cfg_select_option(array(''rows'',''columns''),')"
-        );
-        define('PRODUCT_LISTING_LAYOUT_STYLE', 'columns');
-    }
-    if (!defined('PRODUCT_LISTING_COLUMNS_PER_ROW')) {
-        $zca_bootstrap_config_changes[] = $zca_which_group . 'Listing Columns Per Row';
-        $db->Execute(
-            "INSERT INTO " . TABLE_CONFIGURATION . "
-                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
-             VALUES
-                ('Listing Columns Per Row', 'PRODUCT_LISTING_COLUMNS_PER_ROW', '2', '<br /><br />Select the number of columns of products to show in each row in the product listing. The default setting is 2.', 8, NOW(), 201, NULL , NULL)"
-        );
-    }
-
-    // -----
-    // 3) Configuration->Product Info
+    // 2) Configuration->Product Info
     //
     $zca_which_group = 'Configuration->Product Info->';
 //-bof-GitHub#21-Add control to disable template's modal image display.
