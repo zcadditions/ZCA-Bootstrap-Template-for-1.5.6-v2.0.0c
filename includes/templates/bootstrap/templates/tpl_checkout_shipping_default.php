@@ -158,7 +158,7 @@
 <!--bof noShipping method card-->
 <div id="noShipping-card" class="card mb-3">
     <div id="noShipping-card-body" class="card-body p-3">
-<h1 id="shippingMethodOption-noOptions-pageHeading" class="pageHeading"><?php echo TITLE_NO_SHIPPING_AVAILABLE; ?></h2>
+<h2 id="shippingMethodOption-noOptions-pageHeading" class="pageHeading"><?php echo TITLE_NO_SHIPPING_AVAILABLE; ?></h2>
 <div id="shippingMethodOption-noOptions-content" class="content"><?php echo TEXT_NO_SHIPPING_AVAILABLE; ?></div>
     </div>
 </div>
