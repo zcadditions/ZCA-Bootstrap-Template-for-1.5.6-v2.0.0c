@@ -110,7 +110,7 @@ if (!isset($entry) || !is_object($entry)) {
 
 <label class="inputLabel" for="state" id="stateLabel"><?php echo $state_field_label; ?></label>
 <?php
-    echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state" class="form-control"');
+    echo zen_draw_input_field('state', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_state', '40') . ' id="state" class="form-control" placeholder="' . ENTRY_STATE_TEXT . '"');
     if ($flag_show_pulldown_states == false) {
       echo zen_draw_hidden_field('zone_id', $zone_name, ' ');
     }
