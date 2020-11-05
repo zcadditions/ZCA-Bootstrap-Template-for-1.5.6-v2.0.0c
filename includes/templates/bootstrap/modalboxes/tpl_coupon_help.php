@@ -8,6 +8,15 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Drbyte Wed Aug 2 14:55:16 2017 -0400 Modified in v1.5.6 $
  */
+// -----
+// Nothing to render if no coupon has been applied to the order.  Perform a quick-return
+// in this case to prevent PHP notices.  Noting that the $discount_coupon variable is set
+// by the checkout_payment page's header_php.php.
+//
+if (empty($_SESSION['cc_id']) || empty($discount_coupon->fields['coupon_code'])) {
+    return;
+}
+
 require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . zca_get_language_dir('popup_coupon_help.php') . 'popup_coupon_help.php'; 
 ?>
 <!-- Modal -->
