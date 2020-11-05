@@ -67,3 +67,8 @@ define('TABLE_HEADING_BUY_NOW', 'Buy Now');
 //
 define('MODAL_CLOSE', 'Close');
 define('TEXT_MORE_INFO', '[More Info]');
+
+// -----
+// Overriding definition for the login page, removing unwanted javascript.
+//
+define('TEXT_VISITORS_CART', '<strong>Note:</strong> If you have shopped with us before and left something in your cart, for your convenience, the contents will be merged if you log back in.');
