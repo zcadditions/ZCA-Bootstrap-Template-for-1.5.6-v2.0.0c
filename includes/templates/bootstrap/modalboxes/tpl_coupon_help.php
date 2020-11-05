@@ -15,7 +15,6 @@ require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . zca_get_language_dir('p
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="couponHelpModalLabel"><?php echo TEXT_COUPON_HELP_HEADER; ?></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo TEXT_MODAL_CLOSE; ?>">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -45,11 +44,11 @@ require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . zca_get_language_dir('p
     $text_coupon_help .= TEXT_COUPON_HELP_FREESHIP;
     break;
     case 'E': // percentage & Free Shipping
-	$text_coupon_help .= TEXT_COUPON_HELP_FREESHIP . sprintf(TEXT_COUPON_HELP_FIXED, number_format($coupon->fields['coupon_amount'],2). '%');
-	break;
-	case 'O': // amount off & Free Shipping
-	$text_coupon_help .= TEXT_COUPON_HELP_FREESHIP . sprintf(TEXT_COUPON_HELP_FIXED, $currencies->format($coupon->fields['coupon_amount']));
-	break;    
+    $text_coupon_help .= TEXT_COUPON_HELP_FREESHIP . sprintf(TEXT_COUPON_HELP_FIXED, number_format($coupon->fields['coupon_amount'],2). '%');
+    break;
+    case 'O': // amount off & Free Shipping
+    $text_coupon_help .= TEXT_COUPON_HELP_FREESHIP . sprintf(TEXT_COUPON_HELP_FIXED, $currencies->format($coupon->fields['coupon_amount']));
+    break;    
     default:
   }
   
