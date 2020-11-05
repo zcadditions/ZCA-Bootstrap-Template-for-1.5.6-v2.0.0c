@@ -8,7 +8,7 @@ require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . zca_get_language_dir('i
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="cartHelpModalLabel"><?php echo HEADING_TITLE_CART_MODAL; ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo MODAL_CLOSE; ?>"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo TEXT_MODAL_CLOSE; ?>"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <h2><?php echo SUB_HEADING_TITLE_1; ?></h2>
@@ -19,7 +19,7 @@ require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . zca_get_language_dir('i
                 <p><?php echo SUB_HEADING_TEXT_3; ?></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo MODAL_CLOSE; ?></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo TEXT_MODAL_CLOSE; ?></button>
             </div>
         </div>
     </div>
