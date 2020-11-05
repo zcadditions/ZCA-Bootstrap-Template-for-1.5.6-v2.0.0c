@@ -65,7 +65,7 @@ define('TABLE_HEADING_BUY_NOW', 'Buy Now');
 // -----
 // Used by various /modalboxes
 //
-define('MODAL_CLOSE', 'Close');
+define('TEXT_MODAL_CLOSE', 'Close');
 define('TEXT_MORE_INFO', '[More Info]');
 
 // -----

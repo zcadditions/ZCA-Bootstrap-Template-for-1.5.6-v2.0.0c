@@ -17,7 +17,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="bootStrapImagesModalLabel"><?php echo $products_name; ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo MODAL_CLOSE; ?>"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo TEXT_MODAL_CLOSE; ?>"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="container">
@@ -96,7 +96,7 @@ if ($flag_show_product_info_additional_images != 0 && $num_images > 0) {
                     <!--/main slider carousel-->
                 </div>
             </div>
-            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo MODAL_CLOSE; ?></button></div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo TEXT_MODAL_CLOSE; ?></button></div>
         </div>
     </div>
 </div>
