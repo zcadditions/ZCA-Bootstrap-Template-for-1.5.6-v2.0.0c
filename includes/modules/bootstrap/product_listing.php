@@ -85,7 +85,7 @@ if ($product_listing_layout_style == 'rows') {
                 break;
         }
         if ($column_list[$col] != 'PRODUCT_LIST_IMAGE') {
-            $lc_text = zen_create_sort_heading($_GET['sort'], $col+1, $lc_text);
+            $lc_text = zen_create_sort_heading(isset($_GET['sort']) ? $_GET['sort'] : '', $col+1, $lc_text);
         }
 
 
