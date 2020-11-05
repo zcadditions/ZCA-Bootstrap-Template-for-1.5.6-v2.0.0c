@@ -33,7 +33,7 @@ $listing_sql =
             )
       WHERE p.products_status = 1
         AND s.status = 1
-      $order_by";
+      ORDER BY s.specials_date_added DESC";
 
 $listing_sql = $db->bindVars($listing_sql, ':languageID', $_SESSION['languages_id'], 'integer');
 
