@@ -28,7 +28,7 @@
                                 <!-- main slider carousel items -->
                                 <div class="carousel-inner text-center">
 <?php
-require DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php');
+require DIR_WS_MODULES . zen_get_module_directory('main_product_image.php');
 ?>
                                     <div class="active item carousel-item" data-slide-number="0"><?php echo zen_image($products_image_large); ?></div>
 <?php
@@ -63,7 +63,7 @@ if ($flag_show_product_info_additional_images != 0 && $num_images > 0) {
                                     <li class="list-inline-item active">
                                         <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
 <?php
-require DIR_WS_MODULES . zen_get_module_directory('bootstrap_main_image.php');
+require DIR_WS_MODULES . zen_get_module_directory('main_product_image.php');
 ?>
                                             <?php echo zen_image($products_image_large, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT); ?>
                                         </a>
