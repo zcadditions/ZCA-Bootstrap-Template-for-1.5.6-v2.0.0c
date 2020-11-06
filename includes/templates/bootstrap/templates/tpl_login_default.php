@@ -45,7 +45,7 @@
 <?php echo zen_image_submit(BUTTON_IMAGE_CREATE_ACCOUNT, BUTTON_CREATE_ACCOUNT_ALT, 'name="registrationButton"'); ?>
 </div>
 
-</form>
+<?php echo '</form>'; ?>
 </div>
 </div>
 <!--eof new customers card-->
@@ -74,7 +74,7 @@
 <?php echo '<a href="' . zen_href_link(FILENAME_PASSWORD_FORGOTTEN, '', 'SSL') . '">' . TEXT_PASSWORD_FORGOTTEN . '</a>'; ?>
 <?php echo zen_image_submit(BUTTON_IMAGE_LOGIN, BUTTON_LOGIN_ALT); ?>
 </div>
-</form>
+<?php echo '</form>'; ?>
 
 </div>
 </div>
@@ -124,7 +124,7 @@
 <?php echo zen_image_submit(BUTTON_IMAGE_LOGIN, BUTTON_LOGIN_ALT); ?>
 </div>
 
-</form>
+<?php echo '</form>'; ?>
   </div>
   
   
@@ -140,7 +140,7 @@
 <div id="loginDefault-btn-toolbar" class="btn-toolbar justify-content-end my-3" role="toolbar">
     <?php echo zen_image_submit(BUTTON_IMAGE_SUBMIT, BUTTON_SUBMIT_ALT); ?>
 </div>
-</form>
+<?php echo '</form>'; ?>
       </div>
 </div>
 

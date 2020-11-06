@@ -2,18 +2,16 @@
 /**
  * more_information sidebox - displays list of links to additional pages on the site.  Must separately build those pages' content.
  *
- * BOOTSTRAP v1.0.BETA
- * 
- * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * BOOTSTRAP v3.0.0
+ *
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: more_information.php 3464 2006-04-19 00:07:26Z ajeh $
+ * @version $Id: DrByte 2019 Jul 24 Modified in v1.5.7 $
  */
 
-// test if box should display
-
-  unset($more_information);
+// initialize
+$more_information = array();
 
 // test if links should display
   if (DEFINE_PAGE_2_STATUS <= 1) {
@@ -39,4 +37,3 @@
     $title_link = false;
     require($template->get_template_dir($column_box_default, DIR_WS_TEMPLATE, $current_page_base,'common') . '/' . $column_box_default);
   }
-?>

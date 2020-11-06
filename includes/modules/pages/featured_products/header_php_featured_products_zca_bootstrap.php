@@ -59,5 +59,3 @@ foreach ($define_list as $key => $value)
 {
 	if ($value > 0) $column_list[] = $key;
 }
-
-?>
