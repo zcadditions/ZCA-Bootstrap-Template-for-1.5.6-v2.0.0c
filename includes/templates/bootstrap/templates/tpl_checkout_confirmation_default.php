@@ -173,7 +173,7 @@
 <?php  } //endif flagAnyOutOfStock ?>
 
 <div class="table-responsive">
-<table id="shoppingCartDefault-cartTableDisplay" class="cartTableDisplay table table-bordered">
+<table id="shoppingCartDefault-cartTableDisplay" class="cartTableDisplay table table-bordered table-striped">
         <tr>
         <th scope="col" id="cartTableDisplay-qtyHeading"><?php echo TABLE_HEADING_QUANTITY; ?></th>
         <th scope="col" id="cartTableDisplay-productsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>

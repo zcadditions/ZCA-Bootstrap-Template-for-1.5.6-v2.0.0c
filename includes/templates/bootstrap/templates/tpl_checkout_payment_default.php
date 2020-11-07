@@ -73,7 +73,7 @@ if (!$payment_modules->in_special_checkout()) {
         $order_totals = $order_total_modules->process();
 ?>
                     <div class="table-responsive">
-                        <table id="shoppingCartDefault-cartTableDisplay" class="cartTableDisplay table table-bordered">
+                        <table id="shoppingCartDefault-cartTableDisplay" class="cartTableDisplay table table-bordered table-striped">
                             <?php $order_total_modules->output(); ?>
                         </table>
                     </div>
