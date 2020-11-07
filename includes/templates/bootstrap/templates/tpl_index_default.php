@@ -2,17 +2,16 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Main index page<br />
  * Displays greetings, welcome text (define-page content), and various centerboxes depending on switch settings in Admin<br />
  * Centerboxes are called as necessary
  *
- * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_index_default.php 3464 2006-04-19 00:07:26Z ajeh $
+ * @version $Id: DrByte 2020 Sep 10 Modified in v1.5.7a $
  */
 ?>
 <div id="indexDefault" class="centerColumn">

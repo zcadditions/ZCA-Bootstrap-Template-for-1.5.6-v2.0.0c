@@ -2,7 +2,7 @@
 /**
  * Common Template - tpl_header.php
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * this file can be copied to /templates/your_template_dir/pagename<br />
  * example: to override the privacy page<br />
@@ -12,11 +12,10 @@
  * <br />
  * $flag_disable_header = true;<br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2019 Mar 03 Modified in v1.5.6b $
+ * @version $Id: DrByte 2020 May 19 Modified in v1.5.7 $
  */
 ?>
 
@@ -85,7 +84,7 @@ if (!isset($flag_disable_header) || !$flag_disable_header) {
 
     </ul>
     
-<?php require(DIR_WS_MODULES . 'sideboxes/search_header.php'); ?>
+  <?php require(DIR_WS_MODULES . zen_get_module_sidebox_directory('search_header.php')); ?>
 
 
   </div>
@@ -153,7 +152,7 @@ echo zen_display_banner('static', $banner);
 <br />
 
 <!--bof-header ezpage links-->
-<?php if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) { ?>
+<?php if (EZPAGES_STATUS_HEADER == '1' or (EZPAGES_STATUS_HEADER == '2' && zen_is_whitelisted_admin_ip())) { ?>
 <?php require($template->get_template_dir('tpl_ezpages_bar_header.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_ezpages_bar_header.php'); ?>
 <?php } ?>
 <!--eof-header ezpage links-->

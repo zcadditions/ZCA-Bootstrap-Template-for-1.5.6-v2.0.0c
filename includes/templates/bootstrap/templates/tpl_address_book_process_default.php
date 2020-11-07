@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=address_book_process.<br />
  * Allows customer to add a new address book entry

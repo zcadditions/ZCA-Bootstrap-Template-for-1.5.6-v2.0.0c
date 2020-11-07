@@ -2,16 +2,15 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
- * Loaded automatically by index.php?main_page=checkout_shipping_address.<br />
+ * Loaded automatically by index.php?main_page=checkout_shipping_adresss.<br />
  * Allows customer to change the shipping address.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte Mar 29 13:27:11 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: Scott C Wilson 2020 Feb 15 Modified in v1.5.7 $
  */
 ?>
 <div id="checkoutShippingAddressDefault" class="centerColumn">
@@ -40,9 +39,7 @@ if ($process == false || $error == true) {
 <!--eof shipping address card-->
 <?php
     if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
-?>
-    <?php echo zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), 'post', 'class="group"'); ?>
-<?php
+      echo zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), 'post', 'class="group"');
         /**
          * require template to display new address form
          */
@@ -57,7 +54,7 @@ if ($process == false || $error == true) {
     }
     if ($addresses_count > 1) {
 ?>
-    <?php echo zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), 'post', 'class="group"'); ?>
+    <?php echo zen_draw_form('checkout_address_book', zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), 'post', 'class="group"'); ?>
 <!--bof choose from your address book entries card-->
         <div id="addressBookEntries-card" class="card mb-3">
             <h4 id="addressBookEntries-card-header" class="card-header"><?php echo TABLE_HEADING_ADDRESS_BOOK_ENTRIES; ?></h4>

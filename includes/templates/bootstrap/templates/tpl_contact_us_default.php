@@ -2,16 +2,15 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=contact_us.<br />
  * Displays contact us page form.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: rbarbour zcadditions.com Fri Feb 26 00:03:33 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: rbarbour zcadditions.com 2019 Jul 22 Modified in v1.5.7 $
  */
 ?>
 <div id="contactUsDefault" class="centerColumn">
@@ -76,11 +75,15 @@
 <?php echo zen_draw_input_field('email', ($email_address), ' size="40" id="email-address" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'email'); ?>
 <div class="p-2"></div>
 
+<label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE; ?></label>
+<?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off"', 'tel'); ?>
+<div class="p-2"></div>
+
 <label for="enquiry"><?php echo ENTRY_ENQUIRY; ?></label>
 <?php echo zen_draw_textarea_field('enquiry', '30', '7', $enquiry, 'id="enquiry" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required'); ?>
 <div class="p-2"></div>
 
-<?php echo zen_draw_input_field('should_be_empty', '', ' size="40" id="CUAS" style="visibility:hidden; display:none;" autocomplete="off"'); ?>
+<?php echo zen_draw_input_field($antiSpamFieldName, '', ' size="40" id="CUAS" style="visibility:hidden; display:none;" autocomplete="off"'); ?>
 
 <div id="contactUs-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
 <?php echo zen_image_submit(BUTTON_IMAGE_SEND, BUTTON_SEND_ALT); ?>

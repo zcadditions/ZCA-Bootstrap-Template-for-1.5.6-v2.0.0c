@@ -2,13 +2,12 @@
 /**
  * Side Box Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
- * @package templateSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_shopping_cart.php 7192 2007-10-06 13:30:46Z drbyte $
+ * @version $Id: DrByte 2020 May 20 Modified in v1.5.7 $
  */
   $content ="";
 
@@ -38,7 +37,7 @@
     $content .= '<div class="p-3"></div>';
   }
 
-  if (isset($_SESSION['customer_id'])) {
+  if (zen_is_logged_in() && !zen_in_guest_checkout()) {
     $gv_query = "select amount
                  from " . TABLE_COUPON_GV_CUSTOMER . "
                  where customer_id = '" . $_SESSION['customer_id'] . "'";
@@ -50,4 +49,3 @@
     }
   }
   $content .= '</div>';
-?>

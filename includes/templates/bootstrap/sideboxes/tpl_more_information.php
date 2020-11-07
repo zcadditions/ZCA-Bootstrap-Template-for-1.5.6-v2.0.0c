@@ -11,7 +11,7 @@
   $content = '';
   $content .= '<div class="list-group-flush sideBoxContent" id="' . str_replace('_', '-', $box_id . 'Content') . '">';
 
-  for ($i=0; $i<sizeof($more_information); $i++) {
+  for ($i=0, $j=sizeof($more_information); $i<$j; $i++) {
     $content .= $more_information[$i] . "\n" ;
   }
 

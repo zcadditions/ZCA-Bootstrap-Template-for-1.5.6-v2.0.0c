@@ -2,16 +2,15 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=account_edit.<br />
  * Displays information related to a single specific order
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2019 Mar 10 Modified in v1.5.6b $
+ * @version $Id: DrByte 2020 Oct 19 Modified in v1.5.7a $
  */
 ?>
 <div id="accountHistoryInfoDefault" class="centerColumn">
@@ -23,7 +22,7 @@
 
 
 <?php if ($current_page != FILENAME_CHECKOUT_SUCCESS) { ?>
-<h4 id="orderHistoryDetailedOrder"><?php echo HEADING_TITLE . ORDER_HEADING_DIVIDER . sprintf(HEADING_ORDER_NUMBER, $_GET['order_id']); ?></h4>
+<h4 id="orderHistoryDetailedOrder"><?php echo HEADING_TITLE . ORDER_HEADING_DIVIDER . sprintf(HEADING_ORDER_NUMBER, zen_output_string_protected($_GET['order_id'])); ?></h4>
 <?php } ?>
 
 <!-- bof order details table -->
@@ -33,7 +32,7 @@
         <th scope="col" id="orderHistory-qtyHeading"><?php echo HEADING_QUANTITY; ?></th>
         <th scope="col" id="orderHistory-productHeading"><?php echo HEADING_PRODUCTS; ?></th>
 <?php
-  if (sizeof($order->info['tax_groups']) > 1) {
+  if (!empty($order->info['tax_groups'])) {
 ?>
         <th scope="col" id="orderHistory-taxHeading"><?php echo HEADING_TAX; ?></th>
 <?php
@@ -46,7 +45,9 @@
   ?>
     <tr>
         <td class="qtyCell"><?php echo  $order->products[$i]['qty'] . QUANTITY_SUFFIX; ?></td>
-        <td class="productCell"><?php echo  $order->products[$i]['name'];
+        <td class="productCell"><?php
+
+            echo  $order->products[$i]['name'];
 
     if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
   echo '<div class="productCell-attributes">';
@@ -60,7 +61,7 @@
 ?>
         </td>
 <?php
-    if (sizeof($order->info['tax_groups']) > 1) {
+    if (!empty($order->info['tax_groups'])) {
 ?>
         <td class="taxCell"><?php echo zen_display_tax_value($order->products[$i]['tax']) . '%' ?></td>
 <?php
@@ -121,12 +122,24 @@ if (sizeof($statusArray)) {
         <th scope="col" id="orderHistoryStatusTableDisplay-commentsHeading"><?php echo TABLE_HEADING_STATUS_COMMENTS; ?></th>
        </tr>
 <?php
+  $first = true; 
   foreach ($statusArray as $statuses) {
 ?>
     <tr>
         <td class="dateCell"><?php echo zen_date_short($statuses['date_added']); ?></td>
         <td class="statusCell"><?php echo $statuses['orders_status_name']; ?></td>
-        <td class="commentsCell"><?php echo (empty($statuses['comments']) ? '&nbsp;' : nl2br(zen_output_string_protected($statuses['comments']))); ?></td>
+        <td class="commentsCell">
+<?php 
+    if (!empty($statuses['comments'])) {
+      if ($first) { 
+         echo nl2br(zen_output_string_protected($statuses['comments']));
+         $first = false; 
+      } else {
+         echo nl2br(zen_output_string($statuses['comments']));
+      }
+    }
+?>
+       </td> 
      </tr>
 <?php
   }

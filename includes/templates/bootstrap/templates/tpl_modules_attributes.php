@@ -2,13 +2,14 @@
 /**
  * Module Template
  *
+ * BOOTSTRAP v3.0.0
+ *
  * Template used to render attribute display/input fields
  *
- * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: mc12345678 Tue May 8 00:42:18 2018 -0400 Modified in v1.5.6 $
+ * @version $Id: DrByte 2019 Jul 25 Modified in v1.5.7 $
  */
 ?>
 <!--bof attributes card-->
@@ -45,7 +46,7 @@
 
 <div class="row text-center">
 <?php
-	if (isset($options_attributes_image[$i]) && $options_attributes_image[$i] != '') {
+if (!empty($options_attributes_image[$i])) {
 ?>
 <?php echo $options_attributes_image[$i]; ?>
 <?php
@@ -62,14 +63,14 @@
 
 
 <?php
-  if ($show_onetime_charges_description == 'true') {
+  if ($show_onetime_charges_description) {
 ?>
     <div><?php echo TEXT_ONETIME_CHARGE_SYMBOL . TEXT_ONETIME_CHARGE_DESCRIPTION; ?></div>
 <?php } ?>
 
 
 <?php
-  if ($show_attributes_qty_prices_description == 'true') {
+  if ($show_attributes_qty_prices_description) {
 ?>
     <div><?php echo zen_image(DIR_WS_TEMPLATE_ICONS . 'icon_status_green.gif', TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK, 10, 10) . '&nbsp;' . '<a data-toggle="modal" href="#attributesQtyPricesModal">' . TEXT_ATTRIBUTES_QTY_PRICE_HELP_LINK . '</a>'; ?></div>
     

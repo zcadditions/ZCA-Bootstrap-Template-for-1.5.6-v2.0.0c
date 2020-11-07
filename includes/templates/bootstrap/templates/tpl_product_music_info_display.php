@@ -2,14 +2,15 @@
 /**
  * Page Template
  *
+ * BOOTSTRAP v3.0.0
+ *
  * Loaded automatically by index.php?main_page=product_music_info.<br />
  * Displays details of a music product
  *
- * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: mc12345678 Thu Sep 21 10:37:10 2017 -0400 Modified in v1.5.6 $
+ * @version $Id: DrByte 2020 May 16 Modified in v1.5.7 $
  */
 ?>
 
@@ -204,7 +205,7 @@ if ($flag_show_ask_a_question) {
 
 <?php
 /**
- * display the product atributes
+ * display the product attributes
  */
   require($template->get_template_dir('/tpl_modules_attributes.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_attributes.php'); ?>
 </div>
@@ -274,7 +275,7 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
             } else {
               // show the quantity box
     $the_button = '<div class="input-group mb-3">';
-    $the_button .= '<input class="form-control" type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" />';
+    $the_button .= '<input class="form-control" type="text" name="cart_quantity" value="' . $products_get_buy_now_qty . '" aria-label="' . ARIA_QTY_ADD_TO_CART . '">';
     $the_button .= '<div class="input-group-append">';
 
     

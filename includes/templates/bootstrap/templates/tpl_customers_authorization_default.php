@@ -2,23 +2,22 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=customers_authorization.<br />
  * Displays information if customer authorization checks fail.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_customers_authorization_default.php 2746 2005-12-31 05:49:53Z ajeh $
+ * @version $Id: Scott C Wilson 2019 Dec 16 Modified in v1.5.7 $
  */
 ?>
 <div id="customersAuthorizationDefault" class="centerColumn">
 
 <h1 id="customersAuthorizationDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
 
-<div id="customersAuthorizationDefault-image"><?php echo zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CUSTOMERS_AUTHORIZATION, OTHER_CUSTOMERS_AUTHORIZATION_ALT); ?></div>
+<div id="customersAuthorizationDefault-image"><?php echo zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CUSTOMERS_AUTHORIZATION, OTHER_IMAGE_CUSTOMERS_AUTHORIZATION_ALT); ?></div>
 
 <div id="customersAuthorizationDefault-content" class="content"><?php echo CUSTOMERS_AUTHORIZATION_TEXT_INFORMATION; ?></div>
 

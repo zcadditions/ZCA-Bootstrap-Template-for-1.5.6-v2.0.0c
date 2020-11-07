@@ -2,7 +2,7 @@
 /**
  * tpl_modules_checkout_address_book.php
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * @package templateSystem
  * @copyright Copyright 2003-2009 Zen Cart Development Team

@@ -2,7 +2,7 @@
 /**
  * Common Template - tpl_footer.php
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * this file can be copied to /templates/your_template_dir/pagename<br />
  * example: to override the privacy page<br />
@@ -12,11 +12,10 @@
  * <br />
  * $flag_disable_footer = true;<br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Fri Jan 8 17:06:29 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: DrByte 2020 May 19 Modified in v1.5.7 $
  */
 require(DIR_WS_MODULES . zen_get_module_directory('footer.php'));
 ?>
@@ -28,7 +27,7 @@ if (!isset($flag_disable_footer) || !$flag_disable_footer) {
 <div id="footerWrapper">
 
 <!--bof-navigation display -->
-<?php if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) { ?>
+<?php if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' && zen_is_whitelisted_admin_ip())) { ?>
 <?php require($template->get_template_dir('tpl_ezpages_bar_footer.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_ezpages_bar_footer.php'); ?>
 <?php } ?>
 <!--eof-navigation display -->
@@ -77,5 +76,5 @@ echo zen_display_banner('static', $banner);
 ?>
 
 <?php if (false || (isset($showValidatorLink) && $showValidatorLink == true)) { ?>
-<a href="https://validator.w3.org/check?uri=<?php echo urlencode('http' . ($request_type == 'SSL' ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . (strstr($_SERVER['REQUEST_URI'], '?') ? '&' : '?') . zen_session_name() . '=' . zen_session_id()); ?>" target="_blank">VALIDATOR</a>
+<a href="https://validator.w3.org/check?uri=<?php echo urlencode('http' . ($request_type == 'SSL' ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . (strstr($_SERVER['REQUEST_URI'], '?') ? '&' : '?') . zen_session_name() . '=' . zen_session_id()); ?>" rel="noopener" target="_blank">VALIDATOR</a>
 <?php } ?>

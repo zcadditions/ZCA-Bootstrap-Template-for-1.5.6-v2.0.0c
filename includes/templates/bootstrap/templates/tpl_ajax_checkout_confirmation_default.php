@@ -2,6 +2,8 @@
 /**
  * Page Template
  *
+ * BOOTSTRAP v3.0.0
+ *
  * Loaded automatically by index.php?main_page=checkout_confirmation.<br />
  * Displays final checkout details, cart, payment and shipping info details.
  *
@@ -198,7 +200,11 @@
     echo '<ul>';
       for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
 ?>
-      <li><?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])); ?></li>
+      <li>
+          <?php
+          echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
+          ?>
+      </li>
 <?php
       } // end loop
       echo '</ul>';

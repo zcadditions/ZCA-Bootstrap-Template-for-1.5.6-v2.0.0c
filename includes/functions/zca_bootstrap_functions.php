@@ -1,7 +1,10 @@
 <?php
 /**
  * @author ZCAdditions.com, ZCA Bootstrap Template
- */
+ *
+ * BOOTSTRAP v3.0.0
+ *
+*/
  
 // -----
 // This function returns a boolean value indicating whether (true) or not (false)

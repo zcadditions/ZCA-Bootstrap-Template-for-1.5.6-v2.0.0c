@@ -39,6 +39,10 @@
  * @version $Id: DrByte 2020 Aug 10 Modified in v1.5.7a $
  */
 
+if (!defined('IS_ADMIN_FLAG')) {
+    die('Illegal Access');
+}
+
 /** bof DESIGNER TESTING ONLY: */
 // $messageStack->add('header', 'this is a sample error message', 'error');
 // $messageStack->add('header', 'this is a sample caution message', 'caution');
@@ -55,7 +59,7 @@
     $flag_disable_right = true;
   }
 
-// ZCA BOOTSTRAP TEMPLATE (BETA)
+// ZCA BOOTSTRAP TEMPLATE
 if (!empty($flag_disable_right) or COLUMN_RIGHT_STATUS == '0' or SET_COLUMN_RIGHT_LAYOUT == '0') {
   $box_width_right = '0';
 } else {
@@ -73,7 +77,7 @@ if (!empty($flag_disable_left) or COLUMN_LEFT_STATUS == '0' or SET_COLUMN_LEFT_L
 $side_columns_total = $box_width_left + $box_width_right;
 $center_column = '12'; // This value should not be altered
 $center_column_width = $center_column - $side_columns_total;
-// ZCAdditions.com, Responsive Template Default (EOF-addition 1 of 1)
+
 
   $header_template = 'tpl_header.php';
   $footer_template = 'tpl_footer.php';
@@ -178,6 +182,7 @@ echo zen_display_banner('static', $banner);
 <!-- bof upload alerts -->
 <?php if ($messageStack->size('upload') > 0) echo $messageStack->output('upload'); ?>
 <!-- eof upload alerts -->
+<?php if ($messageStack->size('main_content') > 0) echo $messageStack->output('main_content'); ?>
 
 <?php
  /**
@@ -209,7 +214,7 @@ echo zen_display_banner('static', $banner);
     </div>
 <?php
 //if (COLUMN_RIGHT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == '') || (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_COLUMN_RIGHT_OFF == 'true' && $_SESSION['customers_authorization'] != 0)) {
-if (COLUMN_RIGHT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and $_SESSION['customer_id'] == '') || (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_COLUMN_RIGHT_OFF == 'true' and ($_SESSION['customers_authorization'] != 0 or $_SESSION['customer_id'] == ''))) {
+if (COLUMN_RIGHT_STATUS == 0 || (CUSTOMERS_APPROVAL == '1' and !zen_is_logged_in()) || (CUSTOMERS_APPROVAL_AUTHORIZATION == 1 && CUSTOMERS_AUTHORIZATION_COLUMN_RIGHT_OFF == 'true' and ($_SESSION['customers_authorization'] != 0 or !zen_is_logged_in()))) {
   // global disable of column_right
   $flag_disable_right = true;
 }
@@ -250,7 +255,7 @@ if (!isset($flag_disable_right) || !$flag_disable_right) {
   if (defined('DISPLAY_PAGE_PARSE_TIME') && DISPLAY_PAGE_PARSE_TIME == 'true') {
 ?>
 <div class="text-center">
-Parse Time: <?php echo $parse_time; ?> - Number of Queries: <?php echo $db->queryCount(); ?> - Query Time: <?php echo $db->queryTime(); ?>
+Parse Time: <?php echo isset($parse_time) ? $parse_time : 'n/a'; ?> - Number of Queries: <?php echo $db->queryCount(); ?> - Query Time: <?php echo $db->queryTime(); ?>
 </div>
 <?php
   }
