@@ -1,4 +1,7 @@
 <?php
+/*
+ * BOOTSTRAP v3.0.0
+ */
 // -----
 // Part of the Bootstrap template, defining commonly-used phrases and phrases unique to the bootstrap template.
 //
