@@ -2,20 +2,19 @@
 /**
  * also_purchased_products module
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
- * @package modules
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Thu Aug 13 14:06:53 2015 -0400 Modified in v1.5.5 $
+ * @version $Id: Scott C Wilson 2020 Aug 07 Modified in v1.5.7a $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
 if (isset($_GET['products_id']) && SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PRODUCTS > 0 && MIN_DISPLAY_ALSO_PURCHASED > 0) {
 
-  $also_purchased_products = $db->ExecuteRandomMulti(sprintf(SQL_ALSO_PURCHASED, (int)$_GET['products_id'], (int)$_GET['products_id']), MAX_DISPLAY_ALSO_PURCHASED);
+  $also_purchased_products = $db->ExecuteRandomMulti(sprintf(SQL_ALSO_PURCHASED, (int)$_GET['products_id'], (int)$_GET['products_id']), (int)MAX_DISPLAY_ALSO_PURCHASED);
 
   $num_products_ordered = $also_purchased_products->RecordCount();
 
@@ -48,7 +47,7 @@ $also_purchased_products_name = '<div class="centerBoxContentsItem-name text-cen
 /** eof products name */
 
 /** bof products image */
-if ($also_purchased_products->fields['products_image'] == '' and PRODUCTS_IMAGE_NO_IMAGE_STATUS == 0) {
+if (empty($also_purchased_products->fields['products_image']) && (int)PRODUCTS_IMAGE_NO_IMAGE_STATUS === 0) {
 $also_purchased_products_image = '';
 } else {
 $also_purchased_products_image = '<div class="centerBoxContentsItem-image text-center"><a href="' . zen_href_link(zen_get_info_page($also_purchased_products->fields['products_id']), 'cPath=' . $productsInCategory[$also_purchased_products->fields['products_id']] . '&products_id=' . $also_purchased_products->fields['products_id']) . '">' . zen_image(DIR_WS_IMAGES . $also_purchased_products->fields['products_image'], $also_purchased_products->fields['products_name'], SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a></div>';

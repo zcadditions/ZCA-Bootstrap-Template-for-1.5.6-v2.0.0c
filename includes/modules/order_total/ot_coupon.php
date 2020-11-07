@@ -152,8 +152,8 @@ class ot_coupon {
                 $couponLink = '<a data-toggle="modal" data-id="'.$_SESSION['cc_id'].'" href="#couponHelpModal">' . $coupon_code . '</a>';
             }
 //-eof-zca_bootstrap  *** 1 of 1 ***
+
         }
-        
         // note the placement of the redeem code can be moved within the array on the instructions or the title
         $selection = array(
             'id' => $this->code,
