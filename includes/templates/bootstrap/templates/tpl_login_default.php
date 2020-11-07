@@ -97,7 +97,7 @@
 ?>
 
 
-<nav>
+<nav class="pt-3">
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-login-tab" data-toggle="tab" href="#nav-login" role="tab" aria-controls="nav-home" aria-selected="true"><?php echo HEADING_RETURNING_CUSTOMER; ?></a>
     <a class="nav-item nav-link" id="nav-create-tab" data-toggle="tab" href="#nav-create" role="tab" aria-controls="nav-profile" aria-selected="false"><?php echo HEADING_NEW_CUSTOMER; ?></a>
