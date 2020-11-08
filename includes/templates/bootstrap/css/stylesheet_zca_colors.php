@@ -213,6 +213,15 @@ a.page-link:hover {
 	background-color: <?php echo ZCA_CENTERBOX_CARD_BACKGROUND_COLOR_HOVER; ?>;
 }
 
+.centerBoxContentsListing:hover {
+    background-color: <?php echo ZCA_CENTERBOX_CARD_BACKGROUND_COLOR_HOVER; ?>;
+}
+
+/* product reviews */
+.productReviewCard:hover {
+    background-color: <?php echo ZCA_CENTERBOX_CARD_BACKGROUND_COLOR_HOVER; ?>;
+}
+
 	/* product prices */	
 .productBasePrice {
 	color: <?php echo ZCA_BODY_PRODUCTS_BASE_COLOR; ?>;

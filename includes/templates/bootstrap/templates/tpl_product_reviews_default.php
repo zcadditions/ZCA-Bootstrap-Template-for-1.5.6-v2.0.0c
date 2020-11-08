@@ -55,7 +55,7 @@
 <!--eof products price card-->
 
 <!--bof product links card-->      
-<div id="productLinks-card" class="card mb-3">
+<div id="productLinks-card" class="productLinksCard card mb-3">
 <div id="productLinks-card-body" class="card-body">
 <?php
         // more info in place of buy now
@@ -102,7 +102,7 @@
 ?>
 
 <!--bof products review card-->
-<div id="productsReview<?php echo $reviews['id']; ?>-card" class="card mb-3">
+<div id="productsReview<?php echo $reviews['id']; ?>-card" class="productReviewCard card mb-3">
   <div id="productsReview<?php echo $reviews['id']; ?>-card-header" class="card-header">
 <?php echo sprintf(TEXT_REVIEW_DATE_ADDED, zen_date_short($reviews['dateAdded'])); ?>
   </div>

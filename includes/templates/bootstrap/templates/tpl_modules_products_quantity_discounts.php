@@ -22,7 +22,7 @@
   <div id="productsQuantityDiscounts-card-header" class="card-body">
       
 <div class="table-responsive">
-  <table id="productsQuantityDiscounts-table" class="table table-bordered">
+  <table id="productsQuantityDiscounts-table" class="table table-bordered table-striped">
     <tr>
       <td colspan="1" class="text-center">
       <?php echo TEXT_HEADER_DISCOUNTS_OFF; ?>
@@ -47,7 +47,7 @@
   <div id="productsQuantityDiscounts-card-header" class="card-body">
       
 <div class="table-responsive">
-  <table id="productsQuantityDiscounts-table" class="table table-bordered">
+  <table id="productsQuantityDiscounts-table" class="table table-bordered table-striped">
     <tr>
       <td colspan="<?php echo $columnCount+1; ?>" class="text-center">
 <?php

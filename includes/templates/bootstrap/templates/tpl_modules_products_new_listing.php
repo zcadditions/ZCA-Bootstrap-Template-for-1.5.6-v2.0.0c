@@ -15,7 +15,7 @@
 ?>
 
 <div class="table-responsive">
-<table id="productsNewListing-productsTableDisplay" class="table table-bordered">
+<table id="productsNewListing-productsTableDisplay" class="table table-bordered table-striped">
 
 <?php
   $group_id = zen_get_configuration_key_value('PRODUCT_NEW_LIST_GROUP_ID');

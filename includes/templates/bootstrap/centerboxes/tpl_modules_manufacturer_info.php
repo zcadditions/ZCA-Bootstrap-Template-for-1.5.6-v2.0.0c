@@ -12,7 +12,7 @@
  */
       if (zen_not_null($manufacturer_info_sidebox->fields['manufacturers_image']));
       
-  echo '<div id="manufacturerInfo-centerBoxContents" class="centerBoxContents card mb-3 text-center">';
+  echo '<div id="manufacturerInfo-centerBoxContents" class="card mb-3 text-center">';
   echo '<h4 id="manufacturerInfo-centerBoxHeading" class="centerBoxHeading card-header">' . BOX_HEADING_MANUFACTURER_INFO . '</h4>';
   echo '<div id="manufacturerInfo-card-body" class="card-body p-3 text-center">';
   

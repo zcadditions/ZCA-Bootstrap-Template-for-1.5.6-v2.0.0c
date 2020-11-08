@@ -13,12 +13,12 @@
 ?>
 <!-- bof: upcoming_products -->
 
-<div id="upcomingProducts-centerBoxContents" class="centerBoxContents card mb-3 text-center">
+<div id="upcomingProducts-centerBoxContents" class="card mb-3 text-center">
 <h4 id="upcomingProducts-centerBoxHeading" class="centerBoxHeading card-header"><?php echo TABLE_HEADING_UPCOMING_PRODUCTS; ?></h4>
 <div id="upcomingProducts-card-body" class="card-body p-3 text-center">
 
    <div class="table-responsive">
-<table id="upcomingProducts-table" class="table table-striped">
+<table id="upcomingProducts-table" class="table table-striped table-hover">
 <caption><?php echo CAPTION_UPCOMING_PRODUCTS; ?></caption>
   <tr>
     <th scope="col" id="upcomingProducts-tableProductHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>

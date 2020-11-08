@@ -46,7 +46,7 @@ if ($numberOfDownloads < 1) {
 <div id="downloads-card-body" class="card-body p-3">
 
 <div class="table-responsive">
-<table id="downloads-downloadTableDisplay" class="table table-bordered">
+<table id="downloads-downloadTableDisplay" class="table table-bordered table-striped">
 
   <tr>
       <th scope="col" id="downloadTableDisplay-productsHeading"><?php echo TABLE_HEADING_PRODUCT_NAME; ?></th>
