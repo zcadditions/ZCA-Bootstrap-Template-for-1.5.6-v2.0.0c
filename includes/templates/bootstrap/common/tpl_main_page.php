@@ -55,9 +55,12 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 
 // the following IF statement can be duplicated/modified as needed to set additional flags
-  if (in_array($current_page_base,explode(",",'product_info,document_general_info,document_product_info,product_music_info,product_free_shipping_info,shopping_cart,checkout_shipping,checkout_payment,checkout_confirmation,checkout_success')) ) {
+if (in_array($current_page_base, explode(',','product_info,document_general_info,document_product_info,product_music_info,product_free_shipping_info,shopping_cart,checkout_shipping,checkout_shipping_address,checkout_payment,checkout_payment_address,checkout_confirmation,checkout_success'))) {
     $flag_disable_right = true;
-  }
+}
+if (in_array($current_page_base, explode(',', 'checkout_shipping,checkout_shipping_address,checkout_payment,checkout_payment_address,checkout_confirmation'))) {
+    $flag_disable_left = true;
+}
 
 // ZCA BOOTSTRAP TEMPLATE
 if (!empty($flag_disable_right) or COLUMN_RIGHT_STATUS == '0' or SET_COLUMN_RIGHT_LAYOUT == '0') {
