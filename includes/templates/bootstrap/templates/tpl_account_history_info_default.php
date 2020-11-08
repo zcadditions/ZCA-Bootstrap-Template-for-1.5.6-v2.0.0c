@@ -27,10 +27,18 @@
 
 <!-- bof order details table -->
 <div class="table-responsive">
+<?php
+// -----
+// Determine if there are 'tax_group's associated with the order.  If not, display
+// the 'Products' column in two columns to ensure alignment of the order-totals' values.
+//
+$tax_column_present = (!empty($order->info['tax_groups']));
+$products_colspan = ($tax_column_present) ? '' : ' colspan="2"';
+?>
 <table id="orderHistory-orderTableDisplay" class="orderTableDisplay table table-bordered table-striped">
     <tr id="orderHistory-tableHeading" class="tableHeading">
         <th scope="col" id="orderHistory-qtyHeading"><?php echo HEADING_QUANTITY; ?></th>
-        <th scope="col" id="orderHistory-productHeading"><?php echo HEADING_PRODUCTS; ?></th>
+        <th scope="col" id="orderHistory-productHeading"<?php echo $products_colspan; ?>><?php echo HEADING_PRODUCTS; ?></th>
 <?php
   if (!empty($order->info['tax_groups'])) {
 ?>
@@ -45,7 +53,7 @@
   ?>
     <tr>
         <td class="qtyCell"><?php echo  $order->products[$i]['qty'] . QUANTITY_SUFFIX; ?></td>
-        <td class="productCell"><?php
+        <td class="productCell"<?php echo $products_colspan; ?>><?php
 
             echo  $order->products[$i]['name'];
 
@@ -61,7 +69,7 @@
 ?>
         </td>
 <?php
-    if (!empty($order->info['tax_groups'])) {
+    if ($tax_column_present) {
 ?>
         <td class="taxCell"><?php echo zen_display_tax_value($order->products[$i]['tax']) . '%' ?></td>
 <?php
@@ -83,8 +91,8 @@
   for ($i = 0, $n = count($order->totals); $i < $n; $i++) {
 ?>
 <tr>
-    <td colspan="2" class="ot-title bg-white"><?php echo $order->totals[$i]['title']; ?></td>
-    <td class="ot-text bg-white"><?php echo $order->totals[$i]['text']; ?></td>
+    <td colspan="3" class="ot-title"><?php echo $order->totals[$i]['title']; ?></td>
+    <td class="ot-text"><?php echo $order->totals[$i]['text']; ?></td>
 </tr>
 <?php
   }
