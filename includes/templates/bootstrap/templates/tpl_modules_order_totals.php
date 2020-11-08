@@ -17,7 +17,7 @@
 for ($i = 0; $i < $size; $i++) { 
 ?>
 <tr id="<?php echo str_replace('_', '', $GLOBALS[$class]->code); ?>">
-    <td colspan="2" class="ot-title"><?php echo $GLOBALS[$class]->output[$i]['title']; ?></td>
+    <td colspan="3" class="ot-title"><?php echo $GLOBALS[$class]->output[$i]['title']; ?></td>
     <td class="ot-text"><?php echo $GLOBALS[$class]->output[$i]['text']; ?></td> 
 </tr>
 <?php 

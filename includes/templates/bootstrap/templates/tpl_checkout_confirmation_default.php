@@ -173,13 +173,21 @@
 <?php  } //endif flagAnyOutOfStock ?>
 
 <div class="table-responsive">
+<?php
+// -----
+// Determine if more than one 'tax_group' is associated with the order.  If not, display
+// the 'Products' column in two columns to ensure alignment of the order-totals' values.
+//
+$tax_column_present = (count($order->info['tax_groups']) > 1);
+$products_colspan = ($tax_column_present) ? '' : ' colspan="2"';
+?>
 <table id="shoppingCartDefault-cartTableDisplay" class="cartTableDisplay table table-bordered table-striped">
         <tr>
         <th scope="col" id="cartTableDisplay-qtyHeading"><?php echo TABLE_HEADING_QUANTITY; ?></th>
-        <th scope="col" id="cartTableDisplay-productsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
+        <th scope="col" id="cartTableDisplay-productsHeading"<?php echo $products_colspan; ?>><?php echo TABLE_HEADING_PRODUCTS; ?></th>
 <?php
   // If there are tax groups, display the tax columns for price breakdown
-  if (sizeof($order->info['tax_groups']) > 1) {
+  if ($tax_column_present) {
 ?>
           <th scope="col" id="cartTableDisplay-taxHeading"><?php echo HEADING_TAX; ?></th>
 <?php
@@ -191,7 +199,7 @@
 <?php for ($i=0, $n=sizeof($order->products); $i<$n; $i++) { ?>
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="qtyCell"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
-          <td class="productsCell"><?php echo $order->products[$i]['name']; ?>
+          <td class="productsCell"<?php echo $products_colspan; ?>><?php echo $order->products[$i]['name']; ?>
           <?php  if (!empty($stock_check[$i])) echo $stock_check[$i]; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
@@ -214,7 +222,7 @@
         </td>
 
 <?php // display tax info if exists ?>
-<?php if (sizeof($order->info['tax_groups']) > 1)  { ?>
+<?php if ($tax_column_present)  { ?>
         <td class="taxCell">
           <?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
 <?php    }  // endif tax info display  ?>
