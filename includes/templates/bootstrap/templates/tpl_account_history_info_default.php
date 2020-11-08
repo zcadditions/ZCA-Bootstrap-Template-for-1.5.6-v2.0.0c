@@ -40,7 +40,7 @@ $products_colspan = ($tax_column_present) ? '' : ' colspan="2"';
         <th scope="col" id="orderHistory-qtyHeading"><?php echo HEADING_QUANTITY; ?></th>
         <th scope="col" id="orderHistory-productHeading"<?php echo $products_colspan; ?>><?php echo HEADING_PRODUCTS; ?></th>
 <?php
-  if (!empty($order->info['tax_groups'])) {
+  if ($tax_column_present) {
 ?>
         <th scope="col" id="orderHistory-taxHeading"><?php echo HEADING_TAX; ?></th>
 <?php
