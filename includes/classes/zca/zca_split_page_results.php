@@ -108,7 +108,7 @@ class zca_splitPageResults extends base {
     global $request_type;
     if ($max_page_links == '') $max_page_links = 1;
 
-    if ($this->number_of_pages <= 1) return;
+    if ($this->number_of_pages <= 1) return '&nbsp;';
 
     $display_links_string = $ul_elements = '';
     $counter_actual_page_links = 0;
@@ -205,7 +205,7 @@ class zca_splitPageResults extends base {
 
     if ($to_num <= 1) {
       // don't show count when 1
-      return '';
+      return '&nbsp;';
     } else {
       return sprintf($text_output, $from_num, $to_num, $this->number_of_rows);
     }
