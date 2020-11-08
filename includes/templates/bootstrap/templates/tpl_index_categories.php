@@ -2,17 +2,16 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded by main_page=index<br />
  * Displays category/sub-category listing<br />
  * Uses tpl_index_category_row.php to render individual items
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Sun Oct 18 01:26:46 2015 -0400 Modified in v1.5.5 $
+ * @version $Id: DrByte 2020 Sep 10 Modified in v1.5.7a $
  */
 ?>
 <div id="indexCategories" class="centerColumn">
@@ -30,7 +29,8 @@
  * require the html_define for the index/categories page
  */
   include($define_page);
-?></div>
+?>
+</div>
 <?php } ?>
 
 <?php } else { ?>
@@ -107,7 +107,8 @@ while (!$show_display_category->EOF) {
 <?php } ?>
 
 <?php if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_CATEGORY_UPCOMING') { ?>
-<?php include(DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS)); ?><?php } ?>
+<?php include(DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS)); ?>
+<?php } ?>
 <?php
   $show_display_category->MoveNext();
 } // !EOF

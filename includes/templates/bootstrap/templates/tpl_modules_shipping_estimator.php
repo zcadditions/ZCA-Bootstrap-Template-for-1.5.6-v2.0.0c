@@ -2,11 +2,12 @@
 /**
  * Module Template - for shipping-estimator display
  *
- * @package templateSystem
- * @copyright Copyright 2003-2017 Zen Cart Development Team
+ * BOOTSTRAP v3.0.0
+ *
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: mc12345678 2019 Apr 30 Modified in v1.5.6b $
+ * @version $Id: Steve 2020 May 07 Modified in v1.5.7 $
  */
 if (empty($extra)) {
     $extra = '';
@@ -16,10 +17,12 @@ if (empty($extra)) {
 ?>
 <div id="shippingEstimatorContent">
     <?php echo zen_draw_form('estimator', zen_href_link($show_in . '#view', '', $request_type), 'post'); ?>
-    <?php echo zen_draw_hidden_field('scid', $selected_shipping['id']); ?>
+    <?php if (is_array($selected_shipping)) {
+        zen_draw_hidden_field('scid', $selected_shipping['id']);
+    } ?>
     <?php echo zen_draw_hidden_field('action', 'submit'); ?>
 <?php
-if ($_SESSION['cart']->count_contents() != 0) {
+if ($_SESSION['cart']->count_contents()) {
     if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 ?>
     <h2><?php echo CART_SHIPPING_OPTIONS; ?></h2>
@@ -133,7 +136,7 @@ if ($_SESSION['cart']->count_contents() != 0) {
                     }
                 }
             } else {
-                // shipping method with sub methods (e.g. UPS, USPS)
+                // shipping method with sub methods (e.g. UPS, USPS, multipickup, etc)
                 for ($j = 0, $n2 = (empty($quotes[$i]['methods']) ? 0 : count($quotes[$i]['methods'])); $j < $n2; $j++) {
                     $thisquoteid = '';
                     if (isset($quotes[$i]['id']) && isset($quotes[$i]['methods'][$j]['id'])) {

@@ -2,14 +2,15 @@
 /**
  * Page Template
  *
+ * BOOTSTRAP v3.0.0
+ *
  * Loaded automatically by index.php?main_page=shopping_cart.<br />
  * Displays shopping-cart contents
  *
- * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Sun Jan 7 21:28:50 2018 -0500 Modified in v1.5.6 $
+ * @version $Id: DrByte 2020 Oct 19 Modified in v1.5.7a $
  */
 ?>
 <div id="shoppingCartDefault" class="centerColumn">
@@ -37,7 +38,12 @@
 
 <?php echo zen_draw_form('cart_quantity', zen_href_link(FILENAME_SHOPPING_CART, 'action=update_product', $request_type), 'post', 'id="shoppingCartForm"'); ?> 
     
-<div id="shoppingCartDefault-content" class="content"><?php echo TEXT_INFORMATION; ?></div>
+<div id="shoppingCartDefault-content" class="content"><?php
+/**
+ * require the html_define for the shopping_cart page
+ */
+    require($define_page);
+?></div>
 
 <?php if (!empty($totalsDisplay)) { ?>
 <div id="shoppingCartDefault-cartTotalsDisplay" class="cartTotalsDisplay text-center font-weight-bold p-3"><?php echo $totalsDisplay; ?></div>
@@ -92,11 +98,14 @@ if ($product['flagShowFixedQuantity']) {
   if (isset($product['attributes']) && is_array($product['attributes'])) {
   echo '<div class="productsCell-attributes">';
   echo '<ul>';
-    reset($product['attributes']);
     foreach ($product['attributes'] as $option => $value) {
 ?>
 
-<li><?php echo $value['products_options_name'] . TEXT_OPTION_DIVIDER . nl2br($value['products_options_values_name']); ?></li>
+<li>
+    <?php
+    echo $value['products_options_name'] . TEXT_OPTION_DIVIDER . nl2br($value['products_options_values_name']);
+    ?>
+</li>
 
 <?php
     }
@@ -115,7 +124,7 @@ if ($product['flagShowFixedQuantity']) {
 <?php
   }
   if ($product['checkBoxDelete'] ) {
-    echo zen_draw_checkbox_field('cart_delete[]', $product['id']);
+    echo zen_draw_checkbox_field('cart_delete[]', $product['id'], false, 'aria-label="' . ARIA_DELETE_ITEM_FROM_CART . '"');
   }
 ?>
 </td>

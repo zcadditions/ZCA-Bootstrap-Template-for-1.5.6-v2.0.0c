@@ -2,16 +2,17 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
- * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_product_reviews_info_default.php 2993 2006-02-08 07:14:52Z birdbrain $
+ * @version $Id: DrByte 2020 Jul 29 Modified in v1.5.7a $
  */
 ?>
 <div id="productReviewsDefault" class="centerColumn">
+
+<?php if ($messageStack->size('product_info') > 0) echo $messageStack->output('product_info'); ?>
 
 <!--bof Product Name-->
 <h1 id="productReviewsDefault-productName" class="productName"><?php echo $products_name; ?></h1>
@@ -110,7 +111,7 @@
 <h3 class="rating"><?php echo zen_image(DIR_WS_TEMPLATE_IMAGES . 'stars_' . $reviews['reviewsRating'] . '.gif', sprintf(TEXT_OF_5_STARS, $reviews['reviewsRating'])), sprintf(TEXT_OF_5_STARS, $reviews['reviewsRating']); ?></h3>     
   </div>      
     <blockquote class="blockquote mb-3">
-<div id="productsReview<?php echo $reviews['id']; ?>-content" class="content"><?php echo zen_break_string(zen_output_string_protected(stripslashes($reviews['reviewsText'])), 60, '-<br />') . ((strlen($reviews['reviewsText']) >= 100) ? '...' : ''); ?></div>
+<div id="productsReview<?php echo $reviews['id']; ?>-content" class="content"><?php echo zen_trunc_string(zen_output_string_protected(stripslashes($reviews['reviewsText'])), MAX_PREVIEW); ?></div>
       <footer class="blockquote-footer"><cite title="Source Title"><?php echo sprintf(TEXT_REVIEW_BY, zen_output_string_protected($reviews['customersName'])); ?></cite></footer>
     </blockquote>
 

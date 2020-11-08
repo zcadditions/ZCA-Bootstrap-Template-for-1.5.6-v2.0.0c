@@ -2,16 +2,15 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=checkout_confirmation.<br />
  * Displays final checkout details, cart, payment and shipping info details.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Fri Jan 8 00:33:36 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: DrByte 2020 Oct 19 Modified in v1.5.7a $
  */
 ?>
 <div id="checkoutConfirmationDefault" class="centerColumn">
@@ -193,7 +192,7 @@
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="qtyCell"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
           <td class="productsCell"><?php echo $order->products[$i]['name']; ?>
-          <?php  echo $stock_check[$i]; ?>
+          <?php  if (!empty($stock_check[$i])) echo $stock_check[$i]; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
     if (isset($order->products[$i]['attributes']) && sizeof($order->products[$i]['attributes']) > 0 ) {
@@ -201,7 +200,11 @@
     echo '<ul>';
       for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
 ?>
-      <li><?php echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])); ?></li>
+      <li>
+          <?php
+          echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
+          ?>
+      </li>
 <?php
       } // end loop
       echo '</ul>';

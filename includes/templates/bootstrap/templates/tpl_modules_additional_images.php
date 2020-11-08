@@ -3,7 +3,7 @@
  * Module Template:
  * Loaded by product-type template to display additional product images.
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * @package templateSystem
  * @copyright Copyright 2003-2005 Zen Cart Development Team

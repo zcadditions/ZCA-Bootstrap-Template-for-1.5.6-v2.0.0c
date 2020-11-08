@@ -2,21 +2,20 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=create_account.<br />
  * Displays Create Account form.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_create_account_default.php 5523 2007-01-03 09:37:48Z drbyte $
+ * @version $Id: Steve 2020 Jan 14 Modified in v1.5.7 $
  */
 ?>
 <div id="createAccountDefault" class="centerColumn">
 
-<?php echo zen_draw_form('create_account', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'), 'post', 'onsubmit="return check_form(create_account);"') . zen_draw_hidden_field('action', 'process') . zen_draw_hidden_field('email_pref_html', 'email_format'); ?>
+    <?php echo zen_draw_form('createAccountForm', zen_href_link(FILENAME_CREATE_ACCOUNT, '', 'SSL'), 'post', 'onsubmit="return check_form(createAccountForm);" id="createAccountForm"') . zen_draw_hidden_field('action', 'process') . zen_draw_hidden_field('email_pref_html', 'email_format'); ?>
 
 <h1 id="createAccountDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
 
@@ -37,5 +36,5 @@
 </div>
     </div>
 <!--eof your personal details card-->
-</form>
+    <?php echo '</form>'; ?>
 </div>

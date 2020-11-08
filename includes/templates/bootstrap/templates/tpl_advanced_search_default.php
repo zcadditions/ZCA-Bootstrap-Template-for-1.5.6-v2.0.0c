@@ -1,17 +1,16 @@
 <?php
 /**
  * Page Template
- * 
- * BOOTSTRAP v1.0.BETA
+ *
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=advanced_search.<br />
  * Displays options fields upon which a product search will be run
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Fri Feb 26 00:22:54 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: DrByte 2020 May 16 Modified in v1.5.7 $
  */
 ?>
 <div id="advancedSearchDefault" class="centerColumn">
@@ -38,7 +37,7 @@
 <?php echo HEADING_SEARCH_CRITERIA; ?>
   </h4>
   <div id="searchTerms-card-body" class="card-body">
-<?php echo zen_draw_input_field('keyword', $sData['keyword'], 'placeholder="' . KEYWORD_FORMAT_STRING . '" autofocus onfocus="RemoveFormatString(this, \'' . KEYWORD_FORMAT_STRING . '\')"'); ?>
+<?php echo zen_draw_input_field('keyword', $sData['keyword'], 'placeholder="' . KEYWORD_FORMAT_STRING . '" autofocus aria-label="' . KEYWORD_FORMAT_STRING . '"'); ?>
 
 <div class="custom-control custom-checkbox mt-3">
 <?php echo zen_draw_checkbox_field('search_in_description', '1', $sData['search_in_description'], 'id="search-in-description"') . '<label class="custom-control-label" for="search-in-description">' . TEXT_SEARCH_IN_DESCRIPTION . '</label>'; ?>
@@ -54,7 +53,7 @@
 <?php echo ENTRY_CATEGORIES; ?>
   </h4>
   <div id="limitToCategory-card-body" class="card-body">
-<?php echo zen_draw_pull_down_menu('categories_id', zen_get_categories(array(array('id' => '', 'text' => TEXT_ALL_CATEGORIES)), '0' ,'', '1'), $sData['categories_id']); ?>
+<?php echo zen_draw_pull_down_menu('categories_id', zen_get_categories(array(array('id' => '', 'text' => TEXT_ALL_CATEGORIES)), '0' ,'', '1'), $sData['categories_id'], 'id="searchCategoryId" aria-label="' . PLEASE_SELECT . '"'); ?>
 
 <div class="custom-control custom-checkbox mt-3">
 <?php echo zen_draw_checkbox_field('inc_subcat', '1', $sData['inc_subcat'], 'id="inc-subcat"'); ?><label class="custom-control-label" for="inc-subcat"><?php echo ENTRY_INCLUDE_SUBCATEGORIES; ?></label>
@@ -70,7 +69,7 @@
 <?php echo ENTRY_MANUFACTURERS; ?>
   </h4>
   <div id="limitToManufacturer-card-body" class="card-body">
-    <?php echo zen_draw_pull_down_menu('manufacturers_id', zen_get_manufacturers(array(array('id' => '', 'text' => TEXT_ALL_MANUFACTURERS)), PRODUCTS_MANUFACTURERS_STATUS), $sData['manufacturers_id'], 'id="searchMfgId"'); ?>
+    <?php echo zen_draw_pull_down_menu('manufacturers_id', zen_get_manufacturers(array(array('id' => '', 'text' => TEXT_ALL_MANUFACTURERS)), PRODUCTS_MANUFACTURERS_STATUS), $sData['manufacturers_id'], 'id="searchMfgId" aria-label="' . PLEASE_SELECT . '"'); ?>
   </div>
 </div>
 <!--eof limit to manufacturer card-->

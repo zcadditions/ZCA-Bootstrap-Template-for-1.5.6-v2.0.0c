@@ -2,16 +2,15 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=checkout_shipping.<br />
  * Displays allowed shipping modules for selection by customer.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2013 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version GIT: $Id: Author: Ian Wilson  Mon Oct 28 17:54:33 2013 +0000 Modified in v1.5.2 $
+ * @version $Id: DrByte 2020 Oct 29 Modified in v1.5.7a $
  */
 ?>
 <div id="checkoutShippingDefault" class="centerColumn">
@@ -78,7 +77,7 @@
 <?php
     if ($free_shipping == true) {
 ?>
-<div id="shippingMethod-content-two" class="content"><?php echo FREE_SHIPPING_TITLE; ?>&nbsp;<?php echo $quotes[$i]['icon']; ?></div>
+<div id="shippingMethod-content-two" class="content"><?php echo FREE_SHIPPING_TITLE . (isset($quotes[$i]['icon']) ? '&nbsp;' . $quotes[$i]['icon'] : ''); ?></div>
 
 <div id="shippingMethod-selected" class="selected"><?php echo sprintf(FREE_SHIPPING_DESCRIPTION, $currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) . zen_draw_hidden_field('shipping', 'free_free'); ?></div>
  
@@ -88,8 +87,8 @@
       for ($i=0, $n=sizeof($quotes); $i<$n; $i++) {
       // bof: field set
 // allows FedEx to work comment comment out Standard and Uncomment FedEx
-//      if ($quotes[$i]['id'] != '' || $quotes[$i]['module'] != '') { // FedEx
-      if ($quotes[$i]['module'] != '') { // Standard
+//      if (!empty($quotes[$i]['id']) || !empty($quotes[$i]['module'])) { // FedEx
+      if (!empty($quotes[$i]['module'])) { // Standard
 ?>
 
 <!--bof shipping method option card-->
@@ -172,7 +171,7 @@
 <h4 id="orderComments-card-header" class="card-header">
     <?php echo TABLE_HEADING_COMMENTS; ?></h4>
 <div id="orderComments-card-body" class="card-body p-3">
-<?php echo zen_draw_textarea_field('comments', '45', '3'); ?>
+<?php echo zen_draw_textarea_field('comments', '45', '3', (isset($comments) ? $comments : ''), 'aria-label="' . TABLE_HEADING_COMMENTS . '"'); ?>
 </div>
 </div>
 <!--eof order comments card--> 

@@ -2,16 +2,15 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP 2.0.1
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=checkout_success.<br />
  * Displays confirmation details after order has been successfully processed.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Mon Nov 12 17:39:07 2018 -0500 Modified in v1.5.6 $
+ * @version $Id: torvista 2019 Oct 25 Modified in v1.5.7 $
  */
 ?>
 <div id="checkoutSuccessDefault" class="centerColumn">
@@ -146,7 +145,7 @@ if (isset($additional_payment_messages) && $additional_payment_messages != '') {
 <?php echo zen_image_submit(BUTTON_IMAGE_UPDATE, BUTTON_UPDATE_ALT); ?>
 </div>
 
-</form>
+<?php echo '</form>'; ?>
 </div>
 </div>
 <!--eof product notifications card-->

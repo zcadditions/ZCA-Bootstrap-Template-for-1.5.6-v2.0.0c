@@ -2,10 +2,9 @@
 /**
  * Template for Mobile Header Drop Down
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
- * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  */
@@ -84,7 +83,7 @@ if (DEFINE_CONDITIONS_STATUS <= 1) {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_CONDITIONS) . '">'. BOX_INFORMATION_CONDITIONS.'</a></li>';
 }
 if (!empty($external_bb_url) && !empty($external_bb_text)) { // forum/bb link
-        echo '<li><a class="dropdown-item" href="' . $external_bb_url . '" target="_blank">' . $external_bb_text . '</a></li>';
+        echo '<li><a class="dropdown-item" href="' . $external_bb_url . '" rel="noopener" target="_blank">' . $external_bb_text . '</a></li>';
 }
 if (DEFINE_SITE_MAP_STATUS <= 1) {
         echo '<li><a class="dropdown-item" href="'.zen_href_link(FILENAME_SITE_MAP) . '">'. BOX_INFORMATION_SITE_MAP.'</a></li>';
@@ -112,8 +111,8 @@ if (DEFINE_PAGE_4_STATUS <= 1) {
         </div>
       </li>  
 <?php
-  // test if sidebox should display
-  if (EZPAGES_STATUS_SIDEBOX == '1' or (EZPAGES_STATUS_SIDEBOX== '2' and (strstr(EXCLUDE_ADMIN_IP_FOR_MAINTENANCE, $_SERVER['REMOTE_ADDR'])))) {
+  // test if ez-pages links should display
+  if (EZPAGES_STATUS_SIDEBOX == '1' or (EZPAGES_STATUS_SIDEBOX== '2' && zen_is_whitelisted_admin_ip())) {
  ?>
       <li class="nav-item dropdown d-lg-none">
         <a class="nav-link dropdown-toggle" href="#" id="ezpagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -187,5 +186,4 @@ if (isset($var_linksList)) {
         </div>
       </li>  
 <?php
-} // test for display
- ?> 
+} // eof ezpages

@@ -2,15 +2,14 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Displays the FAQ pages for the Gift-Certificate/Voucher system.<br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2006 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: tpl_gv_faq_default.php 4859 2006-10-28 20:11:48Z drbyte $
+ * @version $Id: mc12345678 2019 Nov 14 Modified in v1.5.7 $
  */
 ?>
 
@@ -18,7 +17,7 @@
     
 <?php
 // only show when there is a GV balance
-  if ($customer_has_gv_balance ) {
+  if (!empty($customer_has_gv_balance) ) {
 ?>
 
 <?php require($template->get_template_dir('tpl_modules_send_or_spend.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_send_or_spend.php'); ?>
@@ -55,9 +54,9 @@
       
 <form action="<?php echo zen_href_link(FILENAME_GV_REDEEM, '', 'NONSSL', false); ?>" method="get">
 <?php echo zen_draw_hidden_field('main_page',FILENAME_GV_REDEEM) . zen_draw_hidden_field('goback','true') . zen_hide_session_id(); ?>      
-      
+
 <label class="inputLabel" for="lookup-gv-redeem"><?php echo TEXT_GV_REDEEM_ID; ?></label>
-<?php echo zen_draw_input_field('gv_no', $_GET['gv_no'], 'size="18" id="lookup-gv-redeem"');?>
+<?php echo zen_draw_input_field('gv_no', isset($_GET['gv_no']) ? $_GET['gv_no'] : '0', 'size="18" id="lookup-gv-redeem"');?>
 
 <div id="giftCertificateRedemption-btn-toolbar" class="btn-toolbar justify-content-end my-3" role="toolbar">
 <?php echo zen_image_submit(BUTTON_IMAGE_REDEEM, BUTTON_REDEEM_ALT); ?>

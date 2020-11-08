@@ -2,15 +2,14 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Template used to collect/display details of sending a GV to a friend from own GV balance. <br />
  *
- * @package templateSystem
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Fri Jan 8 00:33:36 2016 -0500 Modified in v1.5.5 $
+ * @version $Id: Scott C Wilson 2019 Jul 05 Modified in v1.5.7 $
  */
 ?>
 <div id="gvSendDefault" class="centerColumn">
@@ -25,6 +24,8 @@
     <?php echo TEXT_BALANCE_IS . $gv_current_balance; ?>
 
 <?php
+  if (!isset($_GET['action'])) $_GET['action'] = ''; 
+  if (!isset($error)) $error = false;
   if ($gv_result->fields['amount'] > 0 && $_GET['action'] == 'doneprocess') {
 ?>
 
@@ -129,19 +130,19 @@
 <div id="sendGiftCertificate-content" class="content mb-3"><?php echo HEADING_TEXT; ?></div>
 
 <label class="inputLabel" for="to-name"><?php echo ENTRY_NAME; ?></label>
-<?php echo zen_draw_input_field('to_name', $_POST['to_name'], 'size="40" id="to-name" placeholder="' . ENTRY_FIRST_NAME_TEXT . '"' . ((int)ENTRY_FIRST_NAME_MIN_LENGTH > 0 ? ' required' : ''));?>
+<?php echo zen_draw_input_field('to_name', (!empty($_POST['to_name']) ? $_POST['to_name'] : ''), 'size="40" id="to-name" placeholder="' . ENTRY_FIRST_NAME_TEXT . '"' . ((int)ENTRY_FIRST_NAME_MIN_LENGTH > 0 ? ' required' : ''));?>
 <div class="p-2"></div>
 
 <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL; ?></label>
-<?php echo zen_draw_input_field('email', $_POST['email'], 'size="40" id="email-address" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); if ($error) echo $error_email; ?>
+<?php echo zen_draw_input_field('email', (!empty($_POST['email'])? $_POST['email'] : ''), 'size="40" id="email-address" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : ''), 'email'); ?>
 <div class="p-2"></div>
 
 <label class="inputLabel" for="amount"><?php echo ENTRY_AMOUNT; ?></label>
-<?php echo zen_draw_input_field('amount', $_POST['amount'], 'id="amount" placeholder="' . ENTRY_REQUIRED_SYMBOL . '"' . 'text', false); if ($error) echo $error_amount; ?>
+<?php echo zen_draw_input_field('amount', (!empty($_POST['amount']) ? $_POST['amount'] : ''), 'id="amount" placeholder="' . ENTRY_REQUIRED_SYMBOL . '"' . 'text', false); ?>
 <div class="p-2"></div>
 
 <label for="message-area"><?php echo ENTRY_MESSAGE; ?></label>
-<?php echo zen_draw_textarea_field('message', 50, 10, stripslashes($_POST['message']), 'id="message-area"'); ?>
+<?php echo zen_draw_textarea_field('message', 50, 10,  (!empty($_POST['message']) ? stripslashes($_POST['message']) : ''), 'id="message-area"'); ?>
 <div class="p-2"></div>
 
 <div id="sendGiftCertificate-content-one" class="content"><?php echo EMAIL_ADVISORY_INCLUDED_WARNING . str_replace('-----', '', EMAIL_ADVISORY); ?></div>

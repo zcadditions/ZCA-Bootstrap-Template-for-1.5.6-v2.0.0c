@@ -2,14 +2,15 @@
 /**
  * Page Template
  *
+ * BOOTSTRAP v3.0.0
+ *
  * Loaded automatically by index.php?main_page=create_account.<br />
  * Displays Create Account form.
  *
- * @package templateSystem
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: rbarbour zcadditions.com Tue Aug 21 07:00:53 2018 -0400 Modified in v1.5.6 $
+ * @version $Id: rbarbour zcadditions.com 2019 Jul 15 Modified in v1.5.7 $
  */
 ?>
 
@@ -91,7 +92,7 @@
   <?php echo zen_draw_input_field('street_address', '', zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_street_address', '40') . ' id="street-address" placeholder="' . ENTRY_STREET_ADDRESS_TEXT . '"'. ((int)ENTRY_STREET_ADDRESS_MIN_LENGTH > 0 ? ' required' : '')); ?>
 <div class="p-2"></div>
 
-<?php echo zen_draw_input_field('should_be_empty', '', ' size="40" id="CAAS" style="visibility:hidden; display:none;" autocomplete="off"'); ?>
+<?php echo zen_draw_input_field($antiSpamFieldName, '', ' size="40" id="CAAS" style="visibility:hidden; display:none;" autocomplete="off"'); ?>
 
 <?php
   if (ACCOUNT_SUBURB == 'true') {
