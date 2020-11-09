@@ -45,6 +45,14 @@ img{max-width:100%;height:auto;border:0;}
     padding: 1rem;
 }
 
+table.tabTable td {
+    padding: 0.5rem;
+}
+
+#productsListing-bottomRow {
+    margin-top: 1rem;
+}
+
 /* These CSS media queries control how many columns of cards display on the login, checkout_shipping, checkout_payment & checkout_confirmation pages */
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
