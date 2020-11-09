@@ -63,7 +63,7 @@ if ($product_listing_layout_style == 'rows') {
                 break;
             case 'PRODUCT_LIST_PRICE':
                 $lc_text = TABLE_HEADING_PRICE;
-                $lc_align = 'center' . (PRODUCTS_LIST_PRICE_WIDTH > 0 ? '" width="' . PRODUCTS_LIST_PRICE_WIDTH : '');
+                $lc_align = 'center';
                 $zc_col_count_description++;
                 break;
             case 'PRODUCT_LIST_QUANTITY':
@@ -77,7 +77,8 @@ if ($product_listing_layout_style == 'rows') {
                 $zc_col_count_description++;
                 break;
             case 'PRODUCT_LIST_IMAGE':
-                $lc_text = TABLE_HEADING_IMAGE;
+                $lc_text = '&nbsp;';
+//                $lc_text = TABLE_HEADING_IMAGE;   //-Uncomment this line if you want the "Products Image" header title
                 $lc_align = 'center';
                 $zc_col_count_description++;
                 break;
@@ -88,10 +89,9 @@ if ($product_listing_layout_style == 'rows') {
             $lc_text = zen_create_sort_heading(isset($_GET['sort']) ? $_GET['sort'] : '', $col+1, $lc_text);
         }
 
-
+        $align_class = ($lc_align == '') ? '' : " text-$lc_align";
         $list_box_contents[0][$col] = array(
-            'align' => $lc_align,
-            'params' => 'class="productListing-heading"',
+            'params' => 'class="productListing-heading' . $align_class . '"',
             'text' => $lc_text 
         );
     }
@@ -117,14 +117,6 @@ if ($num_products_count > 0) {
     while (!$listing->EOF) {
         if ($product_listing_layout_style == 'rows') {
             $rows++;
-
-            if ($rows % 2 == 0) {
-                $list_box_contents[$rows] = array('params' => 'class="productListing-even"');
-            } else {
-                $list_box_contents[$rows] = array('params' => 'class="productListing-odd"');
-            }
-
-            $cur_row = count($list_box_contents) - 1;
         }
         $product_contents = array();
 
@@ -222,12 +214,14 @@ if ($num_products_count > 0) {
                     break;
             }
 
-        $product_contents[] = $lc_text; // (used in column mode)
+            $product_contents[] = $lc_text; // (used in column mode)
 
-        if ($product_listing_layout_style == 'rows') {
-            $list_box_contents[$rows][$col] = array('align' => $lc_align,
-                                                    'params' => 'class="productListing-data"',
-                                                    'text'  => $lc_text);
+            if ($product_listing_layout_style == 'rows') {
+                $align_class = ($lc_align == '') ? '' : " text-$lc_align";
+                $list_box_contents[$rows][$col] = array(
+                    'params' => 'class="productListing-data' . $align_class . '"',
+                    'text'  => $lc_text
+                );
 //        // add description and match alternating colors
 //        if (PRODUCT_LIST_DESCRIPTION > 0) {
 //          $rows++;
@@ -241,24 +235,25 @@ if ($num_products_count > 0) {
 //          $list_box_contents[$rows][] = array('params' => 'class="' . $list_box_description . '" colspan="' . $zc_col_count_description . '"',
 //                                              'text' => zen_trunc_string(zen_clean_html(stripslashes(zen_get_products_description($listing->fields['products_id'], $_SESSION['languages_id']))), PRODUCT_LIST_DESCRIPTION));
 //        }
-      }
+            }
+        }
+
+        if ($product_listing_layout_style == 'columns') {
+            $lc_text = implode('<br>', $product_contents);
+            $list_box_contents[$rows][$column] = array(
+                'params' => 'class="card mb-3 p-3 centerBoxContentsListing text-center"',
+                'text'  => $lc_text
+            );
+            $column ++;
+            if ($column >= $columns_per_row) {
+                $column = 0;
+                $rows++;
+            }
+        }
+
+        $listing->MoveNext();
     }
-
-    if ($product_listing_layout_style == 'columns') {
-      $lc_text = implode('<br>', $product_contents);
-      $list_box_contents[$rows][$column] = array('params' => 'class="card mb-3 p-3 centerBoxContentsListing text-center"',
-                                                 'text'  => $lc_text);
-      $column ++;
-      if ($column >= $columns_per_row) {
-        $column = 0;
-        $rows ++;
-      }
-    }
-
-    $listing->MoveNext();
-  }
-  $error_categories = false;
-
+    $error_categories = false;
 } else {
 
     $list_box_contents = array();
