@@ -27,9 +27,11 @@
     <?php echo MY_ACCOUNT_TITLE; ?></h4>
     <div id="myAccount-card-body" class="card-body p-3">
 <ul id="myAccount-list-group" class="list-group list-group-flush">
-<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_EDIT, '', 'SSL') . '">' . MY_ACCOUNT_INFORMATION . '</a>'; ?></li>
-<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL') . '">' . MY_ACCOUNT_ADDRESS_BOOK . '</a>'; ?></li>
-<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_PASSWORD, '', 'SSL') . '">' . MY_ACCOUNT_PASSWORD . '</a>'; ?></li>
+
+<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_EDIT, '', 'SSL') . '"><button class="btn btn-primary">' . MY_ACCOUNT_INFORMATION . '</button></a>'; ?></li>
+<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ADDRESS_BOOK, '', 'SSL') . '"><button class="btn btn-primary">' . MY_ACCOUNT_ADDRESS_BOOK . '</button></a>'; ?></li>
+<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_PASSWORD, '', 'SSL') . '"><button class="btn btn-primary">' . MY_ACCOUNT_PASSWORD . '</button></a>'; ?></li>
+
 </ul>      
     </div>
   </div>
@@ -48,12 +50,12 @@
 <?php
   if ((int)ACCOUNT_NEWSLETTER_STATUS > 0) {
 ?>
-<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_NEWSLETTERS, '', 'SSL') . '">' . EMAIL_NOTIFICATIONS_NEWSLETTERS . '</a>'; ?></li>
+<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_NEWSLETTERS, '', 'SSL') . '"><button class="btn btn-primary">' . EMAIL_NOTIFICATIONS_NEWSLETTERS . '</button></a>'; ?></li>
 <?php } //endif newsletter unsubscribe ?>
 <?php
   if (CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS == '1') {
 ?>
-<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_NOTIFICATIONS, '', 'SSL') . '">' . EMAIL_NOTIFICATIONS_PRODUCTS . '</a>'; ?></li>
+<li class="list-group-item"><?php echo ' <a href="' . zen_href_link(FILENAME_ACCOUNT_NOTIFICATIONS, '', 'SSL') . '"><button class="btn btn-primary">' . EMAIL_NOTIFICATIONS_PRODUCTS . '</button></a>'; ?></li>
 
 <?php } //endif product notification ?>
 </ul>
