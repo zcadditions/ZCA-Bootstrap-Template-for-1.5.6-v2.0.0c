@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v1.0.BETA
+ * BOOTSTRAP v3.0.0
  *
  * Loaded automatically by index.php?main_page=account.<br />
  * Displays previous orders and options to change various Customer Account settings

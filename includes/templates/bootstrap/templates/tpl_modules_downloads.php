@@ -2,6 +2,8 @@
 /**
  * Module Template
  *
+ * BOOTSTRAP v3.0.0
+ *
  * NOTE: The clickable download links will appear only if:
  * - Download remaining count is > 0, AND
  * - The file is present in the DOWNLOAD directory, AND EITHER

@@ -2,6 +2,8 @@
 /**
  * Side Box Template
  *
+ * BOOTSTRAP v3.0.0
+ *
  * @package templateSystem
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
