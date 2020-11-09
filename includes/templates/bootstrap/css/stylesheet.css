@@ -32,6 +32,10 @@ img{max-width:100%;height:auto;border:0;}
     z-index: 1;
 }
 
+.zca-banner {
+    text-align: center;
+}
+
 .ot-title {
     text-align: right;
 }

@@ -99,7 +99,7 @@ $find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET1);
 $show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET1);
 ?>
 
-<div class="bannerOne rounded">
+<div class="zca-banner bannerOne rounded">
 <?php 
 if (ZCA_ACTIVATE_BANNER_ONE_CAROUSEL == 'true') {
 require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
@@ -168,7 +168,7 @@ $find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET3);
 $show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET3);
 ?>
 
-<div class="bannerThree rounded">
+<div class="zca-banner bannerThree rounded">
 <?php 
 if (ZCA_ACTIVATE_BANNER_THREE_CAROUSEL == 'true') {
 require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
@@ -201,7 +201,7 @@ $find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET4);
 $show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET4);
 ?>
 
-<div class="bannerFour rounded">
+<div class="zca-banner bannerFour rounded">
 <?php 
 if (ZCA_ACTIVATE_BANNER_FOUR_CAROUSEL == 'true') {
 require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
@@ -275,7 +275,7 @@ $find_banners = zen_build_banners_group(SHOW_BANNERS_GROUP_SET6);
 $show_banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET6);
 ?>
 
-<div class="bannerSix rounded">
+<div class="zca-banner bannerSix rounded">
 <?php 
 if (ZCA_ACTIVATE_BANNER_SIX_CAROUSEL == 'true') {
 require($template->get_template_dir('tpl_zca_banner_carousel.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_zca_banner_carousel.php'); 
