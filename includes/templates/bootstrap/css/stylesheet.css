@@ -48,7 +48,9 @@ img{max-width:100%;height:auto;border:0;}
 table.tabTable td {
     padding: 0.5rem;
 }
-
+#indexProductList-cat-wrap {
+    margin-bottom: 1rem;
+}
 #productsListing-bottomRow {
     margin-top: 1rem;
 }
