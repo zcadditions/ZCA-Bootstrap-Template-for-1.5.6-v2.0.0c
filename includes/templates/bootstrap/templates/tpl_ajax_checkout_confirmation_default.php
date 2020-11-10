@@ -232,6 +232,16 @@
       </table>
 </div>
 
+<div id="cartContents-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
+<?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?>
+</div>
+
+
+</div>
+</div>
+<!--eof shopping cart contents card-->
+
+</div>
 
 <?php
   echo zen_draw_form('checkout_confirmation', $form_action_url, 'post', 'id="checkout_confirmation" onsubmit="submitonce();"');
@@ -282,16 +292,6 @@ if (isset ($_SESSION['shipping']['extras']) && is_array ($_SESSION['shipping']['
     }
 }
 ?>
-<div id="cartContents-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
-<?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?>
-</div>
-
-
-</div>
-</div>
-<!--eof shopping cart contents card-->
-
-</div>  
   
 <div id="checkoutConfirmationDefault-btn-toolbar" class="btn-toolbar justify-content-between" role="toolbar">
 <?php echo TITLE_CONTINUE_CHECKOUT_PROCEDURE . '<br />' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?>
