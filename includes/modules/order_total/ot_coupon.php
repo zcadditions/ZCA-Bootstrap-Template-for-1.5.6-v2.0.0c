@@ -159,8 +159,8 @@ class ot_coupon {
             'id' => $this->code,
             'module' => $this->title,
             'redeem_instructions' => MODULE_ORDER_TOTAL_COUPON_REDEEM_INSTRUCTIONS .
-                MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS .
-                '<p>' . MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE . $couponLink . '</p><br />',
+                (!empty($coupon_code) ? MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS : '') .
+                (!empty($coupon_code) ? '<p>' . MODULE_ORDER_TOTAL_COUPON_TEXT_CURRENT_CODE . $couponLink . '</p><br>' : ''),
             'fields' => array(
                 array(
                     'title' => MODULE_ORDER_TOTAL_COUPON_TEXT_ENTER_CODE,
@@ -214,8 +214,7 @@ class ot_coupon {
 
 
 
-      $sql = "SELECT coupon_id, coupon_amount, coupon_type, coupon_minimum_order, uses_per_coupon, uses_per_user,
-              restrict_to_products, restrict_to_categories, coupon_zone_restriction, coupon_calc_base, coupon_order_limit
+      $sql = "SELECT * 
               FROM " . TABLE_COUPONS . "
               WHERE coupon_code= :couponCodeEntered
               AND coupon_active='Y'
@@ -465,7 +464,6 @@ class ot_coupon {
             zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true, false));
           }
 
-          // remove if fails address validation
           if ($foundvalid) {
           //      if ($_POST['submit_redeem_coupon_x'] && !$_POST['gv_redeem_code']) zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, 'credit_class_error_code=' . $this->code . '&credit_class_error=' . urlencode(TEST_NO_REDEEM_CODE), 'SSL', true, false));
             $messageStack->add('checkout', TEXT_VALID_COUPON,'success');
