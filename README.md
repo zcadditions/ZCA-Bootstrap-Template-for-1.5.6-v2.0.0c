@@ -2,6 +2,8 @@
 
 This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/) foundation to provide an updated look-and-feel to your Zen Cart.  Since the template is standards-based, it's easier to make layout changes to your store.
 
+**Note**: This branch is no longer maintained.  For the most recent updates for the Bootstrap 4 Template for zc157 and later, please use [this](https://github.com/lat9/ZCA-Bootstrap-Template) repository.
+
 ## Zen Cart Links
 
 **Support Thread:** https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread
